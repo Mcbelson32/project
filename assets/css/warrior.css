@@ -1,0 +1,30 @@
+.details { 
+display: block;
+}
+.details .cardHeader {
+  display: block;
+}
+.details .cardHeader h2 {
+  position: relative;
+  width:100%;
+ text-align: center;
+  padding: 10px 0;
+}
+.details .cardHeader h2::before {
+  content: '';
+  position:absolute;
+  bottom: 0;
+  left:40%;
+  width:20%;
+  height:3px;
+  background-color: var(--blue);
+}
+.recentOrders table tr td .btn {
+  text-decoration: none;
+  font-size: 24px;
+  font-weight: bold;
+  color:#1795fe;
+}
+.recentOrders table tr td .btn.del {
+  color: #f08;
+}
