@@ -14,7 +14,7 @@
   padding: 2% 5%;
   border-radius: 5px;
   box-shadow: 0 5px 10px rgba(0,0,0,0.15);
-  overflow-x:scroll;
+  
 }
 .details .container .title{
   font-size: 25px;
@@ -37,11 +37,19 @@
   flex-wrap: wrap;
   justify-content: space-between;
   margin: 20px 0 12px 0;
-  overflow-x:scroll;
+ 
 }
 form .user-details .input-box{
   margin-bottom: 15px;
   width: calc(100% / 3 - 20px);
+}
+form .input-box.dur{
+  margin-bottom: 15px;
+  width: calc(100% / 1 - 20px);
+  display: flex;
+  gap: 1%;
+  justify-content: space-around;
+  align-items: center;
 }
 form .input-box span.details{
   display: block;
@@ -59,8 +67,19 @@ form .input-box span.details{
   border-bottom-width: 2px;
   transition: all 0.3s ease;
 }
-.user-details .input-box input:focus,
-.user-details .input-box input:valid{
+.input-box.dur input{
+  height: 45px;
+  width: 100%;
+  outline: none;
+  font-size: 16px;
+  border-radius: 5px;
+  padding-left: 15px;
+  border: 1px solid #ccc;
+  border-bottom-width: 2px;
+  transition: all 0.3s ease;
+}
+form .input-box input:focus,
+form .input-box input:valid{
   border-color: #9b59b6;
 }
  form .gender-title{

@@ -24,7 +24,7 @@ include './server/fetch.php';
                         <span class="icon">
                             <ion-icon name="logo-buffer"></ion-icon>
                         </span>
-              <span class="title big">Name</span>
+                        <span class="title big">Name</span>
                     </a>
                 </li>
 
@@ -49,7 +49,7 @@ include './server/fetch.php';
                 <li>
                     <a href="warriors.php">
                         <span class="icon">
-                              <ion-icon name="person-outline"></ion-icon>
+                            <ion-icon name="person-outline"></ion-icon>
                         </span>
                         <span class="title">warriors</span>
                     </a>
@@ -59,11 +59,11 @@ include './server/fetch.php';
                     <a href="form.php">
                         <span class="icon">
                             <ion-icon name="person-add-outline"></ion-icon>
-                            </span>
+                        </span>
                         <span class="title">Add Warrior</span>
                     </a>
                 </li>
- 
+
 
                 <li>
                     <a href="relative.php">
@@ -145,7 +145,8 @@ include './server/fetch.php';
                     </div>
 
                     <div class="iconBx">
-                        <ion-icon name="accessibility-outline"></ion-icon>                    </div>
+                        <ion-icon name="accessibility-outline"></ion-icon>
+                    </div>
                 </div>
 
                 <div class="card">
@@ -155,103 +156,116 @@ include './server/fetch.php';
                     </div>
 
                     <div class="iconBx">
-                        <ion-icon name="analytics-outline"></ion-icon>                    </div>
+                        <ion-icon name="analytics-outline"></ion-icon>
+                    </div>
                 </div>
             </div>
 
             <!-- ================ Order Details List ================= -->
-        <div class="details">
-        <div class="container">
-             <div class="title">Registration</div>
-    <div class="content">
-      <form action="./server/group.php" id="form" method="POST">
-          <?php if(isset($_GET['id'])): ?>
-           <input type="hidden" name="id" id="id"
-            value="<?php echo $_GET['id']; ?>">
-            <?php endif ?>
-        <div class="user-details">
-          <div class="input-box">
-            <span class="details">Family ID(Father's ID)</span>
-            <input type="text" name="u_id" id="u_id" placeholder="Enter your ID" required value="<?php if(isset($_GET['id'])){echo $u_id;}?>">
-          </div>
+            <div class="details">
+                <div class="container">
+                    <div class="title">Registration</div>
+                    <div class="content">
+                        <form action="./server/group.php" id="form" method="POST">
+                            <?php if(isset($_GET['id'])): ?>
+                            <input type="hidden" name="id" id="id" value="<?php echo $_GET['id']; ?>">
+                            <?php endif ?>
+                            <div class="user-details">
+                                <div class="input-box">
+                                    <span class="details">Family ID(Father's ID)</span>
+                                    <input type="text" name="u_id" id="u_id" placeholder="Enter your ID" required
+                                        value="<?php if(isset($_GET['id'])){echo $u_id;}?>">
+                                </div>
 
-          <div class="input-box">
-            <span class="details">Full Name</span>
-            <input type="text" name="u_name" id="u_name" placeholder="Enter your name" required value="<?php if(isset($_GET['id'])){echo $u_name;}?>">
-            </div>
+                                <div class="input-box">
+                                    <span class="details">Full Name</span>
+                                    <input type="text" name="u_name" id="u_name" placeholder="Enter your name" required
+                                        value="<?php if(isset($_GET['id'])){echo $u_name;}?>">
+                                </div>
 
-          <div class="input-box">
-            <span class="details">Wife or Child</span>
-            <select name="type" id="type" onchange="selectFam()">
-              <option value="Wife">Wife</option>
-                <option value="Child">Child</option>
-                <option value="Representativ">Grandchild</option>
-                <option value="Representativ">Representative</option>
-            </select>
-          </div>
+                                <div class="input-box">
+                                    <span class="details">relativity</span>
+                                    <select name="type" id="type" onchange="selectFam()">
+                                        <option value="Wife">Wife</option>
+                                        <option value="Child">Child</option>
+                                        <option value="Representativ">Grandchild</option>
+                                        <option value="Representativ">Representative</option>
+                                    </select>
+                                </div>
 
-                    
-                    <div class="input-box">
-            <span class="details">Birth Date</span>
-              <input type="date" name="b_date" id="b_date" required
-              value="<?if(isset($_GET['id'])){echo $b_date;}?>">
-          </div>
-                  
-          <div class="input-box">
-              <span class="details">level of education</span>
-  
-                  <select name="educ_lvl" id="educ_lvl">
-                      <option value="primary">Primary School</option>
-                      <option value="secondary">Secondary School</option>
-                      <option value="preparatory">Preparatory School</option>
-                      <option value="vocational">Vocational School</option>
-                      <option value="college">College</option>
-                      <option value="bachelor">Bachelor's Degree</option>
-                      <option value="master">Master's Degree</option>
-                      <option value="phd">PhD</option>
-                      <option value="doctorate">Doctorate Degree</option>
-                      <option value="professor">Professor</option>
-                  </select>
+                                <div class="input-box">
+                                    <span class="details">Status</span>
+
+                                    <select name="educ_lvl" id="educ_lvl">
+                                        <option value="Alive">Alive</option>
+                                        <option value="Dead">Dead</option>
+                                        <option value="Divorced">Divorced</option>
+                                    </select>
+                                </div>
+
+                                <div class="input-box">
+                                    <span class="details">Birth Date</span>
+                                    <input type="date" name="b_date" id="b_date" required
+                                        value="<?if(isset($_GET['id'])){echo $b_date;}?>">
+                                </div>
+
+                                <div class="input-box">
+                                    <span class="details">level of education</span>
+
+                                    <select name="educ_lvl" id="educ_lvl">
+                                        <option value="primary">Primary School</option>
+                                        <option value="secondary">Secondary School</option>
+                                        <option value="preparatory">Preparatory School</option>
+                                        <option value="vocational">Vocational School</option>
+                                        <option value="college">College</option>
+                                        <option value="bachelor">Bachelor's Degree</option>
+                                        <option value="master">Master's Degree</option>
+                                        <option value="phd">PhD</option>
+                                        <option value="doctorate">Doctorate Degree</option>
+                                        <option value="professor">Professor</option>
+                                        <option value="uneducateed">Uneducated</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <span class="details">Duration</span>
+                            <div class="input-box dur">
+                                <input type="date" name="b_date" id="b_date" required
+                                    value="<?if(isset($_GET['id'])){echo $b_date;}?>">
+                                -
+                                <input type="date" name="b_date" id="b_date" required
+                                    value="<?if(isset($_GET['id'])){echo $b_date;}?>">
+                            </div>
+                            <div class="button">
+                                <?php if (isset($_GET['id'])) { ?>
+                                <input type="submit" value="update">
+                                <?php }else{ ?>
+                                <input type="submit" value="Register">
+                                <?php } ?>
+                            </div>
+                        </form>
+                    </div>
+                </div>
             </div>
         </div>
 
-        <div class="input-box">
-            <span class="details"></span>
-            <input type="date" name="b_date" id="b_date" required
-              value="<?if(isset($_GET['id'])){echo $b_date;}?>">
-              <input type="date" name="b_date" id="b_date" required
-              value="<?if(isset($_GET['id'])){echo $b_date;}?>">
-        </div>
-        <div class="button">
-            <?php if (isset($_GET['id'])) { ?>
-                <input type="submit" value="update">
-            <?php }else{ ?>
-                <input type="submit" value="Register">
-            <?php } ?>
-        </div>
-              </form>
-            </div>
-            </div>
-            </div>
-       </div>
+        <!-- =========== Scripts =========  -->
+        <script src="assets/js/main.js"></script>
 
-    <!-- =========== Scripts =========  -->
-    <script src="assets/js/main.js"></script>
+        <script>
+        var lvl = document.getElementById('educ_lvl');
+        lvl.value = '<?php if(isset($_GET['id'])){echo $educ_lvl;}else{echo "";}?>';
+        </script>
+        <!-- <script> -->
+        <!-- var form = document.getElementById('form'); -->
 
-    <script>
-         var lvl = document.getElementById('educ_lvl');
-         lvl.value = '<?php if(isset($_GET['id'])){echo $educ_lvl;}else{echo "";}?>';
-    </script>
-      <!-- <script> -->
-      <!-- var form = document.getElementById('form'); -->
-
-      <!-- form.addEventListener('submit', (e) => { -->
-      <!--   e.preventDefault(); -->
-      <!-- }); -->
-      <!-- </script> -->
-    <!-- ====== ionicons ======= -->
-    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+        <!-- form.addEventListener('submit', (e) => { -->
+        <!--   e.preventDefault(); -->
+        <!-- }); -->
+        <!-- </script> -->
+        <!-- ====== ionicons ======= -->
+        <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+        <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 </body>
 
 </html>
