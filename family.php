@@ -12,7 +12,7 @@ include './server/group.php';
     <title>Dashboard</title>
     <!-- ======= Styles ====== -->
     <link rel="stylesheet" href="assets/css/style.css">
-  
+
 </head>
 
 <body>
@@ -25,7 +25,7 @@ include './server/group.php';
                         <span class="icon">
                             <ion-icon name="logo-buffer"></ion-icon>
                         </span>
-              <span class="title big">Name</span>
+                        <span class="title big">Name</span>
                     </a>
                 </li>
 
@@ -59,17 +59,17 @@ include './server/group.php';
                 <li>
                     <a href="form.php">
                         <span class="icon">
-                            <ion-icon name="person-add"></ion-icon>
+                            <ion-icon name="person-add-outline"></ion-icon>
                         </span>
                         <span class="title">Add Warrior</span>
                     </a>
                 </li>
- 
+
 
                 <li>
                     <a href="relative.php">
                         <span class="icon">
-                            <ion-icon name="person-add"></ion-icon>
+                            <ion-icon name="person-add-outline"></ion-icon>
                         </span>
                         <span class="title">Add Relative</span>
                     </a>
@@ -146,7 +146,8 @@ include './server/group.php';
                     </div>
 
                     <div class="iconBx">
-                        <ion-icon name="accessibility-outline"></ion-icon>                    </div>
+                        <ion-icon name="accessibility-outline"></ion-icon>
+                    </div>
                 </div>
 
                 <div class="card">
@@ -156,19 +157,20 @@ include './server/group.php';
                     </div>
 
                     <div class="iconBx">
-                        <ion-icon name="analytics-outline"></ion-icon>                    </div>
+                        <ion-icon name="analytics-outline"></ion-icon>
+                    </div>
                 </div>
             </div>
 
 
-                <!-- ================= New Customers ================ -->
-                <div class="recentCustomers">
-                    <div class="cardHeader">
-                        <h2>Recent Families</h2>
-                    </div>
+            <!-- ================= New Customers ================ -->
+            <div class="recentCustomers">
+                <div class="cardHeader">
+                    <h2>Recent Families</h2>
+                </div>
 
-          <table>
-<?php
+                <table>
+                    <?php
 if ($res) {
   $n = 0;
     while ($tables = mysqli_fetch_array($res)) {
@@ -232,67 +234,73 @@ echo "<tr id=\"name\"><td>
     }
 }
 ?>
-                    </table>
-                </div>
+                </table>
             </div>
         </div>
     </div>
+    </div>
     <style>
+    .recentCustomers table,
+    .recentCustomers table tr,
+    .recentCustomers table tr td {
+        width: 95%;
+    }
 
-.recentCustomers table,
-.recentCustomers table tr,
-.recentCustomers table tr td{
-    width:95%;
-}
+    .recentCustomers table tbody tr td {
+        width: 100%;
+        border: 2px #cacad850 solid;
+        padding-left: 50px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
 
-.recentCustomers table tbody tr td {
-  width: 100%;
-border: 2px #cacad850 solid;
-  padding-left: 50px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-.recentCustomers table tbody tr td h4 {
-  color: black;
-  /* max-width: 100px; */
-  /* overflow: scroll; */
-}
-.recentCustomers table tbody tr td #lvl {
-  max-width: 20%;
-  word-break: break-all;
-}
-.recentCustomers table tbody tr:hover td h4 {
-  color: var(--white);
-}
-.cardHeader {
-  margin-bottom: 15px;
-}
-.cardHeader h2::before{
-content: '';
-  position:absolute;
-  bottom: 0;
-  left:1%;
-  width:18%;
-  height:3px;
-  background-color: var(--blue);
-}
+    .recentCustomers table tbody tr td h4 {
+        color: black;
+        /* max-width: 100px; */
+        /* overflow: scroll; */
+    }
 
-.recentCustomers table tr td h4 {
-  color:var(--white);
-}
-.recentCustomers table #name td{
-  background-color: var(--blue);
-  border-radius: 20px;
-}
-#name * {
-  border-radius: 20px;
-}
-#name td h4 {
+    .recentCustomers table tbody tr td #lvl {
+        max-width: 20%;
+        word-break: break-all;
+    }
 
-  color:var(--white);
-}
+    .recentCustomers table tbody tr:hover td h4 {
+        color: var(--white);
+    }
 
+    .cardHeader {
+        margin-bottom: 15px;
+    }
+
+    .cardHeader h2::before {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 1%;
+        width: 18%;
+        height: 3px;
+        background-color: var(--blue);
+    }
+
+    .recentCustomers table tr td h4 {
+        color: var(--white);
+    }
+
+    .recentCustomers table #name td {
+        background-color: var(--blue);
+        border-radius: 20px;
+    }
+
+    #name * {
+        border-radius: 20px;
+    }
+
+    #name td h4 {
+
+        color: var(--white);
+    }
     </style>
     <!-- =========== Scripts =========  -->
     <script src="assets/js/main.js"></script>

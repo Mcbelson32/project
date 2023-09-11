@@ -16,9 +16,9 @@ $result=mysqli_query($conn, $sql);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
     <!-- ======= Styles ====== -->
-  <link rel="stylesheet" href="assets/css/style.css">
-  <link rel="stylesheet" href="assets/css/warrior.css">
-  
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/warrior.css">
+
 </head>
 
 <body>
@@ -31,7 +31,7 @@ $result=mysqli_query($conn, $sql);
                         <span class="icon">
                             <ion-icon name="logo-buffer"></ion-icon>
                         </span>
-              <span class="title big">Name</span>
+                        <span class="title big">Name</span>
                     </a>
                 </li>
 
@@ -65,17 +65,17 @@ $result=mysqli_query($conn, $sql);
                 <li>
                     <a href="form.php">
                         <span class="icon">
-                            <ion-icon name="person-add"></ion-icon>
+                            <ion-icon name="person-add-outline"></ion-icon>
                         </span>
                         <span class="title">Add Warrior</span>
                     </a>
                 </li>
- 
+
 
                 <li>
                     <a href="relative.php">
                         <span class="icon">
-                            <ion-icon name="person-add"></ion-icon>
+                            <ion-icon name="person-add-outline"></ion-icon>
                         </span>
                         <span class="title">Add Relative</span>
                     </a>
@@ -122,8 +122,8 @@ $result=mysqli_query($conn, $sql);
             </div>
 
             <!-- ======================= Cards ================== -->
-            
- <div class="cardBox">
+
+            <div class="cardBox">
                 <div class="card" onclick="window.location.href = 'warriors.php'">
                     <div>
                         <div class="numbers"><?php echo $total ?></div>
@@ -153,7 +153,8 @@ $result=mysqli_query($conn, $sql);
                     </div>
 
                     <div class="iconBx">
-                        <ion-icon name="accessibility-outline"></ion-icon>                    </div>
+                        <ion-icon name="accessibility-outline"></ion-icon>
+                    </div>
                 </div>
 
                 <div class="card">
@@ -163,7 +164,8 @@ $result=mysqli_query($conn, $sql);
                     </div>
 
                     <div class="iconBx">
-                        <ion-icon name="analytics-outline"></ion-icon>                    </div>
+                        <ion-icon name="analytics-outline"></ion-icon>
+                    </div>
                 </div>
             </div>
             <!-- ================ Order Details List ================= -->
@@ -175,18 +177,18 @@ $result=mysqli_query($conn, $sql);
 
                     <table>
                         <thead>
-  <tr>
-    <td>ID</td>
+                            <tr>
+                                <td>ID</td>
                                 <td>FullName</td>
                                 <td>Nationality</td>
-    <td>Nation</td>
-    <td>Phone</td>
+                                <td>Nation</td>
+                                <td>Phone</td>
                                 <td>Appellation</td>
                             </tr>
                         </thead>
 
-              <tbody>
-<?php
+                        <tbody>
+                            <?php
 if($result){
   $i=0;
   while($row=mysqli_fetch_assoc($result)){

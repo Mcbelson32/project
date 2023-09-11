@@ -7,6 +7,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
   $type=$_POST['type'];
   $lvl=$_POST['educ_lvl'];
   $b_date=$_POST['b_date'];
+  $status = $_POST['status'];
+  $duration = $_POST[start].'-'.$_POST['end'];
 
   $conn->select_db("warriorsdb");
   $sql="SELECT * FROM warrior WHERE id='$id'";
@@ -15,16 +17,18 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
   
   $name=$row['u_name'].$row['f_name'];
   $conn->select_db("family");
-  createTable($conn, $name, $id, $uname, $type, $lvl, $b_date);
+  createTable($conn, $name, $id, $uname, $type, $lvl, $b_date, $status, $duration);
 }
 
-function createTable($conn, $name, $id, $uname, $type, $lvl, $b_date) {
+function createTable($conn, $name, $id, $uname, $type, $lvl, $b_date, $status, $duration) {
   $sql = "CREATE TABLE IF NOT EXISTS $name (
-  id VARCHAR(255) NOT NULL,
-  uname VARCHAR(255) NOT NULL,
-  type VARCHAR(255) NOT NULL,
-  b_date DATE NOT NULL,
-  educ_lvl VARCHAR(255) NOT NULL
+  id VARCHAR(255) NOT NULL DEFAULT 'N/A',
+  uname VARCHAR(255) NOT NULL DEFAULT 'N/A',
+  member VARCHAR(255) DEFAULT 'N/A',
+  b_date VARCHAR(255) DEFAULT 'N/A',
+  educ_lvl VARCHAR(255) DEFAULT 'N/A',
+  status VARCHAR(255) DEFAULT 'N/A',
+  duration VARCHAR(255) DEFAULT 'N/A'
   )";
 
   $result=mysqli_query($conn, $sql);
@@ -33,8 +37,8 @@ function createTable($conn, $name, $id, $uname, $type, $lvl, $b_date) {
     return die(mysqli_error($conn));
   }
   
- $sql="INSERT INTO $name (id, uname, type, b_date, educ_lvl)
-  VALUES ('$id', '$uname', '$type', '$b_date', '$lvl')";
+ $sql="INSERT INTO $name (id, uname, member, b_date, educ_lvl, status, duration)
+  VALUES ('$id', '$uname', '$type', '$b_date', '$lvl', '$status','$duration')";
 
   $result=mysqli_query($conn, $sql);
 

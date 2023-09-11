@@ -186,7 +186,7 @@ include './server/fetch.php';
 
                                 <div class="input-box">
                                     <span class="details">relativity</span>
-                                    <select name="type" id="type" onchange="selectFam()">
+                                    <select name="type" id="type">
                                         <option value="Wife">Wife</option>
                                         <option value="Child">Child</option>
                                         <option value="Representativ">Grandchild</option>
@@ -197,7 +197,7 @@ include './server/fetch.php';
                                 <div class="input-box">
                                     <span class="details">Status</span>
 
-                                    <select name="educ_lvl" id="educ_lvl">
+                                    <select name="status" id="status">
                                         <option value="Alive">Alive</option>
                                         <option value="Dead">Dead</option>
                                         <option value="Divorced">Divorced</option>
@@ -206,7 +206,7 @@ include './server/fetch.php';
 
                                 <div class="input-box">
                                     <span class="details">Birth Date</span>
-                                    <input type="date" name="b_date" id="b_date" required
+                                    <input type="date" name="b_date" id="b_date"
                                         value="<?if(isset($_GET['id'])){echo $b_date;}?>">
                                 </div>
 
@@ -231,10 +231,10 @@ include './server/fetch.php';
 
                             <span class="details">Duration</span>
                             <div class="input-box dur">
-                                <input type="date" name="b_date" id="b_date" required
-                                    value="<?if(isset($_GET['id'])){echo $b_date;}?>">
+                                <input type="date" name="start" id="start" pattern="\d{2}/\d{2}/\d{2}"
+                                    value=" <if(isset($_GET['id'])){echo $b_date;}?>">
                                 -
-                                <input type="date" name="b_date" id="b_date" required
+                                <input type="date" name="end" id="end" pattern="\d{2}/\d{2}/\d{2}"
                                     value="<?if(isset($_GET['id'])){echo $b_date;}?>">
                             </div>
                             <div class="button">
@@ -255,7 +255,11 @@ include './server/fetch.php';
 
         <script>
         var lvl = document.getElementById('educ_lvl');
+        var mem = document.getElementById('type');
+        var stat = document.getElementById('status');
         lvl.value = '<?php if(isset($_GET['id'])){echo $educ_lvl;}else{echo "";}?>';
+        mem.value = '<?php if(isset($_GET['id'])){echo $type;}else{echo "";}?>';
+        stat.value = '<?php if(isset($_GET['id'])){echo $status;}else{echo "";}?>';
         </script>
         <!-- <script> -->
         <!-- var form = document.getElementById('form'); -->
