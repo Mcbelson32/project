@@ -50,6 +50,9 @@ if(isset($_GET['id'])) {
 <body>
     <!-- =============== Navigation ================ -->
     <div class="container">
+        <div class="pop">
+            <h3>hi</h3>
+        </div>
         <div class="navigation">
             <ul>
                 <li>
@@ -57,7 +60,7 @@ if(isset($_GET['id'])) {
                         <span class="icon">
                             <ion-icon name="logo-buffer"></ion-icon>
                         </span>
-              <span class="title big">Name</span>
+                        <span class="title big">Name</span>
                     </a>
                 </li>
 
@@ -82,7 +85,7 @@ if(isset($_GET['id'])) {
                 <li>
                     <a href="warriors.php">
                         <span class="icon">
-                              <ion-icon name="person-outline"></ion-icon>
+                            <ion-icon name="person-outline"></ion-icon>
                         </span>
                         <span class="title">warriors</span>
                     </a>
@@ -96,7 +99,7 @@ if(isset($_GET['id'])) {
                         <span class="title">Add Warrior</span>
                     </a>
                 </li>
- 
+
 
                 <li>
                     <a href="relative.php">
@@ -178,7 +181,8 @@ if(isset($_GET['id'])) {
                     </div>
 
                     <div class="iconBx">
-                        <ion-icon name="accessibility-outline"></ion-icon>                    </div>
+                        <ion-icon name="accessibility-outline"></ion-icon>
+                    </div>
                 </div>
 
                 <div class="card">
@@ -188,275 +192,275 @@ if(isset($_GET['id'])) {
                     </div>
 
                     <div class="iconBx">
-                        <ion-icon name="analytics-outline"></ion-icon>                    </div>
+                        <ion-icon name="analytics-outline"></ion-icon>
+                    </div>
                 </div>
             </div>
 
             <!-- ================ Order Details List ================= -->
-        <div class="details">
-        <div class="container">
-             <div class="title">Registration</div>
-    <div class="content">
-      <form action="./server/data.php" id="form" method="POST">
-          <?php if (isset($_GET['id'])) { ?>
-             
-              <input type="hidden" name="id" id="id"
-               value="<?php echo $_GET['id']?>">
-          <?php } ?>
-        <div class="user-details">
-         <div class="input-box">
-            <span class="details">warrior's ID</span>
-            <input type="tel" name="u_id" id="u_id" placeholder="Enter your ID" required value="<?php if(isset($_GET['id'])){echo $u_id;}?>">
-          </div>
+            <div class="details">
+                <div class="container">
+                    <div class="title">Registration</div>
+                    <div class="content">
+                        <form action="./server/data.php" id="form" method="POST">
+                            <?php if (isset($_GET['id'])) { ?>
 
-          <div class="input-box">
-            <span class="details">User Name</span>
-            <input type="text" name="u_name" id="u_name" placeholder="Enter your name" required value="<?php if(isset($_GET['id'])){echo $u_name;}?>">
-          </div>
-          <div class="input-box">
-            <span class="details">Father's Name</span>
-            <input type="text" placeholder="Enter The Name" name="f_name" id="f_name"
-              required value="<?php if(isset($_GET['id'])){echo $f_name;}?>">
-          </div>
-<div class="input-box">
-            <span class="details">GrandFather's Name</span>
-              <input type="text" placeholder="Enter The Name" name="g_name" id="g_name"
-               value="<?php if(isset($_GET['id'])){echo $g_name;}?>">
-          </div>
+                            <input type="hidden" name="id" id="id" value="<?php echo $_GET['id']?>">
+                            <?php } ?>
+                            <div class="user-details">
+                                <div class="input-box">
+                                    <span class="details">warrior's ID</span>
+                                    <input type="tel" name="u_id" id="u_id" placeholder="Enter your ID" required
+                                        value="<?php if(isset($_GET['id'])){echo $u_id;}?>">
+                                </div>
 
-          <div class="input-box">
-            <span class="details">Mother's FullName</span>
-              <input type="text" placeholder="Enter the Name" name="m_name" id="m_name"
-              value="<?php if(isset($_GET['id'])){echo $m_name;}?>">
-          </div>
-          <div class="input-box">
-            <span class="details">Appellation</span>
-              <input type="text" placeholder="Enter your Appellation" name="appellation" id="appellation"
-              value="<?php if(isset($_GET['id'])){echo $appellation;}?>">
-                  </div>
+                                <div class="input-box">
+                                    <span class="details">User Name</span>
+                                    <input type="text" name="u_name" id="u_name" placeholder="Enter your name" required
+                                        value="<?php if(isset($_GET['id'])){echo $u_name;}?>">
+                                </div>
+                                <div class="input-box">
+                                    <span class="details">Father's Name</span>
+                                    <input type="text" placeholder="Enter The Name" name="f_name" id="f_name" required
+                                        value="<?php if(isset($_GET['id'])){echo $f_name;}?>">
+                                </div>
+                                <div class="input-box">
+                                    <span class="details">GrandFather's Name</span>
+                                    <input type="text" placeholder="Enter The Name" name="g_name" id="g_name"
+                                        value="<?php if(isset($_GET['id'])){echo $g_name;}?>">
+                                </div>
 
-                    <div class="input-box">
-            <span class="details">Birth Date</span>
-              <input type="date" name="b_date" id="b_date"
-              value="<?php if(isset($_GET['id'])){echo $b_date;}?>">
-          </div>
-          <div class="input-box">
-            <span class="details">Birth Place</span>
-              <input type="text" name="b_place" id="b_place" placeholder="Confirm your birthplace"
-               value="<?php if(isset($_GET['id'])){echo $b_place;}?>">
-          </div>
-<div class="input-box">
-            <span class="details">Nationality</span>
-              <input type="text" name="nationality" id="nationality" placeholder="Confirm your Nationality"
-              value="<?php if(isset($_GET['id'])){echo $nationality;}?>">
-          </div>
-<div class="input-box">
-            <span class="details">Nation</span>
-              <input type="text" name="nation" id="nation" placeholder="Confirm your Nation"
-              value="<?php if(isset($_GET['id'])){echo $nation;}?>">
-          </div>
-<div class="input-box">
-            <span class="details">Blood Type</span>
+                                <div class="input-box">
+                                    <span class="details">Mother's FullName</span>
+                                    <input type="text" placeholder="Enter the Name" name="m_name" id="m_name"
+                                        value="<?php if(isset($_GET['id'])){echo $m_name;}?>">
+                                </div>
+                                <div class="input-box">
+                                    <span class="details">Appellation</span>
+                                    <input type="text" placeholder="Enter your Appellation" name="appellation"
+                                        id="appellation" value="<?php if(isset($_GET['id'])){echo $appellation;}?>">
+                                </div>
 
-                <select name="bloodtype" id="bloodtype">
-  <option value="A+">A+</option>
-  <option value="A-">A-</option>
-  <option value="B+">B+</option>
-  <option value="B-">B-</option>
-  <option value="AB+">AB+</option>
-  <option value="AB-">AB-</option>
-  <option value="O+">O+</option>
-  <option value="O-">O-</option>
-</select>
+                                <div class="input-box">
+                                    <span class="details">Birth Date</span>
+                                    <input type="date" name="b_date" id="b_date"
+                                        value="<?php if(isset($_GET['id'])){echo $b_date;}?>">
+                                </div>
+                                <div class="input-box">
+                                    <span class="details">Birth Place</span>
+                                    <input type="text" name="b_place" id="b_place" placeholder="Confirm your birthplace"
+                                        value="<?php if(isset($_GET['id'])){echo $b_place;}?>">
+                                </div>
+                                <div class="input-box">
+                                    <span class="details">Nationality</span>
+                                    <input type="text" name="nationality" id="nationality"
+                                        placeholder="Confirm your Nationality"
+                                        value="<?php if(isset($_GET['id'])){echo $nationality;}?>">
+                                </div>
+                                <div class="input-box">
+                                    <span class="details">Nation</span>
+                                    <input type="text" name="nation" id="nation" placeholder="Confirm your Nation"
+                                        value="<?php if(isset($_GET['id'])){echo $nation;}?>">
+                                </div>
+                                <div class="input-box">
+                                    <span class="details">Blood Type</span>
 
-          </div>
-<div class="input-box">
-            <span class="details">Region</span>
-              <input type="text" name="region" id="region" placeholder="Confirm your region"
-               value="<?php if(isset($_GET['id'])){echo $region;}?>">
-          </div>
-<div class="input-box">
-            <span class="details">Warada</span>
-              <input type="text" name="warada" id="warada" placeholder="Confirm your warada"
-              value="<?php if(isset($_GET['id'])){echo $warada;}?>">
-          </div>
+                                    <select name="bloodtype" id="bloodtype">
+                                        <option value="A+">A+</option>
+                                        <option value="A-">A-</option>
+                                        <option value="B+">B+</option>
+                                        <option value="B-">B-</option>
+                                        <option value="AB+">AB+</option>
+                                        <option value="AB-">AB-</option>
+                                        <option value="O+">O+</option>
+                                        <option value="O-">O-</option>
+                                    </select>
 
-<div class="input-box">
-            <span class="details">kebele</span>
-              <input type="tel" name="kebele" id="kebele" placeholder="Confirm your kebele"
-               value="<?php if(isset($_GET['id'])){echo $kebele;}?>">
-          </div>
+                                </div>
+                                <div class="input-box">
+                                    <span class="details">Region</span>
+                                    <input type="text" name="region" id="region" placeholder="Confirm your region"
+                                        value="<?php if(isset($_GET['id'])){echo $region;}?>">
+                                </div>
+                                <div class="input-box">
+                                    <span class="details">Warada</span>
+                                    <input type="text" name="warada" id="warada" placeholder="Confirm your warada"
+                                        value="<?php if(isset($_GET['id'])){echo $warada;}?>">
+                                </div>
 
-<div class="input-box">
-            <span class="details">H.number</span>
-              <input type="tel" name="h_number" id="h_number" placeholder="Confirm your H.Number"
-              value="<?php if(isset($_GET['id'])){echo $h_number;}?>">
-          </div>
+                                <div class="input-box">
+                                    <span class="details">kebele</span>
+                                    <input type="tel" name="kebele" id="kebele" placeholder="Confirm your kebele"
+                                        value="<?php if(isset($_GET['id'])){echo $kebele;}?>">
+                                </div>
+
+                                <div class="input-box">
+                                    <span class="details">H.number</span>
+                                    <input type="tel" name="h_number" id="h_number" placeholder="Confirm your H.Number"
+                                        value="<?php if(isset($_GET['id'])){echo $h_number;}?>">
+                                </div>
 
 
-<div class="input-box">
-            <span class="details">Phone Number</span>
-              <input type="tel" name="phone" id="phone" placeholder="+********"
-              value="<?php if(isset($_GET['id'])){echo $phone;}?>">
-          </div>
-<div class="input-box">
-            <span class="details">P.O Box</span>
-              <input type="tel" name="po_box" id="po_box" placeholder="Confirm your PO box"
-              value="<?php if(isset($_GET['id'])){echo $po_box;}?>">
-          </div>
+                                <div class="input-box">
+                                    <span class="details">Phone Number</span>
+                                    <input type="tel" name="phone" id="phone" placeholder="+********"
+                                        value="<?php if(isset($_GET['id'])){echo $phone;}?>">
+                                </div>
+                                <div class="input-box">
+                                    <span class="details">P.O Box</span>
+                                    <input type="tel" name="po_box" id="po_box" placeholder="Confirm your PO box"
+                                        value="<?php if(isset($_GET['id'])){echo $po_box;}?>">
+                                </div>
 
-          <div class="input-box">
-            <span class="details">level of education</span>
+                                <div class="input-box">
+                                    <span class="details">level of education</span>
 
-                <select name="educ_lvl" id="educ_lvl">
-                    <option value="primary">Primary School</option>
-                    <option value="secondary">Secondary School</option>
-                    <option value="preparatory">Preparatory School</option>
-                    <option value="vocational">Vocational School</option>
-                    <option value="college">College</option>
-                    <option value="bachelor">Bachelor's Degree</option>
-                    <option value="master">Master's Degree</option>
-                    <option value="phd">PhD</option>
-                    <option value="doctorate">Doctorate Degree</option>
-                    <option value="professor">Professor</option>
-                </select>
-          </div>
+                                    <select name="educ_lvl" id="educ_lvl">
+                                        <option value="primary">Primary School</option>
+                                        <option value="secondary">Secondary School</option>
+                                        <option value="preparatory">Preparatory School</option>
+                                        <option value="vocational">Vocational School</option>
+                                        <option value="college">College</option>
+                                        <option value="bachelor">Bachelor's Degree</option>
+                                        <option value="master">Master's Degree</option>
+                                        <option value="phd">PhD</option>
+                                        <option value="doctorate">Doctorate Degree</option>
+                                        <option value="professor">Professor</option>
+                                    </select>
+                                </div>
 
-<div class="input-box">
-            <span class="details">Education types</span>
-              <input type="text" name="educ_type" id="educ_type" placeholder="education type"
-              value="<?php if(isset($_GET['id'])){echo $educ_type;}?>">
-          </div>
-<div class="input-box">
-            <span class="details">Warrior's class</span>
-              <input type="text" name="class" id="class" placeholder="class" 
-              value="<?php if(isset($_GET['id'])){echo $class;}?>">
-          </div>
-          <div class="input-box">
-            <span class="details">Class year</span>
-              <input type="date" name="c_year" id="c_year"
-              value="<?php if(isset($_GET['id'])){echo $c_year;}?>">
-          </div>
-<div class="input-box">
-            <span class="details">work</span>
-            <input type="text" name="work" id="work" placeholder="Confirm your work" value="<?php if(isset($_GET['id'])){echo $work;}?>">
-          </div>
+                                <div class="input-box">
+                                    <span class="details">Education types</span>
+                                    <input type="text" name="educ_type" id="educ_type" placeholder="education type"
+                                        value="<?php if(isset($_GET['id'])){echo $educ_type;}?>">
+                                </div>
+                                <div class="input-box">
+                                    <span class="details">Warrior's class</span>
+                                    <input type="text" name="class" id="class" placeholder="class"
+                                        value="<?php if(isset($_GET['id'])){echo $class;}?>">
+                                </div>
+                                <div class="input-box">
+                                    <span class="details">Class year</span>
+                                    <input type="date" name="c_year" id="c_year"
+                                        value="<?php if(isset($_GET['id'])){echo $c_year;}?>">
+                                </div>
+                                <div class="input-box">
+                                    <span class="details">work</span>
+                                    <input type="text" name="work" id="work" placeholder="Confirm your work"
+                                        value="<?php if(isset($_GET['id'])){echo $work;}?>">
+                                </div>
 
-          <div class="input-box">
-            <span class="details">Language</span>
+                                <div class="input-box">
+                                    <span class="details">Language</span>
 
-                <select name="language" id="language">
-                    <option value="Amharic">Amharic</option>
-                    <option value="English">English</option>
-                    <option value="Korean">Korean</option>
-                </select>
-          </div>
-          
+                                    <select name="language" id="language">
+                                        <option value="Amharic">Amharic</option>
+                                        <option value="English">English</option>
+                                        <option value="Korean">Korean</option>
+                                    </select>
+                                </div>
+
+                            </div>
+                            <div class="input-box">
+                                <span class="details">Award & Presenter</span>
+                                <textarea type="text" name="award" id="award"
+                                    placeholder="Enter award with the presenter"><?php if(isset($_GET['id'])){echo $award;}?></textarea>
+                            </div>
+
+                            <span class="gender-title">Engagement rounds</span> <br>
+                            <div class="category">
+                                <label for="r-1">
+                                    <input type="checkbox" name="round[]" id="r-1" value="1st round">
+                                    <span class="gender">&nbsp; 1st round </span>
+                                </label>
+                                <label for="r-2">
+                                    <input type="checkbox" name="round[]" id="r-2" value="2nd round">
+                                    <span class="gender">&nbsp; 2nd round</span>
+                                </label>
+                                <label for="r-3">
+                                    <input type="checkbox" name="round[]" id="r-3" value="3rd round">
+                                    <span class="gender">&nbsp; 3rd round</span>
+                                </label>
+                                <label for="r-4">
+                                    <input type="checkbox" name="round[]" id="r-4" value="4th round">
+                                    <span class="gender">&nbsp; 4th round</span>
+                                </label>
+                                <label for="r-5">
+                                    <input type="checkbox" name="round[]" id="r-5" value="5th round">
+                                    <span class="gender">&nbsp; 5th round</span>
+                                </label>
+                            </div>
+
+                            <span class="gender-title">if wounded at the battlefield </span> <br>
+                            <div class="category">
+                                <label for="wound-1">
+                                    <input type="radio" name="iswounded" id="wound-1" value="wounded"
+                                        <?php if(isset($_GET['id'])){if($iswounded == "wounded"){echo "checked";}}?>>
+                                    <span class="gender">&nbsp; wounded </span>
+                                </label>
+                                <label for="wound-2">
+                                    <input type="radio" name="iswounded" id="wound-2" value="not wounded"
+                                        <?php if(isset($_GET['id'])){if($iswounded == "not wounded"){echo "checked";}}?>>
+                                    <span class="gender">&nbsp; not wounded</span>
+                                </label>
+                            </div>
+
+
+                            <span class="gender-title">warrior's status</span> <br>
+                            <div class="category">
+                                <label for="war-1">
+                                    <input type="radio" name="warrior_s" id="war-1" value="Alive"
+                                        <?php if(isset($_GET['id'])){if($warrior_s == "Alive"){echo "checked";}}?>>
+                                    <span class="gender">&nbsp;Alive</span>
+                                </label>
+                                <label for="war-2">
+                                    <input type="radio" name="warrior_s" id="war-2" value="Dead"
+                                        <?php if(isset($_GET['id'])){if($warrior_s == "Dead"){echo "checked";}}?>>
+                                    <span class="gender">&nbsp;Dead</span>
+                                </label>
+                            </div>
+
+                            <div class="input-box">
+                                <span class="details">Work Experience</span>
+                                <textarea type="text" name="experience" id="experience"
+                                    placeholder="Enter yor Experience with the year"><?php if(isset($_GET['id'])){echo $experience;}?></textarea>
+                            </div>
+
+
+                            <div class="button">
+                                <?php if (isset($_GET['id'])) { ?>
+                                <input type="submit" value="<?php echo "Update";?>">
+                                <?php }else{ ?>
+                                <input type="submit" value="<?php echo "Register";?>">
+                                <?php } ?>
+                            </div>
+                        </form>
+                    </div>
                 </div>
-<div class="input-box">
-            <span class="details">Award & Presenter</span>
-<textarea type="text" name="award" id="award" placeholder="Enter award with the presenter" 
-            ><?php if(isset($_GET['id'])){echo $award;}?></textarea>
-          </div>
-
-    <span class="gender-title">Engagement rounds</span> <br>
-    <div class="category">
-        <label for="r-1">
-             <input type="checkbox" name="round[]" id="r-1" value="1st round">
-            <span class="gender">&nbsp; 1st round </span>
-        </label>
-        <label for="r-2">
-            <input type="checkbox" name="round[]" id="r-2" value="2nd round">
-            <span class="gender">&nbsp; 2nd round</span>
-        </label>
-        <label for="r-3">
-            <input type="checkbox" name="round[]" id="r-3" value="3rd round">
-            <span class="gender">&nbsp; 3rd round</span>
-        </label>
-        <label for="r-4">
-            <input type="checkbox" name="round[]" id="r-4" value="4th round">
-            <span class="gender">&nbsp; 4th round</span>
-        </label>
-        <label for="r-5">
-            <input type="checkbox" name="round[]" id="r-5" value="5th round">
-            <span class="gender">&nbsp; 5th round</span>
-        </label>
-    </div>
-
-<span class="gender-title">if wounded at the battlefield </span> <br>
-          <div class="category">
-            <label for="wound-1">
-            <input type="radio" name="iswounded" id="wound-1" value="wounded"
-            <?php if(isset($_GET['id'])){if($iswounded == "wounded"){echo "checked";}}?>>
-            <span class="gender">&nbsp; wounded </span>
-          </label>
-          <label for="wound-2">
-            <input type="radio" name="iswounded" id="wound-2" value="not wounded"
-            <?php if(isset($_GET['id'])){if($iswounded == "not wounded"){echo "checked";}}?>>
-            <span class="gender">&nbsp; not wounded</span>
-          </label>
-          </div>
-
-        
-          <span class="gender-title">warrior's status</span> <br>
-          <div class="category">
-            <label for="war-1">
-            <input type="radio" name="warrior_s" id="war-1" value="Alive"
-            <?php if(isset($_GET['id'])){if($warrior_s == "Alive"){echo "checked";}}?>>
-            <span class="gender">&nbsp;Alive</span>
-          </label>
-          <label for="war-2">
-            <input type="radio" name="warrior_s" id="war-2" value="Dead"
-            <?php if(isset($_GET['id'])){if($warrior_s == "Dead"){echo "checked";}}?>>
-            <span class="gender">&nbsp;Dead</span>
-          </label>
-          </div>
-
-        <div class="input-box">
-            <span class="details">Work Experience</span>
-            <textarea type="text" name="experience" id="experience" placeholder="Enter yor Experience with the year" 
-            ><?php if(isset($_GET['id'])){echo $experience;}?></textarea>
-          </div>
-
-
-        <div class="button">
-            <?php if (isset($_GET['id'])) { ?>
-                <input type="submit"
-                value="<?php echo "Update";?>">
-           <?php }else{ ?>
-                <input type="submit"
-                value="<?php echo "Register";?>">
-            <?php } ?>
+            </div>
         </div>
-              </form>
-            </div>
-            </div>
-            </div>
-       </div>
 
-    <!-- =========== Scripts =========  -->
-    <script src="assets/js/main.js"></script>
+        <!-- =========== Scripts =========  -->
+        <script src="assets/js/main.js"></script>
 
-      <!-- <script> -->
-      <!-- var form = document.getElementById('form'); -->
+        <!-- <script> -->
+        <!-- var form = document.getElementById('form'); -->
 
-      <!-- form.addEventListener('submit', (e) => { -->
-      <!--   e.preventDefault(); -->
-      <!-- }); -->
-      <!-- </script> -->
-                <!-- ====== ionicons ======= -->
-    <script>
-                
-                  var tag = document.getElementById('bloodtype');
-                  var lvl = document.getElementById('educ_lvl');
-                  var lang = document.getElementById('language');
-                  tag.value = '<?php if(isset($_GET['id'])){echo $bloodtype;}else{echo "";}?>';
-                  lvl.value = '<?php if(isset($_GET['id'])){echo $educ_lvl;}else{echo "";}?>';
-                  lang.value = '<?php if(isset($_GET['id'])){echo $language;}else{echo "";}?>';
-                  
-    </script>
-    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+        <!-- form.addEventListener('submit', (e) => { -->
+        <!--   e.preventDefault(); -->
+        <!-- }); -->
+        <!-- </script> -->
+        <!-- ====== ionicons ======= -->
+        <script>
+        var tag = document.getElementById('bloodtype');
+        var lvl = document.getElementById('educ_lvl');
+        var lang = document.getElementById('language');
+        tag.value = '<?php if(isset($_GET['id'])){echo $bloodtype;}else{echo "";}?>';
+        lvl.value = '<?php if(isset($_GET['id'])){echo $educ_lvl;}else{echo "";}?>';
+        lang.value = '<?php if(isset($_GET['id'])){echo $language;}else{echo "";}?>';
+        </script>
+        <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+        <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 </body>
 
 </html>
