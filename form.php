@@ -443,13 +443,47 @@ if(isset($_GET['id'])) {
         <!-- =========== Scripts =========  -->
         <script src="assets/js/main.js"></script>
 
-        <!-- <script> -->
-        <!-- var form = document.getElementById('form'); -->
+        <script>
+        function checkID() {
+            var form = document.getElementById('form');
 
-        <!-- form.addEventListener('submit', (e) => { -->
-        <!--   e.preventDefault(); -->
-        <!-- }); -->
-        <!-- </script> -->
+            form.addEventListener('submit', (e) => {
+                e.preventDefault();
+            });
+
+            var id = document.getElementById('u_id');
+            // Create a new XMLHttpRequest object
+            var xhr = new XMLHttpRequest();
+
+            // Prepare the request
+            xhr.open('POST', 'check.php?type=war', true); // Replace with the actual PHP file name
+            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+
+            // Set up the callback function
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === XMLHttpRequest.DONE) {
+                    if (xhr.status === 200) {
+                        if (xhr.responseText === 'success') {
+                            form.submit();
+                        } else {
+                            // ID doesn't exist, submit the form
+                        }
+                    }
+                }
+            };
+
+            // Send the request
+            xhr.send('id=' + encodeURIComponent(id));
+        }
+
+        function toggle() {
+            var pop = document.getElementById('pop');
+            pop.classList.toggle("active");
+            setTimeout(() => {
+                pop.classList.toggle("active");
+            }, 5000);
+        }
+        </script>
         <!-- ====== ionicons ======= -->
         <script>
         var tag = document.getElementById('bloodtype');
