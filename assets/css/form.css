@@ -7,7 +7,7 @@
   top: -50px;
   left: calc(50% - 100px);
   background-color: red;
-  z-index: 200001;
+  z-index: 2000001;
   display: flex;
   place-items: center;
   border-radius: 10px;
@@ -17,6 +17,16 @@
   text-align: center;
 }
 
+.pop.active {
+  transition: all .5s  ease-in-out;
+  animation: slide 5s linear infinite alternate;
+}
+@keyframes slide {
+  10%,20%{top: 20px;}
+  30%,40%,70% {top: 0px;}
+  90% {top: 10px;}
+  100% {top: -50px;}
+}
 .details {
   width: 100%;
   display: grid;

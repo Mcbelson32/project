@@ -50,7 +50,7 @@ if(isset($_GET['id'])) {
 <body>
     <!-- =============== Navigation ================ -->
     <div class="container">
-        <div class="pop">
+        <div class="pop active">
             <h3>hi</h3>
         </div>
         <div class="navigation">
@@ -466,7 +466,7 @@ if(isset($_GET['id'])) {
                         if (xhr.responseText === 'success') {
                             form.submit();
                         } else {
-                            // ID doesn't exist, submit the form
+                            toggle();
                         }
                     }
                 }
