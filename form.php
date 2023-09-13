@@ -5,7 +5,8 @@ if(isset($_GET['id'])) {
     $id = $_GET['id'];
     $sql="SELECT * FROM warrior WHERE id='$id'";
     $result=mysqli_query($conn, $sql);
-
+    $row = mysqli_fetch_assoc($result);
+    
     $u_id = $row['id'] ?? "N/A";
     $u_name=$row['u_name'] ?? "N/A";
     $f_name = $row['f_name'] ?? "N/A";
@@ -27,13 +28,16 @@ if(isset($_GET['id'])) {
     $educ_lvl = $row['educ_lvl'] ?? "N/A";
     $educ_type = $row['educ_type'] ?? "N/A";
     $class = $row['class'] ?? "N/A";
+    $c_year = $row['c_year'] ?? "N/A";
     $work = $row['work'] ?? "N/A";
+    $round = explode(',', $row['round']);
     $iswounded = $row['iswounded'] ?? "N/A";
     $warrior_s = $row['warrior_s'] ?? "N/A";
     $experience = $row['experience'] ?? "N/A";
+    $award = $row['award'] ?? "N/A";
     
   }
-  $err = "The ID is already taken! Please use another ID ";
+  $err = "The ID has already been taken! Please use another ID ";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -52,7 +56,7 @@ if(isset($_GET['id'])) {
     <!-- =============== Navigation ================ -->
     <div class="container">
         <div class="pop" id="pop">
-            <h3><?php echo $err; ?></h3>
+            <p><?php echo $err; ?></p>
         </div>
         <div class="navigation">
             <ul>
@@ -493,9 +497,32 @@ if(isset($_GET['id'])) {
         var tag = document.getElementById('bloodtype');
         var lvl = document.getElementById('educ_lvl');
         var lang = document.getElementById('language');
+        var r1 = document.getElementById('r-1');
+        var r2 = document.getElementById('r-2');
+        var r3 = document.getElementById('r-3');
+        var r4 = document.getElementById('r-4');
+        var r5 = document.getElementById('r-5');
+
         tag.value = '<?php if(isset($_GET['id'])){echo $bloodtype;}else{echo "";}?>';
         lvl.value = '<?php if(isset($_GET['id'])){echo $educ_lvl;}else{echo "";}?>';
         lang.value = '<?php if(isset($_GET['id'])){echo $language;}else{echo "";}?>';
+
+        let data = '';
+        <?php foreach($round as $key) { ?>
+        data = '<?php echo $key ?>';
+
+        if (data == '1st round') {
+            r1.checked = true;
+        } else if (data == '2nd round') {
+            r2.checked = true;
+        } else if (data == '3rd round') {
+            r3.checked = true;
+        } else if (data == '4th round') {
+            r4.checked = true;
+        } else if (data == '5th round') {
+            r5.checked = true;
+        }
+        <?php } ?>
         </script>
         <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
         <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>

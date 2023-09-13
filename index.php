@@ -144,7 +144,7 @@ $res=mysqli_query($conn, $sql);
                 <div class="card">
                     <div>
                         <div class="numbers"><?php echo $exp ?></div>
-                        <div class="cardName">Experienced</div>
+                        <div class="cardName">Alive</div>
                     </div>
 
                     <div class="iconBx">

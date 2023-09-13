@@ -1,6 +1,31 @@
 <?php
 include './server/fetch.php';
 
+if(isset($_GET['id']) && isset($_GET['uname'])) {
+    $conn->select_db("warriorsdb");
+    $id = $_GET['id'];
+    $uname = $_GET['uname'];
+    
+    $sql="SELECT * FROM warrior WHERE id='$id'";
+    $res=mysqli_query($conn, $sql);
+    $row=mysqli_fetch_assoc($res);
+    $table=$row['u_name'].$row['f_name'];
+
+    $conn->select_db("family");
+    $sql="SELECT * FROM `$table` WHERE uname='$uname'";
+    $res=mysqli_query($conn, $sql);
+    $row=mysqli_fetch_assoc($res);
+    
+    $u_id = $row['id'] ?? "N/A";
+    $uname=$row['uname'] ?? "N/A";
+    $mem = $row['member'] ?? "N/A";
+    $status = $row['status'] ?? "N/A";
+    (isset($row['duration'])) ? ($duration = explode(' - ', $row['duration'])) : ($duration = array("N/A", "N/A"));
+    $b_date = $row['b_date'] ?? "N/A";
+    $educ_lvl = $row['educ_lvl'] ?? "N/A";
+    
+}
+  $err = "The Family ID is not found! Please insert the valid ID ";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -18,6 +43,9 @@ include './server/fetch.php';
 <body>
     <!-- =============== Navigation ================ -->
     <div class="container">
+        <div class="pop" id="pop">
+            <p><?php echo $err; ?></p>
+        </div>
         <div class="navigation">
             <ul>
                 <li>
@@ -168,20 +196,20 @@ include './server/fetch.php';
                     <div class="title">Registration</div>
                     <div class="content">
                         <form action="./server/group.php" id="form" method="POST">
-                            <?php if(isset($_GET['id'])): ?>
+                            <?php if(isset($_GET['id']) && isset($_GET['uname'])): ?>
                             <input type="hidden" name="id" id="id" value="<?php echo $_GET['id']; ?>">
                             <?php endif ?>
                             <div class="user-details">
                                 <div class="input-box">
-                                    <span class="details">Family ID(Father's ID)</span>
+                                    <span class="details">Family ID</span>
                                     <input type="text" name="u_id" id="u_id" placeholder="Enter your ID" required
-                                        value="<?php if(isset($_GET['id'])){echo $u_id;}?>">
+                                        value="<?php if(isset($_GET['id']) && isset($_GET['uname'])){echo $u_id;}?>">
                                 </div>
 
                                 <div class="input-box">
                                     <span class="details">Full Name</span>
                                     <input type="text" name="u_name" id="u_name" placeholder="Enter your name" required
-                                        value="<?php if(isset($_GET['id'])){echo $u_name;}?>">
+                                        value="<?php if(isset($_GET['id']) && isset($_GET['uname'])){echo $uname;}?>">
                                 </div>
 
                                 <div class="input-box">
@@ -207,7 +235,7 @@ include './server/fetch.php';
                                 <div class="input-box">
                                     <span class="details">Birth Date</span>
                                     <input type="date" name="b_date" id="b_date"
-                                        value="<?if(isset($_GET['id'])){echo $b_date;}?>">
+                                        value="<?php if(isset($_GET['id']) && isset($_GET['uname'])){echo $b_date;}?>">
                                 </div>
 
                                 <div class="input-box">
@@ -231,17 +259,15 @@ include './server/fetch.php';
 
                             <span class="details">Duration</span>
                             <div class="input-box dur">
-                                <input type="date" name="start" id="start" pattern="\d{2}/\d{2}/\d{2}"
-                                    value=" <if(isset($_GET['id'])){echo $b_date;}?>">
+                                <input type="date" name="start" id="start">
                                 -
-                                <input type="date" name="end" id="end" pattern="\d{2}/\d{2}/\d{2}"
-                                    value="<?if(isset($_GET['id'])){echo $b_date;}?>">
+                                <input type="date" name="end" id="end">
                             </div>
                             <div class="button">
-                                <?php if (isset($_GET['id'])) { ?>
+                                <?php if (isset($_GET['id']) && isset($_GET['uname'])) { ?>
                                 <input type="submit" value="update">
                                 <?php }else{ ?>
-                                <input type="submit" value="Register">
+                                <input type="submit" value="Register" onclick="checkID()">
                                 <?php } ?>
                             </div>
                         </form>
@@ -257,9 +283,75 @@ include './server/fetch.php';
         var lvl = document.getElementById('educ_lvl');
         var mem = document.getElementById('type');
         var stat = document.getElementById('status');
-        lvl.value = '<?php if(isset($_GET['id'])){echo $educ_lvl;}else{echo "";}?>';
-        mem.value = '<?php if(isset($_GET['id'])){echo $type;}else{echo "";}?>';
-        stat.value = '<?php if(isset($_GET['id'])){echo $status;}else{echo "";}?>';
+        var start = document.getElementById('start');
+        var end = document.getElementById('end');
+        lvl.value = '<?php if(isset($_GET['id']) && isset($_GET['uname'])){echo $educ_lvl;}else{echo "";}?>';
+        mem.value = '<?php if(isset($_GET['id']) && isset($_GET['uname'])){echo $mem;}else{echo "";}?>';
+        stat.value = '<?php if(isset($_GET['id']) && isset($_GET['uname'])){echo $status;}else{echo "";}?>';
+        let originalDate = "";
+        let dateParts = '';
+        let modDate = '';
+        let formattedDate = '';
+        let dateInput = '';
+        <?php if(isset($_GET['id']) && isset($_GET['uname'])) { ?>
+        <?php for($i=0; $i<2; $i++) { ?>
+        originalDate = '<?php echo $duration[$i] ?> ';
+
+        // Split the date string by "/"
+        dateParts = originalDate.split("/");
+
+        // Rearrange the date parts in "yyyy-mm-dd" format
+        modDate = dateParts[0] + "-" + dateParts[1] + "-" + dateParts[2];
+        formattedDate = new Date(modDate);
+        dateInput = formattedDate.toISOString().split("T")[0];
+        <?php if($i == 0){ ?>
+        start.value = dateInput;
+        <?php } else { ?>
+        end.value = dateInput;
+        <?php } ?> <?php } ?>
+        <?php } ?>
+
+        function checkID() {
+            var form = document.getElementById('form');
+
+            form.addEventListener('submit', (e) => {
+                e.preventDefault();
+            });
+
+            var id = document.getElementById('u_id').value;
+
+            // Create a new XMLHttpRequest object
+            var xhr = new XMLHttpRequest();
+
+            // Prepare the request
+            xhr.open('POST', 'check.php?type=rel', true); // Replace with the actual PHP file name
+            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+
+            // Set up the callback function
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === XMLHttpRequest.DONE) {
+                    if (xhr.status === 200) {
+                        var response = xhr.responseText.trim();
+                        if (response === "success") {
+                            form.submit();
+                        } else if (response === "error") {
+                            popToggler();
+                        }
+                    }
+                }
+            };
+
+            // Send the request
+            xhr.send('id=' + encodeURIComponent(id));
+        }
+
+        function popToggler() {
+            var pop = document.getElementById('pop');
+            pop.classList.add("active");
+            setTimeout(() => {
+                pop.classList.remove("active");
+            }, 8000);
+        }
         </script>
         <!-- <script> -->
         <!-- var form = document.getElementById('form'); -->

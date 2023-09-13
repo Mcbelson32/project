@@ -145,7 +145,7 @@ $res=mysqli_query($conn, $sql);
                 <div class="card">
                     <div>
                         <div class="numbers"><?php echo $exp ?></div>
-                        <div class="cardName">Experienced</div>
+                        <div class="cardName">Alive</div>
                     </div>
 
                     <div class="iconBx">
@@ -210,7 +210,7 @@ echo "<tr id=\"name\"><td>
              
             $id=$row['id'];
             $uname = $row['uname'];
-            $type = $row['type'];
+            $type = $row['member'];
             $lvl = $row['educ_lvl'];
             $b_date = $row['b_date'];
             $status = $row['status'];
@@ -220,7 +220,7 @@ echo "<tr id=\"name\"><td>
                         echo "<tbody>
                         <tr $onclick.$id'\">
         <td>
-        <h4>#$id</h4>
+        <h4>$id</h4>
         <h4>$uname</h4>
         <h4>$type</h4>
         <h4>$b_date</h4>
@@ -275,8 +275,12 @@ echo "<tr id=\"name\"><td>
         word-break: break-all;
     }
 
+    .recentCustomers table tbody tr td:hover {
+        background: #2a218555;
+    }
+
     .recentCustomers table tbody tr:hover td h4 {
-        color: var(--white);
+        /* color: var(--white); */
     }
 
     .cardHeader {
@@ -298,7 +302,7 @@ echo "<tr id=\"name\"><td>
     }
 
     .recentCustomers table #name td {
-        background-color: var(--blue);
+        background-color: #2a2185bb;
         border-radius: 20px;
     }
 

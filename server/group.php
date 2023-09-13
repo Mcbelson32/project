@@ -2,13 +2,30 @@
 
 include 'connect.php';
 if($_SERVER["REQUEST_METHOD"] == "POST"){
+  $keys = array_keys($_POST); // Get the keys of the array
+  
+  foreach($keys as $key){
+    if ($key == 'start' || $key == 'end') {
+      if (!(empty(trim($_POST[$key])))) {
+        $date = $_POST[$key];
+        $datetime = DateTime::createFromFormat('Y-m-d', $date);
+        $_POST[$key] =  $datetime->format('Y/m/d');
+      }
+    }
+    if(empty(trim($_POST[$key]))){
+      $_POST[$key] = "N/A";
+    }elseif(is_null($_POST[$key])) {
+      $_POST[$key] = "N/A";
+    }
+  }
+
   $id=$_POST['u_id'];
   $uname=$_POST['u_name'];
-  $type=$_POST['type'];
-  $lvl=$_POST['educ_lvl'];
-  $b_date=$_POST['b_date'];
-  $status = $_POST['status'];
-  $duration = $_POST[start].'-'.$_POST['end'];
+  $type=$_POST['type'] ?? 'N/A';
+  $lvl=$_POST['educ_lvl'] ?? 'N/A';
+  $b_date=$_POST['b_date'] ?? 'N/A';
+  $status = $_POST['status'] ?? 'N/A';
+  $duration = $_POST['start'].' - '.$_POST['end'];
 
   $conn->select_db("warriorsdb");
   $sql="SELECT * FROM warrior WHERE id='$id'";
@@ -17,7 +34,14 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
   
   $name=$row['u_name'].$row['f_name'];
   $conn->select_db("family");
-  createTable($conn, $name, $id, $uname, $type, $lvl, $b_date, $status, $duration);
+
+  if(isset($_POST['id'])) {
+    $id=$_POST['id'];
+    $u_id = $_POST['u_id'];
+    updateTable($conn, $name, $id, $u_id, $uname, $type, $lvl, $b_date, $status, $duration);
+  }else {
+    createTable($conn, $name, $id, $uname, $type, $lvl, $b_date, $status, $duration);
+  }
 }
 
 function createTable($conn, $name, $id, $uname, $type, $lvl, $b_date, $status, $duration) {
@@ -28,7 +52,7 @@ function createTable($conn, $name, $id, $uname, $type, $lvl, $b_date, $status, $
   b_date VARCHAR(255) DEFAULT 'N/A',
   educ_lvl VARCHAR(255) DEFAULT 'N/A',
   status VARCHAR(255) DEFAULT 'N/A',
-  duration VARCHAR(255) DEFAULT 'N/A'
+  duration VARCHAR(255) DEFAULT 'N/A - N/A'
   )";
 
   $result=mysqli_query($conn, $sql);
@@ -39,6 +63,21 @@ function createTable($conn, $name, $id, $uname, $type, $lvl, $b_date, $status, $
   
  $sql="INSERT INTO $name (id, uname, member, b_date, educ_lvl, status, duration)
   VALUES ('$id', '$uname', '$type', '$b_date', '$lvl', '$status','$duration')";
+
+  $result=mysqli_query($conn, $sql);
+
+  if(!$result) {
+    return die(mysqli_error($conn));
+  }
+  // echo "family created";
+  return header('location: /family.php');
+}
+
+
+function updateTable($conn, $name, $id, $u_id, $uname, $type, $lvl, $b_date, $status, $duration) {
+
+  $sql="UPDATE `$name` SET id='$u_id', uname = '$uname', member = '$type', b_date = '$b_date',
+   educ_lvl = '$lvl', status = '$status', duration = '$duration' WHERE id='$id'";
 
   $result=mysqli_query($conn, $sql);
 

@@ -39,29 +39,29 @@ if($res) {
   }
 }
 
-if(isset($_GET['id'])) {
-  if ($_GET['type'] == "war") {
-    # code...
-    $conn->select_db("warriorsdb");
-    $id = $_GET['id'];
-    $sql="SELECT * FROM warrior WHERE id='$id'";
-    $result=mysqli_query($conn, $sql);
-    if(mysqli_num_rows($result) == 0){
-     echo "success";
-    }else {
-      echo "error";
-    }
-  }elseif ($_GET['type'] == "rel") {
-    # code...
-    $conn->select_db("warriorsdb");
-    $id = $_GET['id'];
-    $sql="SELECT * FROM warrior WHERE id='$id'";
-    $result=mysqli_query($conn, $sql);
-    if(mysqli_num_rows($result) != 0){
-     echo "success";
-    }else {
-      echo "error";
-    }
-  }
-}
+// if(isset($_GET['id']) && isset($_GET['type'])) {
+//   if ($_GET['type'] == "war") {
+//     # code...
+//     $conn->select_db("warriorsdb");
+//     $id = $_GET['id'];
+//     $sql="SELECT * FROM warrior WHERE id='$id'";
+//     $result=mysqli_query($conn, $sql);
+//     if(mysqli_num_rows($result) == 0){
+//      echo "success";
+//     }else {
+//       echo "error";
+//     }
+//   }elseif ($_GET['type'] == "rel") {
+//     # code...
+//     $conn->select_db("warriorsdb");
+//     $id = $_GET['id'];
+//     $sql="SELECT * FROM warrior WHERE id='$id'";
+//     $result=mysqli_query($conn, $sql);
+//     if(mysqli_num_rows($result) != 0){
+//      echo "success";
+//     }else {
+//       echo "error";
+//     }
+//   }
+// }
 ?>

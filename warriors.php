@@ -149,7 +149,7 @@ $result=mysqli_query($conn, $sql);
                 <div class="card">
                     <div>
                         <div class="numbers"><?php echo $exp ?></div>
-                        <div class="cardName">Experienced</div>
+                        <div class="cardName">Alive</div>
                     </div>
 
                     <div class="iconBx">
@@ -174,21 +174,24 @@ $result=mysqli_query($conn, $sql);
                     <div class="cardHeader">
                         <h2>All Warriors List</h2>
                     </div>
+                    <div class="table-container">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <td>ID</td>
+                                    <td>FullName</td>
+                                    <td>Nationality</td>
+                                    <td>Nation</td>
+                                    <td>Phone</td>
+                                    <td>Lvl of education</td>
+                                    <td>Language</td>
+                                    <td>Status</td>
+                                    <td>Appellation</td>
+                                </tr>
+                            </thead>
 
-                    <table>
-                        <thead>
-                            <tr>
-                                <td>ID</td>
-                                <td>FullName</td>
-                                <td>Nationality</td>
-                                <td>Nation</td>
-                                <td>Phone</td>
-                                <td>Appellation</td>
-                            </tr>
-                        </thead>
-
-                        <tbody>
-                            <?php
+                            <tbody>
+                                <?php
 if($result){
   $i=0;
   while($row=mysqli_fetch_assoc($result)){
@@ -200,6 +203,9 @@ if($result){
     $nationality = $row['nationality'];
     $nation = $row['nation'];
     $phone = $row['phone'];
+    $lvl = $row['educ_lvl'];
+    $status = $row['warrior_s'];
+    $lang = $row['lang'];
     
     echo '
     <tr onclick="window.location.href = \'detail.php?id='.$id.'\'">
@@ -208,6 +214,9 @@ if($result){
         <td>'.$nationality.'</td>
         <td>'.$nation.'</td>
         <td>'.$phone.'</td>
+        <td>'.$lvl.'</td>
+        <td>'.$lang.'</td>
+        <td>'.$status.'</td>
         <td><span class="status inProgress">'.$appellation.'</span></td>
         <td>
             <a href="form.php?id='.$id.'" class="btn"><ion-icon name="create" ></ion-icon></a>
@@ -234,22 +243,22 @@ if($result){
 
   }
 ?>
-                        </tbody>
-                    </table>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- ================= New Customers ================ -->
+
                 </div>
-
-                <!-- ================= New Customers ================ -->
-
             </div>
         </div>
-    </div>
 
-    <!-- =========== Scripts =========  -->
-    <script src="assets/js/main.js"></script>
+        <!-- =========== Scripts =========  -->
+        <script src="assets/js/main.js"></script>
 
-    <!-- ====== ionicons ======= -->
-    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+        <!-- ====== ionicons ======= -->
+        <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+        <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 </body>
 
 </html>
