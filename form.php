@@ -33,6 +33,7 @@ if(isset($_GET['id'])) {
     $experience = $row['experience'] ?? "N/A";
     
   }
+  $err = "The ID is already taken! Please use another ID ";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -41,17 +42,17 @@ if(isset($_GET['id'])) {
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Warrior Form</title>
+    <title>Warrior's Form</title>
     <!-- ======= Styles ====== -->
-    <link rel="stylesheet" href="./assets/css/style.css">
-    <link rel="stylesheet" href="./assets/css/form.css">
+    <link rel="stylesheet" type="text/css" href="./assets/css/style.css?v=1.0">
+    <link rel="stylesheet" type="text/css" href="./assets/css/form.css?v=1.0">
 </head>
 
 <body>
     <!-- =============== Navigation ================ -->
     <div class="container">
-        <div class="pop active">
-            <h3>hi</h3>
+        <div class="pop" id="pop">
+            <h3><?php echo $err; ?></h3>
         </div>
         <div class="navigation">
             <ul>
@@ -154,7 +155,8 @@ if(isset($_GET['id'])) {
             <div class="cardBox">
                 <div class="card" onclick="window.location.href = 'warriors.php'">
                     <div>
-                        <div class="numbers"><?php echo $total ?></div>
+                        <div class="numbers"><?php echo $total ?>
+                        </div>
                         <div class="cardName">warriors</div>
                     </div>
 
@@ -431,7 +433,7 @@ if(isset($_GET['id'])) {
                                 <?php if (isset($_GET['id'])) { ?>
                                 <input type="submit" value="<?php echo "Update";?>">
                                 <?php }else{ ?>
-                                <input type="submit" value="<?php echo "Register";?>">
+                                <input type="submit" value="<?php echo "Register";?>" onclick="checkID()">
                                 <?php } ?>
                             </div>
                         </form>
@@ -451,7 +453,8 @@ if(isset($_GET['id'])) {
                 e.preventDefault();
             });
 
-            var id = document.getElementById('u_id');
+            var id = document.getElementById('u_id').value;
+
             // Create a new XMLHttpRequest object
             var xhr = new XMLHttpRequest();
 
@@ -463,10 +466,11 @@ if(isset($_GET['id'])) {
             xhr.onreadystatechange = function() {
                 if (xhr.readyState === XMLHttpRequest.DONE) {
                     if (xhr.status === 200) {
-                        if (xhr.responseText === 'success') {
+                        var response = xhr.responseText.trim();
+                        if (response === "success") {
                             form.submit();
-                        } else {
-                            toggle();
+                        } else if (response === "error") {
+                            popToggler();
                         }
                     }
                 }
@@ -476,12 +480,12 @@ if(isset($_GET['id'])) {
             xhr.send('id=' + encodeURIComponent(id));
         }
 
-        function toggle() {
+        function popToggler() {
             var pop = document.getElementById('pop');
-            pop.classList.toggle("active");
+            pop.classList.add("active");
             setTimeout(() => {
-                pop.classList.toggle("active");
-            }, 5000);
+                pop.classList.remove("active");
+            }, 8000);
         }
         </script>
         <!-- ====== ionicons ======= -->

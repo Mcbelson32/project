@@ -49,8 +49,4 @@ function createTable($conn, $name, $id, $uname, $type, $lvl, $b_date, $status, $
   return header('location: /family.php');
 }
 
-$conn->select_db("family");
-$sql="show tables";
-
-$res=mysqli_query($conn, $sql);
 ?>

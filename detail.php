@@ -10,8 +10,8 @@ include './server/fetch.php';
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Form</title>
     <!-- ======= Styles ====== -->
-    <link rel="stylesheet" href="assets/css/style.css">
-    <link rel="stylesheet" href="assets/css/detail.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css?v=1.0">
+    <link rel="stylesheet" type="text/css" href="assets/css/detail.css?v=1.0">
 </head>
 
 <body>

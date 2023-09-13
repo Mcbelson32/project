@@ -1,12 +1,12 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
 
 .pop {
-  width: 300px;
-  height: 50px;
-  position: absolute;
-  top: -50px;
-  left: calc(50% - 100px);
-  background-color: red;
+  width: 30%;
+  height: 60px;
+  position: fixed;
+  top: -60px;
+  left: calc(50% - 15%);
+  background-color: rgba(255, 0, 55, 0.795);
   z-index: 2000001;
   display: flex;
   place-items: center;
@@ -14,18 +14,21 @@
 }
 .pop h3 {
   width: 100%;
+  padding-inline: 3px; 
   text-align: center;
+  color: #fff;
+  word-break: break-all;
 }
 
 .pop.active {
   transition: all .5s  ease-in-out;
-  animation: slide 5s linear infinite alternate;
+  animation: slide 7s linear;
+  
 }
 @keyframes slide {
-  10%,20%{top: 20px;}
-  30%,40%,70% {top: 0px;}
-  90% {top: 10px;}
-  100% {top: -50px;}
+  10%{top: 20px;}
+  15%,50%,90% {top: 10px;}
+  100% {top: -60px;}
 }
 .details {
   width: 100%;

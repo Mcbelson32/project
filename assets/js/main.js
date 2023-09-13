@@ -19,3 +19,15 @@ toggle.onclick = function () {
   navigation.classList.toggle("active");
   main.classList.toggle("active");
 };
+
+let topbar = document.querySelector('.topbar');
+
+window.addEventListener("scroll", function() {
+  if (window.pageYOffset >= 10) {
+   topbar.classList.add("active");
+    // Your code logic here
+  }else {
+    topbar.classList.remove("active");
+  }
+});
+

@@ -14,10 +14,10 @@ header('location: /');
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard</title>
+    <title>Password</title>
     <!-- ======= Styles ====== -->
-    <link rel="stylesheet" href="assets/css/style.css">
-  
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css?v=1.0">
+
 </head>
 
 <body>
@@ -30,7 +30,7 @@ header('location: /');
                         <span class="icon">
                             <ion-icon name="logo-buffer"></ion-icon>
                         </span>
-              <span class="title big">Name</span>
+                        <span class="title big">Name</span>
                     </a>
                 </li>
 
@@ -69,7 +69,7 @@ header('location: /');
                         <span class="title">Add warrior</span>
                     </a>
                 </li>
- 
+
 
                 <li>
                     <a href="form.php">
@@ -151,7 +151,8 @@ header('location: /');
                     </div>
 
                     <div class="iconBx">
-                        <ion-icon name="accessibility-outline"></ion-icon>                    </div>
+                        <ion-icon name="accessibility-outline"></ion-icon>
+                    </div>
                 </div>
 
                 <div class="card">
@@ -161,7 +162,8 @@ header('location: /');
                     </div>
 
                     <div class="iconBx">
-                        <ion-icon name="analytics-outline"></ion-icon>                    </div>
+                        <ion-icon name="analytics-outline"></ion-icon>
+                    </div>
                 </div>
             </div>
 
@@ -175,8 +177,8 @@ header('location: /');
 
                     <table>
                         <thead id="th">
-  <tr>
-    <td>ID</td>
+                            <tr>
+                                <td>ID</td>
                                 <td>FullName</td>
                                 <td>Nationality</td>
                                 <td>Nation</td>
@@ -184,8 +186,8 @@ header('location: /');
                             </tr>
                         </thead>
 
-              <tbody>
-<?php
+                        <tbody>
+                            <?php
 if($result){
   $i=1;
   while(($row=mysqli_fetch_assoc($result)) && $i<=10){

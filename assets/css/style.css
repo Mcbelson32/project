@@ -159,7 +159,12 @@ body {
   align-items: center;
   padding: 0 10px;
   z-index: 200000;
-
+  transition: all .7s ease-in-out;
+}
+.topbar.active {
+  background-color: var(--white);
+  box-shadow: 10px 10px 20px #bebebe;
+  border-radius: 10px;
 }
 
 .toggle {
@@ -228,6 +233,7 @@ body {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-gap: 30px;
+  overflow-x: scroll;
 }
 
 .cardBox .card {
@@ -300,14 +306,13 @@ body {
   color: var(--blue);
 }
 .cardHeader h2::before {
-  content: '';
-  position:absolute;
+  content: "";
+  position: absolute;
   bottom: 0;
-  left:5%;
-  width:90%;
-  height:3px;
+  left: 5%;
+  width: 90%;
+  height: 3px;
   background-color: var(--blue);
-
 }
 .cardHeader .btn {
   position: relative;
@@ -318,7 +323,7 @@ body {
   border-radius: 6px;
 }
 
- .btn.edit {
+.btn.edit {
   position: relative;
   padding: 5px 10px;
   background: var(--blue);
@@ -327,7 +332,7 @@ body {
   border-radius: 6px;
 }
 
- .btn.del {
+.btn.del {
   position: relative;
   padding: 5px 10px;
   background: var(--bluecss);
@@ -364,14 +369,14 @@ body {
 
 .details .recentOrders .empty {
   position: absolute;
-  top:45%;
+  top: 45%;
   /* jusify-content: center; */
   /* align-items: center; */
   text-align: center;
   font-weight: 900;
   font-size: 40px;
   color: #99a;
-  width:100%;
+  width: 100%;
   height: 100%;
 }
 /* .details .recentOrders table tr td:last-child { */
@@ -428,10 +433,9 @@ body {
   border-radius: 20px;
 }
 .recentCustomers table thead {
-/* background: linear-gradient(145deg, #cacad850, #f0f0f050); */
+  /* background: linear-gradient(145deg, #cacad850, #f0f0f050); */
   background-color: #2a218a;
-box-shadow:  8px 8px 13px #2a2185f5,
-             -5px -5px 10px #ffffff;
+  box-shadow: 8px 8px 13px #2a2185f5, -5px -5px 10px #ffffff;
 }
 
 .recentCustomers table tr td {
@@ -442,7 +446,7 @@ box-shadow:  8px 8px 13px #2a2185f5,
 }
 
 .recentCustomers table tr td h4 {
-  width:100%;
+  width: 100%;
   font-size: 16px;
   font-weight: 500;
   line-height: 1.2rem;
@@ -461,17 +465,16 @@ box-shadow:  8px 8px 13px #2a2185f5,
 
 .recentCustomers .empty {
   position: absolute;
-  top:45%;
+  top: 45%;
   /* jusify-content: center; */
   /* align-items: center; */
   text-align: center;
   font-weight: 900;
   font-size: 40px;
   color: #99a;
-  width:100%;
+  width: 100%;
   height: 100%;
 }
-
 
 /* ====================== Responsive Design ========================== */
 @media (max-width: 991px) {
@@ -520,14 +523,13 @@ box-shadow:  8px 8px 13px #2a2185f5,
     width: 100%;
     left: -100%;
     z-index: 1000;
-
   }
   .navigation.active {
     width: 100%;
     left: 0;
   }
   .navigation.active ~ .main.active {
-    width:0;
+    width: 0;
     /* display: none; */
   }
   .toggle {

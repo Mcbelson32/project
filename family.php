@@ -1,6 +1,9 @@
 <?php
 include './server/fetch.php';
-include './server/group.php';
+$conn->select_db("family");
+$sql="show tables";
+
+$res=mysqli_query($conn, $sql);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -9,9 +12,9 @@ include './server/group.php';
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard</title>
+    <title>Family</title>
     <!-- ======= Styles ====== -->
-    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css?v=1.0">
 
 </head>
 
@@ -192,9 +195,11 @@ if ($res) {
 echo "<tr id=\"name\"><td>
           <h4>ID</h4>
           <h4>FullName</h4>
-          <h4>family type</h4>
+          <h4>Family type</h4>
         <h4>B.Date</h4>
-        <h4>education lvl</h4>
+        <h4>Status</h4>
+        <h4>Duration</h4>
+        <h4>Education lvl</h4>
         </td></tr>";
 
         echo '';
@@ -208,6 +213,8 @@ echo "<tr id=\"name\"><td>
             $type = $row['type'];
             $lvl = $row['educ_lvl'];
             $b_date = $row['b_date'];
+            $status = $row['status'];
+            $duration = $row['duration'];
 
         $onclick="onclick=\"window.location.href ='detail.php?id=";
                         echo "<tbody>
@@ -217,6 +224,8 @@ echo "<tr id=\"name\"><td>
         <h4>$uname</h4>
         <h4>$type</h4>
         <h4>$b_date</h4>
+        <h4>$status</h4>
+        <h4>$duration</h4>
         <h4 id=\"lvl\">$lvl</h4>
                    </td>
                         </tr>

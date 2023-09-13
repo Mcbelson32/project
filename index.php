@@ -1,6 +1,9 @@
 <?php
 include './server/fetch.php';
-include './server/group.php';
+$conn->select_db("family");
+$sql="show tables";
+
+$res=mysqli_query($conn, $sql);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -11,8 +14,8 @@ include './server/group.php';
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
     <!-- ======= Styles ====== -->
-    <link rel="stylesheet" href="assets/css/style.css">
-  
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css?v=1.0">
+
 </head>
 
 <body>
@@ -25,7 +28,7 @@ include './server/group.php';
                         <span class="icon">
                             <ion-icon name="logo-buffer"></ion-icon>
                         </span>
-              <span class="title big">Name</span>
+                        <span class="title big">Name</span>
                     </a>
                 </li>
 
@@ -64,7 +67,7 @@ include './server/group.php';
                         <span class="title">Add Warrior</span>
                     </a>
                 </li>
-          
+
                 <li>
                     <a href="relative.php">
                         <span class="icon">
@@ -118,7 +121,7 @@ include './server/group.php';
             <div class="cardBox">
                 <div class="card" onclick="window.location.href = 'index.php'">
                     <div>
-<div class="numbers"><?php echo $total ?></div>
+                        <div class="numbers"><?php echo $total ?></div>
                         <div class="cardName">warriors</div>
                     </div>
 
@@ -145,7 +148,8 @@ include './server/group.php';
                     </div>
 
                     <div class="iconBx">
-                        <ion-icon name="accessibility-outline"></ion-icon>                    </div>
+                        <ion-icon name="accessibility-outline"></ion-icon>
+                    </div>
                 </div>
 
                 <div class="card">
@@ -155,7 +159,8 @@ include './server/group.php';
                     </div>
 
                     <div class="iconBx">
-                        <ion-icon name="analytics-outline"></ion-icon>                    </div>
+                        <ion-icon name="analytics-outline"></ion-icon>
+                    </div>
                 </div>
             </div>
 
@@ -169,8 +174,8 @@ include './server/group.php';
 
                     <table>
                         <thead>
-  <tr>
-    <td>ID</td>
+                            <tr>
+                                <td>ID</td>
                                 <td>FullName</td>
                                 <td>Nationality</td>
                                 <td>Nation</td>
@@ -178,25 +183,29 @@ include './server/group.php';
                             </tr>
                         </thead>
 
-              <tbody>
-<?php
-if($result){
+                        <tbody>
+                            <?php
+if($all){
   $i=0;
-  while(($row=mysqli_fetch_assoc($result)) && $i<12){
+  $row=mysqli_fetch_assoc($all);
+  while($row && $i<12){
     $id=$row['id'];
     $u_name = $row['u_name'];
     $f_name = $row['f_name'];
+    $g_name = $row['g_name'];
     $appellation = $row['appellation'];
     $nationality = $row['nationality'];
-    $nation = $row['nation']; 
+    $nation = $row['nation'];
+    
     echo '<tr onclick="window.location.href = \'detail.php?id='.$id.'\'">
       <td>'.$id.'</td>
-      <td>'.$u_name.' '.$f_name.'</td>
+      <td>'.$u_name.' '.$f_name.' '.$g_name.'</td>
       <td>'.$nationality.'</td>
       <td>'.$nation.'</td>
       <td><span class="status delivered">'.$appellation.'</span></td>
       </tr>';
     $i++;
+    $row=mysqli_fetch_assoc($all);
   }
   if(!$i){
     echo '<h1 class="empty">No Warriors</h1>
@@ -223,7 +232,7 @@ if($result){
                         <h2>Recent Families</h2>
                     </div>
 
-                          <table>
+                    <table>
                         <?php
 if($res){
   $i=0;

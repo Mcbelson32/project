@@ -14,10 +14,10 @@ $result=mysqli_query($conn, $sql);
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard</title>
+    <title>Warriors</title>
     <!-- ======= Styles ====== -->
-    <link rel="stylesheet" href="assets/css/style.css">
-    <link rel="stylesheet" href="assets/css/warrior.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css?v=1.0">
+    <link rel="stylesheet" type="text/css" href="assets/css/warrior.css?v=1.0">
 
 </head>
 
@@ -195,6 +195,7 @@ if($result){
     $id=$row['id'];
     $u_name = $row['u_name'];
     $f_name = $row['f_name'];
+    $g_name = $row['g_name'];
     $appellation = $row['appellation'];
     $nationality = $row['nationality'];
     $nation = $row['nation'];
@@ -203,7 +204,7 @@ if($result){
     echo '
     <tr onclick="window.location.href = \'detail.php?id='.$id.'\'">
         <td>'.$id.'</td>
-        <td>'.$u_name.' '.$f_name.'</td>
+        <td>'.$u_name.' '.$f_name.' '.$g_name.'</td>
         <td>'.$nationality.'</td>
         <td>'.$nation.'</td>
         <td>'.$phone.'</td>
