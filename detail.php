@@ -126,14 +126,14 @@ include './server/fetch.php';
                             <div class="input-box">
                                 <span class="details">ID</span>
                                 <p class="input">
-                                    <?echo $id ?>
+                                    <?php echo $id ?>
                                 </p>
                             </div>
 
                             <div class="input-box">
                                 <span class="details">User Name</span>
                                 <p class="input">
-                                    <?echo $u_name ?>
+                                    <?php echo $u_name ?>
                                 </p>
                             </div>
                             <div class="input-box">
@@ -148,71 +148,71 @@ include './server/fetch.php';
                             <div class="input-box">
                                 <span class="details">Mother's FullName</span>
                                 <p class="input">
-                                    <?echo $m_name ?>
+                                    <?php echo $m_name ?>
                                 </p>
                             </div>
                             <div class="input-box">
                                 <span class="details">Appellation</span>
                                 <p class="input">
-                                    <?echo $appellation ?>
+                                    <?php echo $appellation ?>
                                 </p>
                             </div>
 
                             <div class="input-box">
                                 <span class="details">Birth Date</span>
                                 <p class="input">
-                                    <?echo $b_date ?>
+                                    <?php echo $b_date ?>
                                 </p>
                             </div>
                             <div class="input-box">
                                 <span class="details">Birth Place</span>
                                 <p class="input">
-                                    <?echo $b_place ?>
+                                    <?php echo $b_place ?>
                                 </p>
 
                             </div>
                             <div class="input-box">
                                 <span class="details">Nationality</span>
                                 <p class="input">
-                                    <?echo $nationality ?>
+                                    <?php echo $nationality ?>
                                 </p>
                             </div>
                             <div class="input-box">
                                 <span class="details">Nation</span>
                                 <p class="input">
-                                    <?echo $nation ?>
+                                    <?php echo $nation ?>
                                 </p>
                             </div>
                             <div class="input-box">
                                 <span class="details">Blood Type</span>
                                 <p class="input">
-                                    <?echo $bloodtype ?>
+                                    <?php echo $bloodtype ?>
                                 </p>
                             </div>
                             <div class="input-box">
                                 <span class="details">Region</span>
                                 <p class="input">
-                                    <?echo $region ?>
+                                    <?php echo $region ?>
                                 </p>
                             </div>
                             <div class="input-box">
                                 <span class="details">Warada</span>
                                 <p class="input">
-                                    <?echo $warada ?>
+                                    <?php echo $warada ?>
                                 </p>
                             </div>
 
                             <div class="input-box">
                                 <span class="details">kebele</span>
                                 <p class="input">
-                                    <?echo $kebele ?>
+                                    <?php echo $kebele ?>
                                 </p>
                             </div>
 
                             <div class="input-box">
                                 <span class="details">H.number</span>
                                 <p class="input">
-                                    <?echo $h_number ?>
+                                    <?php echo $h_number ?>
                                 </p>
                             </div>
 
@@ -220,61 +220,61 @@ include './server/fetch.php';
                             <div class="input-box">
                                 <span class="details">Phone Number</span>
                                 <p class="input">
-                                    <?echo $phone ?>
+                                    <?php echo $phone ?>
                                 </p>
                             </div>
                             <div class="input-box">
                                 <span class="details">P.O Box</span>
                                 <p class="input">
-                                    <?echo $po_box ?>
+                                    <?php echo $po_box ?>
                                 </p>
                             </div>
                             <div class="input-box">
                                 <span class="details">Language Skill</span>
                                 <p class="input">
-                                    <?echo $language ?>
+                                    <?php echo $language ?>
                                 </p>
                             </div>
 
                             <div class="input-box">
                                 <span class="details">Level of education</span>
                                 <p class="input">
-                                    <?echo $educ_lvl ?>
+                                    <?php echo $educ_lvl ?>
                                 </p>
                             </div>
 
                             <div class="input-box">
                                 <span class="details">And types</span>
                                 <p class="input">
-                                    <?echo $educ_type ?>
+                                    <?php echo $educ_type ?>
                                 </p>
                             </div>
                             <div class="input-box">
                                 <span class="details">Warrior's class & year</span>
                                 <p class="input">
-                                    <?echo $class ?>
+                                    <?php echo $class ?>
                                 </p>
                             </div>
                             <div class="input-box">
                                 <span class="details">work</span>
                                 <p class="input">
-                                    <?echo $work ?>
+                                    <?php echo $work ?>
                                 </p>
                             </div>
 
                         </div>
-                        <span class="gender-title">if the warrior is <u>______</u> in battleground </span> <br>
+                        <span class="gender-title">if wounded at the battlefield </span> <br>
                         <div class="category">
                             <label for="wound-1">
                                 <div class="radio">
-                                    <div class=<?if($iswounded=='wounded' ){echo '"checked"' ;} ?>></div>
+                                    <div class=<?php if($iswounded=='wounded' ){echo '"checked"';} ?>></div>
                                 </div>
 
                                 <span class="gender">&nbsp; wounded </span>
                             </label>
                             <label for="wound-2">
                                 <div class="radio">
-                                    <div class=<?if($iswounded=='not wounded' ){echo '"checked"' ;} ?>></div>
+                                    <div class=<?php if($iswounded=='not wounded' ){echo '"checked"';} ?>></div>
                                 </div>
 
                                 <span class="gender">&nbsp; not wounded</span>
@@ -286,13 +286,14 @@ include './server/fetch.php';
                         <div class="category">
                             <label for="war-1">
                                 <div class="radio">
-                                    <div class=<?if($warrior_s=='Alive' ){echo '"checked"' ;} ?>></div>
+                                    <div class=<?php if($warrior_s=='Alive' ){echo '"checked"';} ?>></div>
                                 </div>
+
                                 <span class="gender">&nbsp;Alive</span>
                             </label>
                             <label for="war-2">
                                 <div class="radio">
-                                    <div class=<?if($warrior_s=='Dead' ){echo '"checked"' ;} ?>></div>
+                                    <div class=<?php if($warrior_s=='Dead' ){echo '"checked"';} ?>></div>
                                 </div>
                                 <span class="gender">&nbsp;Dead</span>
                             </label>
@@ -300,15 +301,19 @@ include './server/fetch.php';
                         <div class="input-box">
                             <span class="details">Work Experience</span>
                             <p class="textarea">
-                                <?echo $experience ?>
+                                <?php echo $experience; ?>
                             </p>
                         </div>
 
 
                         <div class="button">
-                            <a href=<?echo"form.php?id=$id"?> class="btn"><ion-icon name="create"></ion-icon> edit</a>
-                            <a href=<?echo"delete.php?id=$id"?> class="btn"><ion-icon name="trash"></ion-icon>
-                                delete</a>
+                            <a href=<?php echo"form.php?id=$id";?> class="btn">
+                                <ion-icon name="create"></ion-icon> edit
+                            </a>
+                            <a href=<?php echo"delete.php?id=$id";?> class="btn">
+                                <ion-icon name="trash"></ion-icon>
+                                delete
+                            </a>
 
                         </div>
                     </div>
