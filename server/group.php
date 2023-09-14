@@ -19,8 +19,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     }
   }
 
-  $id=$_POST['u_id'];
-  $uname=$_POST['u_name'];
+  $id=trim($_POST['u_id']);
+  $uname=trim($_POST['u_name']);
   $type=$_POST['type'] ?? 'N/A';
   $lvl=$_POST['educ_lvl'] ?? 'N/A';
   $b_date=$_POST['b_date'] ?? 'N/A';
@@ -32,7 +32,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
   $res=mysqli_query($conn, $sql);
   $row=mysqli_fetch_assoc($res);
   
-  $name=$row['u_name'].$row['f_name'];
+  $name=trim($row['u_name']).trim($row['f_name']);
   $conn->select_db("family");
 
   if(isset($_POST['id'])) {
@@ -45,7 +45,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 }
 
 function createTable($conn, $name, $id, $uname, $type, $lvl, $b_date, $status, $duration) {
-  $sql = "CREATE TABLE IF NOT EXISTS $name (
+  $sql = "CREATE TABLE IF NOT EXISTS `$name` (
   id VARCHAR(255) NOT NULL DEFAULT 'N/A',
   uname VARCHAR(255) NOT NULL DEFAULT 'N/A',
   member VARCHAR(255) DEFAULT 'N/A',

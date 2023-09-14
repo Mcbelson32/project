@@ -2,7 +2,7 @@
 
 include './server/fetch.php';
 include './server/connect.php';
-
+include 'array.php';
 $sql="SELECT * FROM warrior";
 
 $result=mysqli_query($conn, $sql);
@@ -114,11 +114,29 @@ $result=mysqli_query($conn, $sql);
                         <input type="text" placeholder="Search here">
                         <ion-icon name="search-outline"></ion-icon>
                     </label>
+                    <div class="search-table">
+                        <div class="table-container">
+
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <td>ID</td>
+                                        <td>User Name</td>
+                                        <td>Father's name</td>
+                                        <td>Granfather's name</td>
+                                    </tr>
+                                </thead>
+
+                                <tbody id="tbody">
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
                 </div>
 
-                <!-- <div class="user"> -->
-                <!--     <img src="assets/imgs/customer01.jpg" alt=""> -->
-                <!-- </div> -->
+                <div class="user">
+                    <ion-icon name="person-circle-outline"></ion-icon>
+                </div>
             </div>
 
             <!-- ======================= Cards ================== -->
@@ -208,7 +226,7 @@ if($result){
     $lang = $row['lang'];
     
     echo '
-    <tr onclick="window.location.href = \'detail.php?id='.$id.'\'">
+    <tr onclick="window.location.href = \'detail.php?id='.$id.'&type=war\'">
         <td>'.$id.'</td>
         <td>'.$u_name.' '.$f_name.' '.$g_name.'</td>
         <td>'.$nationality.'</td>
@@ -222,7 +240,7 @@ if($result){
             <a href="form.php?id='.$id.'" class="btn"><ion-icon name="create" ></ion-icon></a>
         </td>
         <td>
-            <a href="delete.php?id='.$id.'" class="btn del"><ion-icon name="trash"></ion-icon></a>
+            <a href="delete.php?id='.$id.'&type=war" class="btn del"><ion-icon name="trash"></ion-icon></a>
         </td>
     </tr>';
 
@@ -254,7 +272,7 @@ if($result){
         </div>
 
         <!-- =========== Scripts =========  -->
-        <script src="assets/js/main.js"></script>
+        <script type="module" src="assets/js/main.js"></script>
 
         <!-- ====== ionicons ======= -->
         <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>

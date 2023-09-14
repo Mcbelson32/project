@@ -1,5 +1,6 @@
 <?php
 include './server/fetch.php';
+include 'array.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -58,7 +59,7 @@ include './server/fetch.php';
                 <li>
                     <a href="form.php">
                         <span class="icon">
-                            <ion-icon name="person-add"></ion-icon>
+                            <ion-icon name="person-add-outline"></ion-icon>
                         </span>
                         <span class="title">Add Warrior</span>
                     </a>
@@ -68,7 +69,7 @@ include './server/fetch.php';
                 <li>
                     <a href="relative.php">
                         <span class="icon">
-                            <ion-icon name="person-add"></ion-icon>
+                            <ion-icon name="person-add-outline"></ion-icon>
                         </span>
                         <span class="title">Add Relative</span>
                     </a>
@@ -107,11 +108,29 @@ include './server/fetch.php';
                         <input type="text" placeholder="Search here">
                         <ion-icon name="search-outline"></ion-icon>
                     </label>
+                    <div class="search-table">
+                        <div class="table-container">
+
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <td>ID</td>
+                                        <td>User Name</td>
+                                        <td>Father's name</td>
+                                        <td>Granfather's name</td>
+                                    </tr>
+                                </thead>
+
+                                <tbody id="tbody">
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
                 </div>
 
-                <!-- <div class="user"> -->
-                <!--     <img src="assets/imgs/customer01.jpg" alt=""> -->
-                <!-- </div> -->
+                <div class="user">
+                    <ion-icon name="person-circle-outline"></ion-icon>
+                </div>
             </div>
 
             <!-- ======================= Cards ================== -->
@@ -122,218 +141,359 @@ include './server/fetch.php';
                 <div class="container">
                     <div class="title">Details</div>
                     <div class="content">
-                        <div class="user-details">
-                            <div class="input-box">
-                                <span class="details">ID</span>
-                                <p class="input">
-                                    <?php echo $id ?>
-                                </p>
-                            </div>
-
-                            <div class="input-box">
-                                <span class="details">User Name</span>
-                                <p class="input">
-                                    <?php echo $u_name ?>
-                                </p>
-                            </div>
-                            <div class="input-box">
-                                <span class="details">Father's Name</span>
-                                <p class="input"><?php echo $f_name ?></p>
-                            </div>
-                            <div class="input-box">
-                                <span class="details">GrandFather's Name</span>
-                                <p class="input"><?php echo $g_name ?></p>
-                            </div>
-
-                            <div class="input-box">
-                                <span class="details">Mother's FullName</span>
-                                <p class="input">
-                                    <?php echo $m_name ?>
-                                </p>
-                            </div>
-                            <div class="input-box">
-                                <span class="details">Appellation</span>
-                                <p class="input">
-                                    <?php echo $appellation ?>
-                                </p>
-                            </div>
-
-                            <div class="input-box">
-                                <span class="details">Birth Date</span>
-                                <p class="input">
-                                    <?php echo $b_date ?>
-                                </p>
-                            </div>
-                            <div class="input-box">
-                                <span class="details">Birth Place</span>
-                                <p class="input">
-                                    <?php echo $b_place ?>
-                                </p>
-
-                            </div>
-                            <div class="input-box">
-                                <span class="details">Nationality</span>
-                                <p class="input">
-                                    <?php echo $nationality ?>
-                                </p>
-                            </div>
-                            <div class="input-box">
-                                <span class="details">Nation</span>
-                                <p class="input">
-                                    <?php echo $nation ?>
-                                </p>
-                            </div>
-                            <div class="input-box">
-                                <span class="details">Blood Type</span>
-                                <p class="input">
-                                    <?php echo $bloodtype ?>
-                                </p>
-                            </div>
-                            <div class="input-box">
-                                <span class="details">Region</span>
-                                <p class="input">
-                                    <?php echo $region ?>
-                                </p>
-                            </div>
-                            <div class="input-box">
-                                <span class="details">Warada</span>
-                                <p class="input">
-                                    <?php echo $warada ?>
-                                </p>
-                            </div>
-
-                            <div class="input-box">
-                                <span class="details">kebele</span>
-                                <p class="input">
-                                    <?php echo $kebele ?>
-                                </p>
-                            </div>
-
-                            <div class="input-box">
-                                <span class="details">H.number</span>
-                                <p class="input">
-                                    <?php echo $h_number ?>
-                                </p>
-                            </div>
-
-
-                            <div class="input-box">
-                                <span class="details">Phone Number</span>
-                                <p class="input">
-                                    <?php echo $phone ?>
-                                </p>
-                            </div>
-                            <div class="input-box">
-                                <span class="details">P.O Box</span>
-                                <p class="input">
-                                    <?php echo $po_box ?>
-                                </p>
-                            </div>
-                            <div class="input-box">
-                                <span class="details">Language Skill</span>
-                                <p class="input">
-                                    <?php echo $language ?>
-                                </p>
-                            </div>
-
-                            <div class="input-box">
-                                <span class="details">Level of education</span>
-                                <p class="input">
-                                    <?php echo $educ_lvl ?>
-                                </p>
-                            </div>
-
-                            <div class="input-box">
-                                <span class="details">And types</span>
-                                <p class="input">
-                                    <?php echo $educ_type ?>
-                                </p>
-                            </div>
-                            <div class="input-box">
-                                <span class="details">Warrior's class & year</span>
-                                <p class="input">
-                                    <?php echo $class ?>
-                                </p>
-                            </div>
-                            <div class="input-box">
-                                <span class="details">work</span>
-                                <p class="input">
-                                    <?php echo $work ?>
-                                </p>
-                            </div>
-
-                        </div>
-                        <span class="gender-title">if wounded at the battlefield </span> <br>
-                        <div class="category">
-                            <label for="wound-1">
-                                <div class="radio">
-                                    <div class=<?php if($iswounded=='wounded' ){echo '"checked"';} ?>></div>
+                        <?php if ($_GET['type'] == 'war') { ?>
+                        <div class="print">
+                            <div class="user-details">
+                                <div class="input-box">
+                                    <span class="details">Warrior's ID</span>
+                                    <p class="input">
+                                        <?php echo $id ?>
+                                    </p>
                                 </div>
 
-                                <span class="gender">&nbsp; wounded </span>
-                            </label>
-                            <label for="wound-2">
-                                <div class="radio">
-                                    <div class=<?php if($iswounded=='not wounded' ){echo '"checked"';} ?>></div>
+                                <div class="input-box">
+                                    <span class="details">User Name</span>
+                                    <p class="input">
+                                        <?php echo $u_name ?>
+                                    </p>
+                                </div>
+                                <div class="input-box">
+                                    <span class="details">Father's Name</span>
+                                    <p class="input"><?php echo $f_name ?></p>
+                                </div>
+                                <div class="input-box">
+                                    <span class="details">GrandFather's Name</span>
+                                    <p class="input"><?php echo $g_name ?></p>
                                 </div>
 
-                                <span class="gender">&nbsp; not wounded</span>
-                            </label>
-                        </div>
-
-
-                        <span class="gender-title">The warrior</span> <br>
-                        <div class="category">
-                            <label for="war-1">
-                                <div class="radio">
-                                    <div class=<?php if($warrior_s=='Alive' ){echo '"checked"';} ?>></div>
+                                <div class="input-box">
+                                    <span class="details">Mother's FullName</span>
+                                    <p class="input">
+                                        <?php echo $m_name ?>
+                                    </p>
+                                </div>
+                                <div class="input-box">
+                                    <span class="details">Appellation</span>
+                                    <p class="input">
+                                        <?php echo $appellation ?>
+                                    </p>
                                 </div>
 
-                                <span class="gender">&nbsp;Alive</span>
-                            </label>
-                            <label for="war-2">
-                                <div class="radio">
-                                    <div class=<?php if($warrior_s=='Dead' ){echo '"checked"';} ?>></div>
+                                <div class="input-box">
+                                    <span class="details">Birth Date</span>
+                                    <p class="input">
+                                        <?php echo $b_date ?>
+                                    </p>
                                 </div>
-                                <span class="gender">&nbsp;Dead</span>
-                            </label>
-                        </div>
-                        <div class="input-box">
-                            <span class="details">Work Experience</span>
-                            <p class="textarea">
-                                <?php echo $experience; ?>
-                            </p>
-                        </div>
+                                <div class="input-box">
+                                    <span class="details">Birth Place</span>
+                                    <p class="input">
+                                        <?php echo $b_place ?>
+                                    </p>
+
+                                </div>
+                                <div class="input-box">
+                                    <span class="details">Nationality</span>
+                                    <p class="input">
+                                        <?php echo $nationality ?>
+                                    </p>
+                                </div>
+                                <div class="input-box">
+                                    <span class="details">Nation</span>
+                                    <p class="input">
+                                        <?php echo $nation ?>
+                                    </p>
+                                </div>
+                                <div class="input-box">
+                                    <span class="details">Blood Type</span>
+                                    <p class="input">
+                                        <?php echo $bloodtype ?>
+                                    </p>
+                                </div>
+                                <div class="input-box">
+                                    <span class="details">Region</span>
+                                    <p class="input">
+                                        <?php echo $region ?>
+                                    </p>
+                                </div>
+                                <div class="input-box">
+                                    <span class="details">Warada</span>
+                                    <p class="input">
+                                        <?php echo $warada ?>
+                                    </p>
+                                </div>
+
+                                <div class="input-box">
+                                    <span class="details">Kebele</span>
+                                    <p class="input">
+                                        <?php echo $kebele ?>
+                                    </p>
+                                </div>
+
+                                <div class="input-box">
+                                    <span class="details">H.number</span>
+                                    <p class="input">
+                                        <?php echo $h_number ?>
+                                    </p>
+                                </div>
 
 
-                        <div class="button">
-                            <a href=<?php echo"form.php?id=$id";?> class="btn">
+                                <div class="input-box">
+                                    <span class="details">Phone Number</span>
+                                    <p class="input">
+                                        <?php echo $phone ?>
+                                    </p>
+                                </div>
+                                <div class="input-box">
+                                    <span class="details">P.O Box</span>
+                                    <p class="input">
+                                        <?php echo $po_box ?>
+                                    </p>
+                                </div>
+                                <div class="input-box">
+                                    <span class="details">Language</span>
+                                    <p class="input">
+                                        <?php echo $language ?>
+                                    </p>
+                                </div>
+
+                                <div class="input-box">
+                                    <span class="details">Level of education</span>
+                                    <p class="input">
+                                        <?php echo $educ_lvl ?>
+                                    </p>
+                                </div>
+
+                                <div class="input-box">
+                                    <span class="details">Education types</span>
+                                    <p class="input">
+                                        <?php echo $educ_type ?>
+                                    </p>
+                                </div>
+                                <div class="input-box">
+                                    <span class="details">Warrior's class</span>
+                                    <p class="input">
+                                        <?php echo $class ?>
+                                    </p>
+                                </div>
+                                <div class="input-box">
+                                    <span class="details">class year</span>
+                                    <p class="input">
+                                        <?php echo $c_year ?>
+                                    </p>
+                                </div>
+                                <div class="input-box">
+                                    <span class="details">work</span>
+                                    <p class="input">
+                                        <?php echo $work ?>
+                                    </p>
+                                </div>
+
+                            </div>
+
+                            <div class="input-box">
+                                <span class="details">Award and Presenter</span>
+                                <p class="textarea">
+                                    <?php echo $award; ?>
+                                </p>
+                            </div>
+
+                            <span class="gender-title">Engagement rounds </span>
+                            <div class="checkbox">
+                                <label class="checkbox-container">
+                                    <input class="custom-checkbox" id="r-1" type="checkbox" disabled>
+                                    <span class="checkmark"></span>
+                                    <span class="gender">1st round </span>
+                                </label>
+                                <label class="checkbox-container">
+                                    <input class="custom-checkbox" id="r-2" type="checkbox" disabled>
+                                    <span class="checkmark"></span>
+                                    <span class="gender">2nd round </span>
+                                </label>
+                                <label class="checkbox-container">
+                                    <input class="custom-checkbox" id="r-3" type="checkbox" disabled>
+                                    <span class="checkmark"></span>
+                                    <span class="gender">3rd round </span>
+                                </label>
+                                <label class="checkbox-container">
+                                    <input class="custom-checkbox" id="r-4" type="checkbox" disabled>
+                                    <span class="checkmark"></span>
+                                    <span class="gender">4th round </span>
+                                </label>
+                                <label class="checkbox-container">
+                                    <input class="custom-checkbox" id="r-5" type="checkbox" disabled>
+                                    <span class="checkmark"></span>
+                                    <span class="gender">5th round</span>
+                                </label>
+                            </div>
+                            <span class="gender-title">if wounded at the battlefield </span>
+                            <div class="radio-button-container">
+                                <div class="radio-button">
+                                    <input type="radio" class="radio-button__input" id="wound" name="iswounded"
+                                        disabled>
+                                    <label class="radio-button__label" for="wound">
+                                        <span class="radio-button__custom"></span>
+                                        Wounded
+                                    </label>
+                                </div>
+                                <div class="radio-button">
+                                    <input type="radio" class="radio-button__input" id="nwound" name="iswounded"
+                                        disabled>
+                                    <label class=" radio-button__label" for="nwound">
+                                        <span class="radio-button__custom"></span>
+                                        Not wounded
+                                    </label>
+                                </div>
+                            </div>
+
+
+                            <span class="gender-title">warrior's status</span> <br>
+                            <div class="radio-button-container">
+                                <div class="radio-button">
+                                    <input type="radio" class="radio-button__input" id="alive" name="warrior_s"
+                                        disabled>
+                                    <label class="radio-button__label" for="alive">
+                                        <span class="radio-button__custom"></span>
+                                        Alive
+                                    </label>
+                                </div>
+                                <div class="radio-button">
+                                    <input type="radio" class="radio-button__input" id="dead" name="warrior_s" disabled>
+                                    <label class="radio-button__label" for="dead">
+                                        <span class="radio-button__custom"></span>
+                                        Dead
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="input-box">
+                                <span class="details">Work Experience</span>
+                                <p class="textarea">
+                                    <?php echo $experience; ?>
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="button hide">
+                            <a href="" class="btn " onclick="window.print()">
+                                <ion-icon name="print"></ion-icon> print
+                            </a>
+                            <a href='<?php echo "form.php?id=$id";?>' class="btn">
                                 <ion-icon name="create"></ion-icon> edit
                             </a>
-                            <a href=<?php echo"delete.php?id=$id";?> class="btn">
+                            <a href='<?php echo "delete.php?id=$id&type=war";?>' class=" btn">
                                 <ion-icon name="trash"></ion-icon>
                                 delete
                             </a>
 
                         </div>
+
+                        <?php }
+                        elseif ($_GET['type'] == "rel") { ?>
+                        <?php $table = $_GET['table']; ?>
+                        <div class="print">
+                            <div class="user-details">
+                                <div class="input-box">
+                                    <span class="details">Family ID</span>
+                                    <p class="input">
+                                        <?php echo $id ?>
+                                    </p>
+                                </div>
+
+                                <div class="input-box">
+                                    <span class="details">FullName</span>
+                                    <p class="input">
+                                        <?php echo $uname ?>
+                                    </p>
+                                </div>
+                                <div class="input-box">
+                                    <span class="details">Family type</span>
+                                    <p class="input"><?php echo $mem ?></p>
+                                </div>
+                                <div class="input-box">
+                                    <span class="details">Status</span>
+                                    <p class="input"><?php echo $status ?></p>
+                                </div>
+
+                                <div class="input-box">
+                                    <span class="details">Duration</span>
+                                    <p class="input">
+                                        <?php echo $dur ?>
+                                    </p>
+                                </div>
+                                <div class="input-box">
+                                    <span class="details">Level of Education</span>
+                                    <p class="input">
+                                        <?php echo $lvl ?>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="button hide">
+                            <a href="" class="btn " onclick="window.print()">
+                                <ion-icon name="print"></ion-icon> print
+                            </a>
+                            <a href='<?php echo"relative.php?id=$id&uname=$uname";?>' class=" btn">
+                                <ion-icon name="create"></ion-icon> edit
+                            </a>
+                            <a href='<?php echo "delete.php?uname=$uname&type=rel&table=$table";?>' class="btn">
+                                <ion-icon name="trash"></ion-icon>
+                                delete
+                            </a>
+
+                        </div>
+                        <?php } ?>
+
+
+
                     </div>
                 </div>
             </div>
         </div>
 
         <!-- =========== Scripts =========  -->
-        <script src="assets/js/main.js"></script>
+        <script type="module" src="assets/js/main.js"></script>
 
-        <!-- <script> -->
-        <!-- var form = document.getElementById('form'); -->
-
-        <!-- form.addEventListener('submit', (e) => { -->
-        <!--   e.preventDefault(); -->
-        <!-- }); -->
-        <!-- </script> -->
+        <script>
+        var r1 = document.getElementById(' r-1');
+        var r2 = document.getElementById('r-2');
+        var
+            r3 = document.getElementById('r-3');
+        var r4 = document.getElementById('r-4');
+        var
+            r5 = document.getElementById('r-5');
+        var wound = document.getElementById('wound');
+        var
+            nwound = document.getElementById('nwound');
+        var alive = document.getElementById('alive');
+        var dead = document.getElementById('dead');
+        <?php if($iswounded == 'wounded') { ?>
+        wound.checked = true;
+        <?php } elseif ($iswounded == 'not wounded') { ?>
+        nwound.checked = true;
+        <?php } ?> <?php if($warrior_s == 'Alive') { ?> alive.checked = true;
+        <?php } elseif ($warrior_s == 'Dead') { ?> dead.checked = true;
+        <?php } ?>
+        let data = '';
+        <?php foreach($round as $key) { ?> data = '<?php echo $key ?>';
+        if (data == '1st round') {
+            r1.checked = true;
+        } else if (data == '2nd round') {
+            r2.checked = true;
+        } else if (data == '3rd round') {
+            r3.checked = true;
+        } else if (data == '4th round') {
+            r4.checked = true;
+        } else if (data == '5th round') {
+            r5.checked = true;
+        }
+        <?php } ?>
+        </script>
         <!-- ====== ionicons ======= -->
         <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-        <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+        <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js">
+        </script>
 </body>
 
 </html>

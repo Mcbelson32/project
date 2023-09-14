@@ -1,5 +1,6 @@
 <?php
 include './server/fetch.php';
+include 'array.php';
 if(isset($_GET['id'])) {
     $conn->select_db("warriorsdb");
     $id = $_GET['id'];
@@ -145,14 +146,32 @@ if(isset($_GET['id'])) {
 
                 <div class="search">
                     <label>
-                        <input type="text" placeholder="Search here">
+                        <input type="text" name="search" id="search" placeholder="Search here">
                         <ion-icon name="search-outline"></ion-icon>
                     </label>
+                    <div class="search-table">
+                        <div class="table-container">
+
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <td>ID</td>
+                                        <td>User Name</td>
+                                        <td>Father's name</td>
+                                        <td>Granfather's name</td>
+                                    </tr>
+                                </thead>
+
+                                <tbody id="tbody">
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
                 </div>
 
-                <!-- <div class="user"> -->
-                <!--     <img src="assets/imgs/customer01.jpg" alt=""> -->
-                <!-- </div> -->
+                <div class="user">
+                    <ion-icon name="person-circle-outline"></ion-icon>
+                </div>
             </div>
 
             <!-- ======================= Cards ================== -->
@@ -347,7 +366,7 @@ if(isset($_GET['id'])) {
                                 </div>
                                 <div class="input-box">
                                     <span class="details">Class year</span>
-                                    <input type="date" name="c_year" id="c_year"
+                                    <input type="number" name="c_year" id="c_year" min="1800" max=""
                                         value="<?php if(isset($_GET['id'])){echo $c_year;}?>">
                                 </div>
                                 <div class="input-box">
@@ -447,9 +466,13 @@ if(isset($_GET['id'])) {
         </div>
 
         <!-- =========== Scripts =========  -->
-        <script src="assets/js/main.js"></script>
+        <script type="module" src="assets/js/main.js"></script>
 
         <script>
+        const yearInput = document.getElementById('c_year');
+        const currentYear = new Date().getFullYear();
+        yearInput.max = currentYear;
+
         function checkID() {
             var form = document.getElementById('form');
 
@@ -458,7 +481,6 @@ if(isset($_GET['id'])) {
             });
 
             var id = document.getElementById('u_id').value;
-
             // Create a new XMLHttpRequest object
             var xhr = new XMLHttpRequest();
 

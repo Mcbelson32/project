@@ -192,10 +192,65 @@ body {
 
 .search {
   position: relative;
-  width: 400px;
+  width: 600px;
   margin: 0 10px;
 }
+.search .search-table {
+  width: 100%;
+  height: 0px;
+  background-color: var(--gray);
+  position: absolute;
+  top: 100%;
+  left: 0%;
+  border-radius: 10px 10px;
+  overflow-y: scroll;
+  /* border-top-left-radius: 20px;
+  border-top-right-radius: 20px; */
+}
+.search .search-table table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+  /* min-height: 100%; */
+  overflow-y: scroll;
+}
+.search .search-table table thead {
+  background-color: #999;
+  border-radius: 20px;
+}
+.search .search-table table thead tr {
+  border-radius: 20px;
+}
 
+.search .search-table table thead td {
+  font-weight: 600;
+}
+
+.search .search-table table tr {
+  color: var(--black1);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 10%;
+  padding: 10px;
+}
+
+.search .search-table table tr:last-child {
+  border-bottom: none;
+  border-radius: 10%;
+}
+
+/* .search .search-table table tbody tr {
+  background: #2a218555;
+} */
+.search .search-table table tbody tr:hover {
+  background: #2a2185ba;
+  color: var(--white);
+}
+
+.search .search-table table tr td {
+  padding: 10px;
+  text-align: center;
+  word-break: break-all;
+}
 .search label {
   position: relative;
   width: 100%;
@@ -221,21 +276,17 @@ body {
 }
 
 .user {
-  position: relative;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  overflow: hidden;
+  display: flex;
+  place-items: center;
+  text-align: center;
+  width: 50px;
+  height: 50px;
   cursor: pointer;
 }
 
-.user img {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+.user ion-icon {
+  font-size: 35px;
+  color: var(--blue);
 }
 
 /* ======================= Cards ====================== */

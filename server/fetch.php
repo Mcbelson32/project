@@ -31,7 +31,7 @@ if($res) {
   $x=0;
   while($tables=mysqli_fetch_array($res)){
     $table=$tables[$x];
-    $data="SELECT * FROM $table";
+    $data="SELECT * FROM `$table`";
     $ans=mysqli_query($conn, $data);
     if($ans->num_rows == 0){
       $fam--;
@@ -81,13 +81,26 @@ if(isset($_GET['id']) && isset($_GET['type'])) {
     # code...
     $conn->select_db("warriorsdb");
     $id = $_GET['id'];
+    $name = $_GET['name'];
     $sql="SELECT * FROM warrior WHERE id='$id'";
     $result=mysqli_query($conn, $sql);
-    if(mysqli_num_rows($result) != 0){
-     echo "success";
-    }else {
-      echo "error";
-    }
+    
+    $row = mysqli_fetch_array($result);
+    $table = $row['u_name'].$row['f_name'];
+
+    $conn->select_db("family");
+    $sql = "SELECT * FROM `$table` WHERE uname='$name'";
+    $res=mysqli_query($conn, $sql);
+    
+    $row = mysqli_fetch_array($res);
+
+    $u_id = $row['id'];
+    $uname = $row['uname'];
+    $mem= $row['member'];
+    $lvl = $row['educ_lvl'];
+    $b_date = $row['b_date'];
+    $status = $row['status'];
+    $dur = $row['duration'];
   }
 }
 ?>

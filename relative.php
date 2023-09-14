@@ -1,6 +1,6 @@
 <?php
 include './server/fetch.php';
-
+include 'array.php';
 if(isset($_GET['id']) && isset($_GET['uname'])) {
     $conn->select_db("warriorsdb");
     $id = $_GET['id'];
@@ -136,11 +136,29 @@ if(isset($_GET['id']) && isset($_GET['uname'])) {
                         <input type="text" placeholder="Search here">
                         <ion-icon name="search-outline"></ion-icon>
                     </label>
+                    <div class="search-table">
+                        <div class="table-container">
+
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <td>ID</td>
+                                        <td>User Name</td>
+                                        <td>Father's name</td>
+                                        <td>Granfather's name</td>
+                                    </tr>
+                                </thead>
+
+                                <tbody id="tbody">
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
                 </div>
 
-                <!-- <div class="user"> -->
-                <!--     <img src="assets/imgs/customer01.jpg" alt=""> -->
-                <!-- </div> -->
+                <div class="user">
+                    <ion-icon name="person-circle-outline"></ion-icon>
+                </div>
             </div>
 
             <!-- ======================= Cards ================== -->
@@ -277,7 +295,7 @@ if(isset($_GET['id']) && isset($_GET['uname'])) {
         </div>
 
         <!-- =========== Scripts =========  -->
-        <script src="assets/js/main.js"></script>
+        <script type="module" src="assets/js/main.js"></script>
 
         <script>
         var lvl = document.getElementById('educ_lvl');
