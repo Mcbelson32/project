@@ -105,7 +105,7 @@ include 'array.php';
 
                 <div class="search">
                     <label>
-                        <input type="text" placeholder="Search here">
+                        <input type="text" name="search" id="search" placeholder="Search here">
                         <ion-icon name="search-outline"></ion-icon>
                     </label>
                     <div class="search-table">
