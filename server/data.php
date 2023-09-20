@@ -76,7 +76,7 @@ foreach($keys as $key){
 
   if($result){
     // echo "Data inserted successfully\n";
-    header('location: /index.php');
+    header('location: index.php');
   }else{
     die(mysqli_error($conn));
   }
