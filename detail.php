@@ -143,7 +143,7 @@ include 'array.php';
                     <div class="title">Details</div>
                     <div class="content">
                         <?php if ($_GET['type'] == 'war') { ?>
-                        <div class="print">
+                        <div class="print war">
                             <div class="user-details">
                                 <div class="input-box">
                                     <span class="details">Warrior's ID</span>
@@ -389,7 +389,9 @@ include 'array.php';
                             </a>
                             <?php endif ?>
                         </div>
-
+                        <script>
+                        document.body.classList.add('war');
+                        </script>
                         <?php }
                         elseif ($_GET['type'] == "rel") { ?>
                         <?php $table = $_GET['table']; ?>
@@ -430,6 +432,7 @@ include 'array.php';
                                     </p>
                                 </div>
                             </div>
+
                         </div>
 
                         <div class="button hide">
@@ -446,6 +449,9 @@ include 'array.php';
                             </a>
                             <?php endif ?>
                         </div>
+                        <script>
+                        document.body.classList.add('rel');
+                        </script>
                         <?php } ?>
 
 

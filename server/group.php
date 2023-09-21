@@ -1,5 +1,4 @@
 <?php
-include './session.php';
 include 'connect.php';
 if($_SERVER["REQUEST_METHOD"] == "POST"){
   $keys = array_keys($_POST); // Get the keys of the array

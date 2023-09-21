@@ -364,6 +364,41 @@ div.radio {
 }
 
 @media print {
+  @page {
+    margin: 0 10mm; /* Set the margin value according to your preference */
+  }
+
+  body {
+    margin: 0;
+    position: relative;
+    /* Reset the body margin to 0 */
+  }
+  body.war::before {
+    content: "Warrior's Form";
+    width: auto;
+    height: 20px;
+    font-size: 15px;
+    font-weight: 300;
+    position: absolute;
+    padding-bottom: 4px;
+    border-bottom: 2px solid var(--blue);
+    top: 20px;
+    left: 35%;
+    transform: translateX(50%);
+  }
+  body.rel::before {
+    content: "Relative's Form";
+    width: auto;
+    height: 20px;
+    font-size: 15px;
+    font-weight: 300;
+    position: absolute;
+    padding-bottom: 4px;
+    border-bottom: 2px solid var(--blue);
+    top: 20px;
+    left: 35%;
+    transform: translateX(50%);
+  }
   body * {
     visibility: hidden;
   }
@@ -373,14 +408,19 @@ div.radio {
   }
   .print {
     width: 100%;
-    height: auto;
-    float: top;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    position: relative;
   }
+
   .main {
     padding: 0%;
+    margin: 0;
   }
   .details {
     width: 100%;
+    height: auto;
     display: block;
     padding: 0;
   }
@@ -391,7 +431,7 @@ div.radio {
     padding: 0px;
     border-radius: 5px;
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
-    overflow-x: scroll;
+    overflow-x: hidden;
   }
   .details .container .title {
     display: none;
@@ -416,11 +456,11 @@ div.radio {
     /* justify-content: space-between; */
   }
   .print .user-details .input-box {
-    width: calc(100% / 5 - 40px);
+    width: calc(100% / 4 - 50px);
     margin-bottom: 10px;
   }
   .rel .user-details .input-box {
-    width: calc(100% / 3 - 20px);
+    width: calc(100% / 2 - 20px);
     margin-bottom: 10px;
   }
 
@@ -444,7 +484,7 @@ div.radio {
     font-size: 10px;
     border-radius: 5px;
     border: 0px solid #ccc;
-    border-bottom-width: 2px;
+    border-bottom-width: 3px;
     text-align: center;
   }
 

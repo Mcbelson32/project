@@ -20,7 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $row = mysqli_fetch_assoc($res);
         $_SESSION['username'] = $row['username'];
         $_SESSION['password'] = $row['password'];
-        $_SESSION['type'] = $row['access'];
+        $_SESSION['access'] = $row['access'];
         $_SESSION['last_activity'] = time();
         header("refresh:3;url=index.php");
       } else {

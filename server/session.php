@@ -14,6 +14,11 @@ if (session_status() === PHP_SESSION_NONE) {
 if (isset($_SESSION['last_activity']) && (time() - $_SESSION['last_activity'] > $sessionLifetime)) {
     session_unset();    // Unset all session variables
     session_destroy();  // Destroy the session data
+    $msg="Please login first!";
+    $msgEncoded = urlencode($msg);
+    header("location: login.php?msg=$msgEncoded");
+    exit(); 
+
 }
 
 // Continue with your website logic

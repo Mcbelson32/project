@@ -1,5 +1,4 @@
 <?php
-include './session.php';
 include 'connect.php';
 
 $sql="SELECT * FROM warrior";
