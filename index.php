@@ -1,4 +1,5 @@
 <?php
+include './server/session.php';
 include './server/fetch.php';
 include 'array.php';
 $conn->select_db("family");
@@ -89,7 +90,7 @@ $res=mysqli_query($conn, $sql);
                 </li>
 
                 <li>
-                    <a href="#">
+                    <a href="logout.php">
                         <span class="icon">
                             <ion-icon name="log-out-outline"></ion-icon>
                         </span>

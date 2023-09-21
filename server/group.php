@@ -1,5 +1,5 @@
 <?php
-
+include './session.php';
 include 'connect.php';
 if($_SERVER["REQUEST_METHOD"] == "POST"){
   $keys = array_keys($_POST); // Get the keys of the array
@@ -85,7 +85,7 @@ function updateTable($conn, $name, $id, $u_id, $uname, $type, $lvl, $b_date, $st
     return die(mysqli_error($conn));
   }
   // echo "family created";
-  return header('location: family.php');
+  return header('location: /family.php');
 }
 
 ?>

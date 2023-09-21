@@ -1,4 +1,5 @@
 <?php
+include './server/session.php';
 include './server/fetch.php';
 include 'array.php';
 if(isset($_GET['id']) && isset($_GET['uname'])) {
@@ -114,7 +115,7 @@ if(isset($_GET['id']) && isset($_GET['uname'])) {
                 </li>
 
                 <li>
-                    <a href="#">
+                    <a href="logout.php">
                         <span class="icon">
                             <ion-icon name="log-out-outline"></ion-icon>
                         </span>

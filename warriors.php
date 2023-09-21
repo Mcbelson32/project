@@ -1,5 +1,5 @@
 <?php
-
+include './server/session.php';
 include './server/fetch.php';
 include './server/connect.php';
 include 'array.php';
@@ -92,7 +92,7 @@ $result=mysqli_query($conn, $sql);
                 </li>
 
                 <li>
-                    <a href="#">
+                    <a href="logout.php">
                         <span class="icon">
                             <ion-icon name="log-out-outline"></ion-icon>
                         </span>
@@ -225,24 +225,31 @@ if($result){
     $status = $row['warrior_s'];
     $lang = $row['lang'];
     
-    echo '
-    <tr onclick="window.location.href = \'detail.php?id='.$id.'&type=war\'">
-        <td>'.$id.'</td>
-        <td>'.$u_name.' '.$f_name.' '.$g_name.'</td>
-        <td>'.$nationality.'</td>
-        <td>'.$nation.'</td>
-        <td>'.$phone.'</td>
-        <td>'.$lvl.'</td>
-        <td>'.$lang.'</td>
-        <td>'.$status.'</td>
-        <td><span class="status inProgress">'.$appellation.'</span></td>
-        <td>
-            <a href="form.php?id='.$id.'" class="btn"><ion-icon name="create" ></ion-icon></a>
-        </td>
-        <td>
-            <a href="delete.php?id='.$id.'&type=war" class="btn del"><ion-icon name="trash"></ion-icon></a>
-        </td>
-    </tr>';
+    ?>
+                                <tr onclick="window.location.href ='detail.php?id=<?php echo $id; ?>&type=war'">
+                                    <td><?php echo $id ?></td>
+                                    <td><?php echo $u_name.' '.$f_name.' '.$g_name ?></td>
+                                    <td><?php echo $nationality ?></td>
+                                    <td><?php echo $nation ?></td>
+                                    <td><?php echo $phone ?></td>
+                                    <td><?php echo $lvl ?></td>
+                                    <td><?php echo $lang ?></td>
+                                    <td><?php echo $status ?></td>
+                                    <td><span class="status inProgress"><?php echo $appellation ?></span></td>
+                                    <td>
+                                        <a href="form.php?id=<?php echo $id; ?>" class="btn">
+                                            <ion-icon name="create"></ion-icon>
+                                        </a>
+                                    </td>
+                                    <?php if(isset($_SESSION['access']) && ($_SESSION['access'] === "full")) : ?>
+                                    <td>
+                                        <a href="delete.php?id=<?php echo $id; ?>&type=war" class="btn del">
+                                            <ion-icon name="trash"></ion-icon>
+                                        </a>
+                                    </td>
+                                    <?php endif ?>
+                                </tr>
+                                <?php
 
     $i++;
   }

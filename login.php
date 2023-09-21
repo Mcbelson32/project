@@ -8,7 +8,7 @@ $conn->select_db("admindb");
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   // Get the user input (you may need to sanitize and validate it)
   $username = $_POST['username'];
-  $password = $_POST['password'];
+  $password = md5($_POST['password']);
 
   $sql = "SELECT * FROM admins WHERE username='$username' AND password='$password'";
   $res=mysqli_query($conn, $sql);
@@ -20,7 +20,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $row = mysqli_fetch_assoc($res);
         $_SESSION['username'] = $row['username'];
         $_SESSION['password'] = $row['password'];
-        $_SESSION['type'] = $row['type'];
+        $_SESSION['type'] = $row['access'];
+        $_SESSION['last_activity'] = time();
         header("refresh:3;url=index.php");
       } else {
         // Set an error message in the session

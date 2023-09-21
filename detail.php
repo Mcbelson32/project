@@ -1,4 +1,5 @@
 <?php
+include './server/session.php';
 include './server/fetch.php';
 include 'array.php';
 ?>
@@ -86,7 +87,7 @@ include 'array.php';
                 </li>
 
                 <li>
-                    <a href="#">
+                    <a href="logout.php">
                         <span class="icon">
                             <ion-icon name="log-out-outline"></ion-icon>
                         </span>
@@ -381,17 +382,18 @@ include 'array.php';
                             <a href='<?php echo "form.php?id=$id";?>' class="btn">
                                 <ion-icon name="create"></ion-icon> edit
                             </a>
+                            <?php if(isset($_SESSION['access']) && ($_SESSION['access'] === "full")) : ?>
                             <a href='<?php echo "delete.php?id=$id&type=war";?>' class=" btn">
                                 <ion-icon name="trash"></ion-icon>
                                 delete
                             </a>
-
+                            <?php endif ?>
                         </div>
 
                         <?php }
                         elseif ($_GET['type'] == "rel") { ?>
                         <?php $table = $_GET['table']; ?>
-                        <div class="print">
+                        <div class="print rel">
                             <div class="user-details">
                                 <div class="input-box">
                                     <span class="details">Family ID</span>
@@ -437,11 +439,12 @@ include 'array.php';
                             <a href='<?php echo"relative.php?id=$id&uname=$uname";?>' class=" btn">
                                 <ion-icon name="create"></ion-icon> edit
                             </a>
+                            <?php if(isset($_SESSION['access']) && ($_SESSION['access'] === "full")) : ?>
                             <a href='<?php echo "delete.php?uname=$uname&type=rel&table=$table";?>' class="btn">
                                 <ion-icon name="trash"></ion-icon>
                                 delete
                             </a>
-
+                            <?php endif ?>
                         </div>
                         <?php } ?>
 

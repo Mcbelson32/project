@@ -1,7 +1,8 @@
 <?php
+include './server/session.php';
 include './server/connect.php';
 
-if(isset($_GET['id']) && isset($_GET['type'])){
+if(isset($_GET['id']) && isset($_GET['type']) && ($_SESSION['access'] === "full")){
   if($_GET['type'] == 'war') {
    
     $conn->select_db('warriorsdb');

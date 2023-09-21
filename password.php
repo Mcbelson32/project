@@ -1,5 +1,5 @@
 <?php
-
+include './server/session.php';
 include './server/connect.php';
 include 'array.php';
 $sql="SELECT * FROM warrior";
@@ -91,7 +91,7 @@ header('location: /');
                 </li>
 
                 <li>
-                    <a href="#">
+                    <a href="logout.php">
                         <span class="icon">
                             <ion-icon name="log-out-outline"></ion-icon>
                         </span>

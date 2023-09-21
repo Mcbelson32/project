@@ -1,4 +1,5 @@
 <?php
+include './server/session.php';
 include './server/connect.php';
 
 if(isset($_POST)) {
