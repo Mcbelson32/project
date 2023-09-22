@@ -95,3 +95,5 @@ function buildTable(data) {
     tbody.innerHTML += row;
   }
 }
+
+

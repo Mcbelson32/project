@@ -130,7 +130,7 @@ include 'array.php';
                 </div>
 
                 <div class="user">
-                    <ion-icon name="person-circle-outline"></ion-icon>
+                    <ion-icon name="person-circle-outline" onclick="activator()"></ion-icon>
                     <div class="profile" id="profile">
                         <ion-icon name="person-circle-outline"></ion-icon>
                         <hr>
@@ -517,6 +517,12 @@ include 'array.php';
             r5.checked = true;
         }
         <?php } ?>
+        </script>
+        <script>
+        function activator() {
+            var profile = document.querySelector(".profile");
+            profile.classList.toggle("active");
+        }
         </script>
         <!-- ====== ionicons ======= -->
         <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>

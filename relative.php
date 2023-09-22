@@ -158,7 +158,7 @@ if(isset($_GET['id']) && isset($_GET['uname'])) {
                 </div>
 
                 <div class="user">
-                    <ion-icon name="person-circle-outline"></ion-icon>
+                    <ion-icon name="person-circle-outline" onclick="activator()"></ion-icon>
                     <div class="profile" id="profile">
                         <ion-icon name="person-circle-outline"></ion-icon>
                         <hr>
@@ -387,6 +387,11 @@ if(isset($_GET['id']) && isset($_GET['uname'])) {
             setTimeout(() => {
                 pop.classList.remove("active");
             }, 8000);
+        }
+
+        function activator() {
+            var profile = document.querySelector(".profile");
+            profile.classList.toggle("active");
         }
         </script>
         <!-- <script> -->

@@ -135,7 +135,7 @@ $result=mysqli_query($conn, $sql);
                 </div>
 
                 <div class="user">
-                    <ion-icon name="person-circle-outline"></ion-icon>
+                    <ion-icon name="person-circle-outline" onclick="activator()"></ion-icon>
                     <div class="profile" id="profile">
                         <ion-icon name="person-circle-outline"></ion-icon>
                         <hr>
@@ -294,7 +294,12 @@ if($result){
                 </div>
             </div>
         </div>
-
+        <script>
+        function activator() {
+            var profile = document.querySelector(".profile");
+            profile.classList.toggle("active");
+        }
+        </script>
         <!-- =========== Scripts =========  -->
         <script type="module" src="assets/js/main.js"></script>
 
