@@ -276,6 +276,7 @@ body {
 }
 
 .user {
+  position: relative;
   display: flex;
   place-items: center;
   text-align: center;
@@ -287,6 +288,51 @@ body {
 .user ion-icon {
   font-size: 35px;
   color: var(--blue);
+}
+
+.user .profile {
+  width: 300px;
+  position: absolute;
+  top: 80%;
+  right: 70%;
+  background-color: #f8f9fa;
+  padding: 20px;
+  box-shadow: 0 7px 25px rgba(0, 0, 0, 0.5);
+  border-radius: 20px;
+  font-family: Arial, sans-serif;
+  opacity: 0;
+  display: none;
+  transition: opacity 1s ease-in-out;
+}
+.user .profile.active {
+  display: block;
+  opacity: 1;
+}
+.user .profile ion-icon {
+  font-size: 70px;
+  color: #6c757d;
+  margin-bottom: 20px;
+}
+
+.profile hr {
+  border: 0;
+  border-top: 1px solid #dee2e6;
+  margin-bottom: 20px;
+}
+
+.profile-info {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.profile-label {
+  font-weight: bold;
+  color: #6c757d;
+}
+
+.profile-value {
+  color: #343a40;
 }
 
 /* ======================= Cards ====================== */

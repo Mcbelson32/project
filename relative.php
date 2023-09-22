@@ -59,7 +59,7 @@ if(isset($_GET['id']) && isset($_GET['uname'])) {
                 </li>
 
                 <li>
-                    <a href="/">
+                    <a href="index.php">
                         <span class="icon">
                             <ion-icon name="home-outline"></ion-icon>
                         </span>
@@ -159,6 +159,23 @@ if(isset($_GET['id']) && isset($_GET['uname'])) {
 
                 <div class="user">
                     <ion-icon name="person-circle-outline"></ion-icon>
+                    <div class="profile" id="profile">
+                        <ion-icon name="person-circle-outline"></ion-icon>
+                        <hr>
+                        <div class="profile-info">
+                            <span class="profile-label">Username:</span>
+                            <span class="profile-value"><?php echo $_SESSION['username']?></span>
+                        </div>
+                        <div class="profile-info">
+                            <span class="profile-label">Access:</span>
+                            <span class="profile-value"><?php echo $_SESSION['access']?></span>
+                        </div>
+                        <div class="profile-info">
+                            <span class="profile-label">Last login:</span>
+                            <span
+                                class="profile-value"><?php echo date('Y-m-d_H:i:s', $_SESSION['last_activity']);?></span>
+                        </div>
+                    </div>
                 </div>
             </div>
 

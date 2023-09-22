@@ -196,6 +196,9 @@ form select {
 form .button {
   height: 45px;
   margin: 35px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 form .button input {

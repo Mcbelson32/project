@@ -31,7 +31,7 @@ include 'array.php';
                 </li>
 
                 <li>
-                    <a href="/">
+                    <a href="index.php">
                         <span class="icon">
                             <ion-icon name="home-outline"></ion-icon>
                         </span>
@@ -131,6 +131,23 @@ include 'array.php';
 
                 <div class="user">
                     <ion-icon name="person-circle-outline"></ion-icon>
+                    <div class="profile" id="profile">
+                        <ion-icon name="person-circle-outline"></ion-icon>
+                        <hr>
+                        <div class="profile-info">
+                            <span class="profile-label">Username:</span>
+                            <span class="profile-value"><?php echo $_SESSION['username']?></span>
+                        </div>
+                        <div class="profile-info">
+                            <span class="profile-label">Access:</span>
+                            <span class="profile-value"><?php echo $_SESSION['access']?></span>
+                        </div>
+                        <div class="profile-info">
+                            <span class="profile-label">Last login:</span>
+                            <span
+                                class="profile-value"><?php echo date('Y-m-d_H:i:s', $_SESSION['last_activity']);?></span>
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -465,36 +482,38 @@ include 'array.php';
         <script type="module" src="assets/js/main.js"></script>
 
         <script>
-        var r1 = document.getElementById(' r-1');
+        var r1 = document.getElementById('r-1');
         var r2 = document.getElementById('r-2');
-        var
-            r3 = document.getElementById('r-3');
+        var r3 = document.getElementById('r-3');
         var r4 = document.getElementById('r-4');
-        var
-            r5 = document.getElementById('r-5');
+        var r5 = document.getElementById('r-5');
         var wound = document.getElementById('wound');
-        var
-            nwound = document.getElementById('nwound');
+        var nwound = document.getElementById('nwound');
         var alive = document.getElementById('alive');
         var dead = document.getElementById('dead');
+
         <?php if($iswounded == 'wounded') { ?>
         wound.checked = true;
         <?php } elseif ($iswounded == 'not wounded') { ?>
         nwound.checked = true;
-        <?php } ?> <?php if($warrior_s == 'Alive') { ?> alive.checked = true;
-        <?php } elseif ($warrior_s == 'Dead') { ?> dead.checked = true;
         <?php } ?>
-        let data = '';
-        <?php foreach($round as $key) { ?> data = '<?php echo $key ?>';
-        if (data == '1st round') {
+        <?php if($warrior_s == 'Alive') { ?>
+        alive.checked = true;
+        <?php } elseif ($warrior_s == 'Dead') { ?>
+        dead.checked = true;
+        <?php } ?>
+
+        <?php foreach ($round as $key => $data) { ?>
+        console.log('<?php echo $data; ?>');
+        if ('<?php echo $data; ?>' == '1st round') {
             r1.checked = true;
-        } else if (data == '2nd round') {
+        } else if ('<?php echo $data; ?>' == '2nd round') {
             r2.checked = true;
-        } else if (data == '3rd round') {
+        } else if ('<?php echo $data; ?>' == '3rd round') {
             r3.checked = true;
-        } else if (data == '4th round') {
+        } else if ('<?php echo $data; ?>' == '4th round') {
             r4.checked = true;
-        } else if (data == '5th round') {
+        } else if ('<?php echo $data; ?>' == '5th round') {
             r5.checked = true;
         }
         <?php } ?>

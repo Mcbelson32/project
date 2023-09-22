@@ -26,7 +26,7 @@ if(isset($_GET['id'])) {
     $h_number = $row['h_number'] ?? "N/A";
     $phone = $row['phone'] ?? "N/A";
     $po_box = $row['po_box']?? "N/A";
-    $language = $row['language'] ?? "N/A";
+    $language = $row['lang'] ?? "N/A";
     $educ_lvl = $row['educ_lvl'] ?? "N/A";
     $educ_type = $row['educ_type'] ?? "N/A";
     $class = $row['class'] ?? "N/A";
@@ -72,7 +72,7 @@ if(isset($_GET['id'])) {
                 </li>
 
                 <li>
-                    <a href="/">
+                    <a href="index.php">
                         <span class="icon">
                             <ion-icon name="home-outline"></ion-icon>
                         </span>
@@ -172,6 +172,23 @@ if(isset($_GET['id'])) {
 
                 <div class="user">
                     <ion-icon name="person-circle-outline"></ion-icon>
+                    <div class="profile" id="profile">
+                        <ion-icon name="person-circle-outline"></ion-icon>
+                        <hr>
+                        <div class="profile-info">
+                            <span class="profile-label">Username:</span>
+                            <span class="profile-value"><?php echo $_SESSION['username']?></span>
+                        </div>
+                        <div class="profile-info">
+                            <span class="profile-label">Access:</span>
+                            <span class="profile-value"><?php echo $_SESSION['access']?></span>
+                        </div>
+                        <div class="profile-info">
+                            <span class="profile-label">Last login:</span>
+                            <span
+                                class="profile-value"><?php echo date('Y-m-d_H:i:s', $_SESSION['last_activity']);?></span>
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -345,13 +362,14 @@ if(isset($_GET['id'])) {
                                         <option value="primary">Primary School</option>
                                         <option value="secondary">Secondary School</option>
                                         <option value="preparatory">Preparatory School</option>
-                                        <option value="vocational">Vocational School</option>
+                                        <option value="Diploma">Diploma</option>
                                         <option value="college">College</option>
                                         <option value="bachelor">Bachelor's Degree</option>
                                         <option value="master">Master's Degree</option>
                                         <option value="phd">PhD</option>
                                         <option value="doctorate">Doctorate Degree</option>
                                         <option value="professor">Professor</option>
+                                        <option value="Uneducated">Uneducated</option>
                                     </select>
                                 </div>
 
@@ -465,90 +483,90 @@ if(isset($_GET['id'])) {
                 </div>
             </div>
         </div>
+    </div>
+    <!-- =========== Scripts =========  -->
+    <script type="module" src="assets/js/main.js"></script>
 
-        <!-- =========== Scripts =========  -->
-        <script type="module" src="assets/js/main.js"></script>
+    <script>
+    const yearInput = document.getElementById('c_year');
+    const currentYear = new Date().getFullYear();
+    yearInput.max = currentYear;
 
-        <script>
-        const yearInput = document.getElementById('c_year');
-        const currentYear = new Date().getFullYear();
-        yearInput.max = currentYear;
+    function checkID() {
+        var form = document.getElementById('form');
 
-        function checkID() {
-            var form = document.getElementById('form');
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+        });
 
-            form.addEventListener('submit', (e) => {
-                e.preventDefault();
-            });
+        var id = document.getElementById('u_id').value;
+        // Create a new XMLHttpRequest object
+        var xhr = new XMLHttpRequest();
 
-            var id = document.getElementById('u_id').value;
-            // Create a new XMLHttpRequest object
-            var xhr = new XMLHttpRequest();
+        // Prepare the request
+        xhr.open('POST', 'check.php?type=war', true); // Replace with the actual PHP file name
+        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 
-            // Prepare the request
-            xhr.open('POST', 'check.php?type=war', true); // Replace with the actual PHP file name
-            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-
-            // Set up the callback function
-            xhr.onreadystatechange = function() {
-                if (xhr.readyState === XMLHttpRequest.DONE) {
-                    if (xhr.status === 200) {
-                        var response = xhr.responseText.trim();
-                        if (response === "success") {
-                            form.submit();
-                        } else if (response === "error") {
-                            popToggler();
-                        }
+        // Set up the callback function
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState === XMLHttpRequest.DONE) {
+                if (xhr.status === 200) {
+                    var response = xhr.responseText.trim();
+                    if (response === "success") {
+                        form.submit();
+                    } else if (response === "error") {
+                        popToggler();
                     }
                 }
-            };
+            }
+        };
 
-            // Send the request
-            xhr.send('id=' + encodeURIComponent(id));
-        }
+        // Send the request
+        xhr.send('id=' + encodeURIComponent(id));
+    }
 
-        function popToggler() {
-            var pop = document.getElementById('pop');
-            pop.classList.add("active");
-            setTimeout(() => {
-                pop.classList.remove("active");
-            }, 8000);
-        }
-        </script>
-        <!-- ====== ionicons ======= -->
-        <script>
-        var tag = document.getElementById('bloodtype');
-        var lvl = document.getElementById('educ_lvl');
-        var lang = document.getElementById('language');
-        var r1 = document.getElementById('r-1');
-        var r2 = document.getElementById('r-2');
-        var r3 = document.getElementById('r-3');
-        var r4 = document.getElementById('r-4');
-        var r5 = document.getElementById('r-5');
+    function popToggler() {
+        var pop = document.getElementById('pop');
+        pop.classList.add("active");
+        setTimeout(() => {
+            pop.classList.remove("active");
+        }, 8000);
+    }
+    </script>
+    <!-- ====== ionicons ======= -->
+    <script>
+    var tag = document.getElementById('bloodtype');
+    var lvl = document.getElementById('educ_lvl');
+    var lang = document.getElementById('language');
+    var r1 = document.getElementById('r-1');
+    var r2 = document.getElementById('r-2');
+    var r3 = document.getElementById('r-3');
+    var r4 = document.getElementById('r-4');
+    var r5 = document.getElementById('r-5');
 
-        tag.value = '<?php if(isset($_GET['id'])){echo $bloodtype;}else{echo "";}?>';
-        lvl.value = '<?php if(isset($_GET['id'])){echo $educ_lvl;}else{echo "";}?>';
-        lang.value = '<?php if(isset($_GET['id'])){echo $language;}else{echo "";}?>';
+    tag.value = '<?php if(isset($_GET['id'])){echo $bloodtype;}else{echo "";}?>';
+    lvl.value = '<?php if(isset($_GET['id'])){echo $educ_lvl;}else{echo "";}?>';
+    lang.value = '<?php if(isset($_GET['id'])){echo $language;}else{echo "";}?>';
 
-        let data = '';
-        <?php foreach($round as $key) { ?>
-        data = '<?php echo $key ?>';
-
-        if (data == '1st round') {
-            r1.checked = true;
-        } else if (data == '2nd round') {
-            r2.checked = true;
-        } else if (data == '3rd round') {
-            r3.checked = true;
-        } else if (data == '4th round') {
-            r4.checked = true;
-        } else if (data == '5th round') {
-            r5.checked = true;
-        }
-        <?php } ?>
-        </script>
-        <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-        <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    let data = '';
+    <?php foreach($round as $key) { ?>
+    data = '<?php echo $key ?>';
+    console.log(data);
+    if (data == '1st round') {
+        r1.checked = true;
+    } else if (data == '2nd round') {
+        r2.checked = true;
+    } else if (data == '3rd round') {
+        r3.checked = true;
+    } else if (data == '4th round') {
+        r4.checked = true;
+    } else if (data == '5th round') {
+        r5.checked = true;
+    }
+    <?php } ?>
+    </script>
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 </body>
 
 </html>

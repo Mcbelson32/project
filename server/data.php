@@ -45,7 +45,7 @@ foreach($keys as $key){
   $class = $_POST['class'];
   $c_year = $_POST['c_year'];
   $work = $_POST['work'];
-  (isset($_POST['round']) ? $round = implode(',', $_POST['round']) : $round = "N/A");
+  (isset($_POST['round']) ? ($round = implode(',', $_POST['round'])) : ($round = "N/A"));
   $iswounded = $_POST['iswounded'] ?? "N/A";
   $warrior_s = $_POST['warrior_s'] ?? "N/A";
   $exp = trim($_POST['experience']) ;

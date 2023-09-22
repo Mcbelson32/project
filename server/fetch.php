@@ -65,7 +65,7 @@ if(isset($_GET['id']) && isset($_GET['type'])) {
     $h_number = $row['h_number'] ?? "N/A";
     $phone = $row['phone'] ?? "N/A";
     $po_box = $row['po_box']?? "N/A";
-    $language = $row['language'] ?? "N/A";
+    $language = $row['lang'] ?? "N/A";
     $educ_lvl = $row['educ_lvl'] ?? "N/A";
     $educ_type = $row['educ_type'] ?? "N/A";
     $class = $row['class'] ?? "N/A";
