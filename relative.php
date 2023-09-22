@@ -281,7 +281,7 @@ if(isset($_GET['id']) && isset($_GET['uname'])) {
                                         <option value="primary">Primary School</option>
                                         <option value="secondary">Secondary School</option>
                                         <option value="preparatory">Preparatory School</option>
-                                        <option value="vocational">Vocational School</option>
+                                        <option value="Diploma">Diploma</option>
                                         <option value="college">College</option>
                                         <option value="bachelor">Bachelor's Degree</option>
                                         <option value="master">Master's Degree</option>
