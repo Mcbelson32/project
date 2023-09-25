@@ -1,4 +1,7 @@
+<ifModule mod_rewrite.c>
 RewriteEngine On
+# Rewrite "/directory/filename" to "/directory/filename.php" internally
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME}.php -f
-RewriteRule ^([^\.]+)/?$ $1.php [L]
+RewriteRule ^([^\.]+)$ $1.php [NC,L]
+</ifModule>
