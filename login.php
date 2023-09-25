@@ -1,9 +1,24 @@
 <?php
 include './server/connect.php';
+function createRow($conn) {
+  $checkRowsQuery = "SELECT COUNT(*) FROM admins";
+  $result = $conn->query($checkRowsQuery);
+  $rowCount = $result->fetch_row()[0];
+
+  if ($rowCount == 0) {
+      // Insert the rows
+      $insertQuery = "INSERT INTO admins (username, password, access)
+      VALUES
+      ('admin', 'admin123', 'full'),
+      ('user', 'user123', 'partial')";
+      $conn->query($insertQuery);
+  }
+}
 session_start();
 unset($_SESSION['message']);
 
 $conn->select_db("admindb");
+createRow($conn);
 // Check if the form is submitted
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   // Get the user input (you may need to sanitize and validate it)
@@ -43,7 +58,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </head>
 
 <body>
-    <form id="form" class="form" method="POST" action="">
+    <div class="pop" id="pop">
+        <p><?php echo $_GET['msg'] ?> </p>
+    </div>
+    <form id="form" class="form" method="POST" action="login.php">
         <p id="heading">Login</p>
         <div class="field">
             <ion-icon class="input-icon" name="person"></ion-icon>
@@ -62,6 +80,25 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <?php endif ?>
         <?php } ?>
     </form>
+    <script>
+    <?php if (isset($_GET['msg']) && !empty($_GET['msg'])) { ?>
+    var pop = document.getElementById('pop');
+    pop.classList.add("active");
+    setTimeout(() => {
+        <?php
+       unset($_GET['msg']);
+       ?>
+    }, 10000);
+    <?php } ?>
+    <?php if (isset($_GET['status']) && !empty($_GET['status'])) { ?>
+    pop.classList.add("success");
+    setTimeout(() => {
+        <?php
+       unset($_GET['status'])
+       ?>
+    }, 10000);
+    <?php } ?>
+    </script>
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 </body>

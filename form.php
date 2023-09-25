@@ -58,7 +58,7 @@ if(isset($_GET['id'])) {
     <!-- =============== Navigation ================ -->
     <div class="container">
         <div class="pop" id="pop">
-            <p><?php echo $err; ?></p>
+            <p><?php echo $err ?> </p>
         </div>
         <div class="navigation">
             <ul>

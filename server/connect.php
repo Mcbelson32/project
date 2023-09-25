@@ -24,6 +24,61 @@ if ($conn->query($sql) === TRUE) {
 }
 
 
+
+$createDbQuery = "CREATE DATABASE IF NOT EXISTS `admindb`";
+
+if ($conn->query($createDbQuery) === FALSE) {
+    echo "Error creating database: " . $conn->error;
+}
+
+
+
+// Select the database
+$conn->select_db('admindb');
+
+// Create the table if it doesn't exist
+$createTableQuery = "CREATE TABLE IF NOT EXISTS `admins` (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  username VARCHAR(255) NOT NULL,
+  password VARCHAR(255) NOT NULL,
+  access VARCHAR(255) NOT NULL
+)";
+
+if ($conn->query($createTableQuery) === FALSE) {
+    echo "Error creating database: " . $conn->error;
+}
+
+
+// Create the trigger after the table creation
+$query_insert = "CREATE TRIGGER IF NOT EXISTS hash_password_trigger_insert
+                BEFORE INSERT ON admins
+                FOR EACH ROW
+                BEGIN
+                    IF CHAR_LENGTH(NEW.password) != 32 THEN
+                        SET NEW.password = MD5(NEW.password);
+                    END IF;
+                END;";
+
+// Execute the INSERT trigger query
+if (!mysqli_real_query($conn, $query_insert)) {
+    echo "Error creating INSERT trigger: " . mysqli_error($conn);
+}
+
+// Create the trigger for UPDATE
+$query_update = "CREATE TRIGGER IF NOT EXISTS hash_password_trigger_update
+                BEFORE UPDATE ON admins
+                FOR EACH ROW
+                BEGIN
+                    IF CHAR_LENGTH(NEW.password) != 32 THEN
+                        SET NEW.password = MD5(NEW.password);
+                    END IF;
+                END;";
+
+// Execute the UPDATE trigger query
+if (!mysqli_real_query($conn, $query_update)) {
+    echo "Error creating UPDATE trigger: " . mysqli_error($conn);
+}
+
 $conn->select_db("warriorsdb");
 
 $table = "CREATE TABLE IF NOT EXISTS warrior (

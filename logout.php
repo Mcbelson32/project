@@ -11,6 +11,6 @@ session_destroy();
 // Redirect to the login page or any other desired page
 $msg = "You have been successfully logged out.";
 $msgEncoded = urlencode($msg);
-header("Location: login.php?msg=$msgEncoded");
+header("Location: login.php?msg=$msgEncoded&status=success");
 exit();
 ?>

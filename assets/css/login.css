@@ -15,6 +15,7 @@
   box-sizing: border-box;
 }
 body {
+  position: relative;
   width: 100vw;
   height: 100vh;
   display: flex;
@@ -22,6 +23,44 @@ body {
   align-items: center;
   place-items: center;
   background: linear-gradient(to bottom, #341077, #413188, #624f8f, #8f69aa);
+}
+.pop {
+  width: 36%;
+  height: 30px;
+  position: absolute;
+  top: 10px;
+  left: calc(50% - 18%);
+  background-color: rgba(255, 0, 55, 0.795);
+  z-index: 200001;
+  display: flex;
+  place-items: center;
+  border-radius: 10px;
+  transition: all 0.5s ease-in-out;
+  opacity: 0;
+}
+
+.pop p {
+  width: 100%;
+  padding-inline: 3px;
+  text-align: center;
+  color: #fff;
+  word-break: break-all;
+}
+
+.pop.active {
+  animation: pop 9s forwards;
+}
+.pop.success {
+  background-color: #29bf12;
+}
+@keyframes pop {
+  30%,
+  80% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
 }
 .form {
   max-height: 500px;
