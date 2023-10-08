@@ -48,7 +48,7 @@ if(isset($_GET['id'])) {
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Warrior's Form</title>
+    <title>Veteran's Form</title>
     <!-- ======= Styles ====== -->
     <link rel="stylesheet" type="text/css" href="./assets/css/style.css?v=1.0">
     <link rel="stylesheet" type="text/css" href="./assets/css/form.css?v=1.0">
@@ -63,11 +63,11 @@ if(isset($_GET['id'])) {
         <div class="navigation">
             <ul>
                 <li>
-                    <a href="#">
-                        <span class="icon">
-                            <ion-icon name="logo-buffer"></ion-icon>
-                        </span>
-                        <span class="title big">Name</span>
+                    <a href="index.php">
+
+                        <img id="logo" src="assets/img/logo.png" alt="The Ethiopian Korea war Veterans Association">
+
+                        <span class="big">The Ethiopian Korea war <br> Veterans Association</span>
                     </a>
                 </li>
 
@@ -94,7 +94,7 @@ if(isset($_GET['id'])) {
                         <span class="icon">
                             <ion-icon name="person-outline"></ion-icon>
                         </span>
-                        <span class="title">warriors</span>
+                        <span class="title">Veterans</span>
                     </a>
                 </li>
 
@@ -103,7 +103,7 @@ if(isset($_GET['id'])) {
                         <span class="icon">
                             <ion-icon name="person-add-outline"></ion-icon>
                         </span>
-                        <span class="title">Add Warrior</span>
+                        <span class="title">Add Veteran</span>
                     </a>
                 </li>
 
@@ -198,7 +198,7 @@ if(isset($_GET['id'])) {
                     <div>
                         <div class="numbers"><?php echo $total ?>
                         </div>
-                        <div class="cardName">warriors</div>
+                        <div class="cardName">Veterans</div>
                     </div>
 
                     <div class="iconBx">
@@ -245,16 +245,30 @@ if(isset($_GET['id'])) {
                 <div class="container">
                     <div class="title">Registration</div>
                     <div class="content">
-                        <form action="./server/data.php" id="form" method="POST">
+                        <form action="./server/data.php" id="form" method="POST" enctype="multipart/form-data">
                             <?php if (isset($_GET['id'])) { ?>
 
                             <input type="hidden" name="id" id="id" value="<?php echo $_GET['id']?>">
                             <?php } ?>
-                            <div class="user-details">
+                            <div class="user-details ">
                                 <div class="input-box">
-                                    <span class="details">warrior's ID</span>
+                                    <span class="details">Veteran's ID</span>
                                     <input type="tel" name="u_id" id="u_id" placeholder="Enter your ID" required
                                         value="<?php if(isset($_GET['id'])){echo $u_id;}?>">
+                                </div>
+                                <div class="input-box">
+                                    <span class="details">Veteran's picture</span>
+                                    <label for="file-upload" class="file-upload">
+                                        <span class="file-upload-label">Choose the image</span>
+                                        <input id="file-upload" type="file" name="file" accept=".png, .jpg, .jpeg"
+                                            value="<?php if(isset($_GET['id'])){echo $u_id;}?>"
+                                            onchange="handleFileInputChange(event)">
+                                    </label>
+                                    <div class="selected-file-container">
+                                        <span class="selected-file" style="display: none;"></span>
+                                        <span class="remove-file" onclick="removeFile()">Remove</span>
+                                    </div>
+
                                 </div>
 
                                 <div class="input-box">
@@ -379,7 +393,7 @@ if(isset($_GET['id'])) {
                                         value="<?php if(isset($_GET['id'])){echo $educ_type;}?>">
                                 </div>
                                 <div class="input-box">
-                                    <span class="details">Warrior's class</span>
+                                    <span class="details">Veteran's class</span>
                                     <input type="text" name="class" id="class" placeholder="class"
                                         value="<?php if(isset($_GET['id'])){echo $class;}?>">
                                 </div>
@@ -450,7 +464,7 @@ if(isset($_GET['id'])) {
                             </div>
 
 
-                            <span class="gender-title">warrior's status</span> <br>
+                            <span class="gender-title">Veteran's status</span> <br>
                             <div class="category">
                                 <label for="war-1">
                                     <input type="radio" name="warrior_s" id="war-1" value="Alive"
@@ -484,6 +498,78 @@ if(isset($_GET['id'])) {
             </div>
         </div>
     </div>
+
+    <style>
+    .file-upload {
+        width: 100%;
+        display: inline-block;
+        padding: 10px 35px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        background-color: #fff;
+        color: #555;
+        cursor: pointer;
+        text-align: center;
+    }
+
+    .file-upload input[type="file"] {
+        display: none;
+    }
+
+    .file-upload-label {
+        text-align: center;
+        font-size: 16px;
+    }
+
+    .selected-file-container {
+        display: flex;
+        align-items: center;
+        margin-top: 10px;
+    }
+
+    .selected-file {
+        margin: 10px 0;
+        font-size: 14px;
+        font-weight: bold;
+        color: #333;
+
+    }
+
+    .remove-file {
+        color: white;
+        cursor: pointer;
+        padding: 5px 10px;
+        background-color: red;
+        border-radius: 10px;
+        margin-left: 10px;
+        font-size: 14px;
+        display: none;
+    }
+    </style>
+    <script>
+    function handleFileInputChange(event) {
+        const fileInput = event.target;
+        const fileName = fileInput.files[0].name;
+        const selectedFileContainer = document.querySelector('.selected-file');
+        const removeFileButton = document.querySelector('.remove-file');
+
+        selectedFileContainer.textContent = fileName;
+        selectedFileContainer.style.display = 'block';
+        removeFileButton.style.display = 'inline-block';
+    }
+
+    function removeFile() {
+        const fileInput = document.querySelector('#file-upload');
+        const selectedFileContainer = document.querySelector('.selected-file');
+        const removeFileButton = document.querySelector('.remove-file');
+
+        fileInput.value = '';
+        selectedFileContainer.textContent = '';
+        selectedFileContainer.style.display = 'none';
+        removeFileButton.style.display = 'none';
+    }
+    </script>
+
     <!-- =========== Scripts =========  -->
     <script type="module" src="assets/js/main.js"></script>
 

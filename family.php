@@ -26,11 +26,11 @@ $res=mysqli_query($conn, $sql);
         <div class="navigation">
             <ul>
                 <li>
-                    <a href="#">
-                        <span class="icon">
-                            <ion-icon name="logo-buffer"></ion-icon>
-                        </span>
-                        <span class="title big">Name</span>
+                    <a href="index.php">
+
+                        <img id="logo" src="assets/img/logo.png" alt="The Ethiopian Korea war Veterans Association">
+
+                        <span class="big">The Ethiopian Korea war <br> Veterans Association</span>
                     </a>
                 </li>
 
@@ -57,7 +57,7 @@ $res=mysqli_query($conn, $sql);
                         <span class="icon">
                             <ion-icon name="person-outline"></ion-icon>
                         </span>
-                        <span class="title">warriors</span>
+                        <span class="title">Veterans</span>
                     </a>
                 </li>
 
@@ -66,7 +66,7 @@ $res=mysqli_query($conn, $sql);
                         <span class="icon">
                             <ion-icon name="person-add-outline"></ion-icon>
                         </span>
-                        <span class="title">Add Warrior</span>
+                        <span class="title">Add Veteran</span>
                     </a>
                 </li>
 
@@ -160,7 +160,7 @@ $res=mysqli_query($conn, $sql);
                 <div class="card" onclick="window.location.href = 'warriors.php'">
                     <div>
                         <div class="numbers"><?php echo $total ?></div>
-                        <div class="cardName">warriors</div>
+                        <div class="cardName">Veterans</div>
                     </div>
 
                     <div class="iconBx">

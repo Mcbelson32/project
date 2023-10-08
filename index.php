@@ -26,11 +26,11 @@ $res=mysqli_query($conn, $sql);
         <div class="navigation">
             <ul>
                 <li>
-                    <a href="#">
-                        <span class="icon">
-                            <ion-icon name="logo-buffer"></ion-icon>
-                        </span>
-                        <span class="title big">Name</span>
+                    <a href="index.php">
+
+                        <img id="logo" src="assets/img/logo.png" alt="The Ethiopian Korea war Veterans Association">
+
+                        <span class="big">The Ethiopian Korea war <br> Veterans Association</span>
                     </a>
                 </li>
 
@@ -57,7 +57,7 @@ $res=mysqli_query($conn, $sql);
                         <span class="icon">
                             <ion-icon name="person-outline"></ion-icon>
                         </span>
-                        <span class="title">warriors</span>
+                        <span class="title">Veterans</span>
                     </a>
                 </li>
 
@@ -66,7 +66,7 @@ $res=mysqli_query($conn, $sql);
                         <span class="icon">
                             <ion-icon name="person-add-outline"></ion-icon>
                         </span>
-                        <span class="title">Add Warrior</span>
+                        <span class="title">Add Veteran</span>
                     </a>
                 </li>
 
@@ -159,7 +159,7 @@ $res=mysqli_query($conn, $sql);
                 <div class="card" onclick="window.location.href = 'index.php'">
                     <div>
                         <div class="numbers"><?php echo $total ?></div>
-                        <div class="cardName">warriors</div>
+                        <div class="cardName">Veterans</div>
                     </div>
 
                     <div class="iconBx">
@@ -205,7 +205,7 @@ $res=mysqli_query($conn, $sql);
             <div class="details">
                 <div class="recentOrders">
                     <div class="cardHeader">
-                        <h2>Recent warriors</h2>
+                        <h2>Recent Veterans</h2>
                         <a href="warriors.php" class="btn">View All</a>
                     </div>
 
@@ -245,7 +245,7 @@ if($all){
     $row=mysqli_fetch_assoc($all);
   }
   if(!$i){
-    echo '<h1 class="empty">No Warriors</h1>
+    echo '<h1 class="empty">No Veterans</h1>
     <script>
     var element = document.getElementById("th");
     window.addEventListener("load", () => {

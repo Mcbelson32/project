@@ -22,11 +22,11 @@ include 'array.php';
         <div class="navigation">
             <ul>
                 <li>
-                    <a href="#">
-                        <span class="icon">
-                            <ion-icon name="logo-buffer"></ion-icon>
-                        </span>
-                        <span class="title big">Name</span>
+                    <a href="index.php">
+
+                        <img id="logo" src="assets/img/logo.png" alt="The Ethiopian Korea war Veterans Association">
+
+                        <span class="big">The Ethiopian Korea war <br> Veterans Association</span>
                     </a>
                 </li>
 
@@ -53,7 +53,7 @@ include 'array.php';
                         <span class="icon">
                             <ion-icon name="person-outline"></ion-icon>
                         </span>
-                        <span class="title">warriors</span>
+                        <span class="title">Veterans</span>
                     </a>
                 </li>
 
@@ -62,7 +62,7 @@ include 'array.php';
                         <span class="icon">
                             <ion-icon name="person-add-outline"></ion-icon>
                         </span>
-                        <span class="title">Add Warrior</span>
+                        <span class="title">Add Veteran</span>
                     </a>
                 </li>
 
@@ -163,7 +163,7 @@ include 'array.php';
                         <div class="print war">
                             <div class="user-details">
                                 <div class="input-box">
-                                    <span class="details">Warrior's ID</span>
+                                    <span class="details">Veteran's ID</span>
                                     <p class="input">
                                         <?php echo $id ?>
                                     </p>

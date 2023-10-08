@@ -56,11 +56,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <div class="navigation">
             <ul>
                 <li>
-                    <a href="#">
-                        <span class="icon">
-                            <ion-icon name="logo-buffer"></ion-icon>
-                        </span>
-                        <span class="title big">Name</span>
+                    <a href="index.php">
+
+                        <img id="logo" src="assets/img/logo.png" alt="The Ethiopian Korea war Veterans Association">
+
+                        <span class="big">The Ethiopian Korea war <br> Veterans Association</span>
                     </a>
                 </li>
 
@@ -87,7 +87,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         <span class="icon">
                             <ion-icon name="person-outline"></ion-icon>
                         </span>
-                        <span class="title">warriors</span>
+                        <span class="title">Veterans</span>
                     </a>
                 </li>
 
@@ -96,7 +96,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         <span class="icon">
                             <ion-icon name="person-add-outline"></ion-icon>
                         </span>
-                        <span class="title">Add warrior</span>
+                        <span class="title">Add Veteran</span>
                     </a>
                 </li>
 

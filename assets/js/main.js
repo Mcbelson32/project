@@ -19,6 +19,8 @@ let main = document.querySelector(".main");
 
 toggle.onclick = function () {
   navigation.classList.toggle("active");
+  document.getElementById("logo").classList.toggle("small");
+  document.querySelector(".big").classList.toggle("hidden");
   main.classList.toggle("active");
 };
 
@@ -95,5 +97,3 @@ function buildTable(data) {
     tbody.innerHTML += row;
   }
 }
-
-
