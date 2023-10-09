@@ -26,6 +26,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
   $imageTmpName = $image['tmp_name'];
   $imageSize = $image['size'];
   $imageError = $image['error'];
+  
   $f_name = trim($_POST['f_name']);
   $u_name = trim($_POST['u_name']);
   $g_name = trim($_POST['g_name']);
@@ -57,6 +58,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
   if(isset($_POST['id'])){
     $id=$_POST['id'];
     $u_id = $_POST['u_id'];
+    if(!$image) {
+      $imageName =  $_POST['imgName'];
+    }
     $data="UPDATE warrior SET id = '$u_id', img = '$imageName', u_name = '$u_name',f_name = '$f_name',g_name = '$g_name',
     m_name = '$m_name',appellation = '$appellation',b_date = '$b_date',b_place = '$b_place',
     nationality = '$nationality',nation = '$nation',bloodtype = '$bloodtype',region = '$region',

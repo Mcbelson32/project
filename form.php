@@ -11,6 +11,7 @@ if(isset($_GET['id'])) {
     
     $u_id = $row['id'] ?? "N/A";
     $u_name=$row['u_name'] ?? "N/A";
+    $img = $row['img'] ?? "N/A";
     $f_name = $row['f_name'] ?? "N/A";
     $g_name = $row['g_name'] ?? "N/A";
     $m_name = $row['m_name'] ?? "N/A";
@@ -40,6 +41,7 @@ if(isset($_GET['id'])) {
     
   }
   $err = "The ID has already been taken! Please use another ID ";
+  
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -249,6 +251,7 @@ if(isset($_GET['id'])) {
                             <?php if (isset($_GET['id'])) { ?>
 
                             <input type="hidden" name="id" id="id" value="<?php echo $_GET['id']?>">
+                            <input type="hidden" name="imgName" id="imgName" value="<?php echo $img ?>">
                             <?php } ?>
                             <div class="user-details ">
                                 <div class="input-box">
@@ -261,7 +264,6 @@ if(isset($_GET['id'])) {
                                     <label for="file-upload" class="file-upload">
                                         <span class="file-upload-label">Choose the image</span>
                                         <input id="file-upload" type="file" name="file" accept=".png, .jpg, .jpeg"
-                                            value="<?php if(isset($_GET['id'])){echo $u_id;}?>"
                                             onchange="handleFileInputChange(event)">
                                     </label>
                                     <div class="selected-file-container">
@@ -300,8 +302,10 @@ if(isset($_GET['id'])) {
 
                                 <div class="input-box">
                                     <span class="details">Birth Date</span>
-                                    <input type="date" name="b_date" id="b_date"
-                                        value="<?php if(isset($_GET['id'])){echo $b_date;}?>">
+                                    <input type="text" name="b_date" id="b_date"
+                                        value="<?php if(isset($_GET['id'])){echo $b_date;}?>"
+                                        paattern="\d{4}-\d{2}-\d{2}" oninput="dateFormat(this)"
+                                        placeholder="yyyy-mm-dd">
                                 </div>
                                 <div class="input-box">
                                     <span class="details">Birth Place</span>
@@ -568,6 +572,23 @@ if(isset($_GET['id'])) {
         selectedFileContainer.style.display = 'none';
         removeFileButton.style.display = 'none';
     }
+
+
+    function dateFormat(input) {
+        var value = input.value.replace(/-/g, "");
+
+        if (value.length > 4) {
+            value = value.slice(0, 4) + "-" + value.slice(4);
+        }
+        if (value.length > 7) {
+            value = value.slice(0, 7) + "-" + value.slice(7);
+        }
+        if (value.length > 10) {
+            value = value.slice(0, 10);
+        }
+
+        input.value = value;
+    }
     </script>
 
     <!-- =========== Scripts =========  -->
@@ -629,6 +650,12 @@ if(isset($_GET['id'])) {
     var r3 = document.getElementById('r-3');
     var r4 = document.getElementById('r-4');
     var r5 = document.getElementById('r-5');
+
+    <?php if(isset($_GET['id']) && !empty(trim($img)) && $img != "N/A") { ?>
+    var fileInput = document.getElementById('file-upload');
+    var filePath = 'image/<?php echo $img ?>'; // Set the file path relative to your "image" folder
+    fileInput.files = [new File([], filePath)];
+    <?php } ?>
 
     tag.value = '<?php if(isset($_GET['id'])){echo $bloodtype;}else{echo "";}?>';
     lvl.value = '<?php if(isset($_GET['id'])){echo $educ_lvl;}else{echo "";}?>';
