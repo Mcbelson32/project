@@ -237,7 +237,7 @@ if(isset($_GET['id']) && isset($_GET['uname'])) {
                             <?php endif ?>
                             <div class="user-details">
                                 <div class="input-box">
-                                    <span class="details">Family ID</span>
+                                    <span class="details">Veteran's ID</span>
                                     <input type="text" name="u_id" id="u_id" placeholder="Enter your ID" required
                                         value="<?php if(isset($_GET['id']) && isset($_GET['uname'])){echo $u_id;}?>">
                                 </div>
