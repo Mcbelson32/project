@@ -504,6 +504,23 @@ div.radio {
     text-align: center;
   }
 
+  .input-box img {
+    width: 150px;
+    height: 150px;
+    border: 2px solid #2a2185;
+    border-radius: 10px;
+  }
+  .print .user-details .input-box.wrap {
+    margin-top: 70px;
+    margin-bottom: 15px;
+    width: calc(100% / 4 - 20px);
+  }
+  .print .user-details .input-box.img {
+    padding-left: calc(100% / 6 - 20px);
+    margin-bottom: 20px;
+    width: calc(100% / 2 - 20px);
+  }
+
   .print .gender-title {
     font-size: 12px;
     font-weight: 500;
@@ -558,6 +575,9 @@ div.radio {
     margin: 1% 10%;
     font-size: 11px;
     overflow-y: hidden;
+  }
+  .print #work {
+    margin: 30% 0 0 0;
   }
 
   .print .checkbox {

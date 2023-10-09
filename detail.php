@@ -392,7 +392,7 @@ include 'array.php';
                                 </div>
                             </div>
 
-                            <div class="input-box">
+                            <div class="input-box" id="work">
                                 <span class="details">Work Experience</span>
                                 <p class="textarea">
                                     <?php echo $experience; ?>
