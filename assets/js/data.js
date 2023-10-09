@@ -1,1 +1,1 @@
-export var dataArray = [{"id":"123","u_name":"mc","f_name":"wels","g_name":"bob"}];
+export var dataArray = [{"id":"123","u_name":"mc","f_name":"wels","g_name":"bob"},{"id":"999","u_name":"mal","f_name":"luma","g_name":"mm"}];

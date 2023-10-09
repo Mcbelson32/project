@@ -50,6 +50,7 @@ if(isset($_GET['id']) && isset($_GET['type'])) {
     
     $u_id = $row['id'] ?? "N/A";
     $u_name=$row['u_name'] ?? "N/A";
+    $img=$row['img'] ?? "N/A";
     $f_name = $row['f_name'] ?? "N/A";
     $g_name = $row['g_name'] ?? "N/A";
     $m_name = $row['m_name'] ?? "N/A";

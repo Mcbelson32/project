@@ -45,12 +45,28 @@
   margin-bottom: 15px;
   width: calc(100% / 3 - 20px);
 }
+.user-details .input-box.wrap {
+  margin-bottom: 15px;
+  width: calc(100% / 4 - 20px);
+}
+.user-details .input-box.img {
+  padding-left: calc(100% / 8 - 20px);
+  margin-bottom: 20px;
+  width: calc(100% / 2 - 20px);
+}
 .input-box span.details {
   display: block;
   font-weight: 500;
   margin-bottom: 5px;
   color: var(--blue);
   text-align: center;
+}
+
+.input-box img {
+  width: 200px;
+  height: 200px;
+  border: 2px solid #2a2185;
+  border-radius: 10px;
 }
 .user-details .input-box .input {
   /* height: 45px; */

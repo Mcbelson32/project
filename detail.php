@@ -162,6 +162,7 @@ include 'array.php';
                         <?php if ($_GET['type'] == 'war') { ?>
                         <div class="print war">
                             <div class="user-details">
+
                                 <div class="input-box">
                                     <span class="details">Veteran's ID</span>
                                     <p class="input">
@@ -175,6 +176,13 @@ include 'array.php';
                                         <?php echo $u_name ?>
                                     </p>
                                 </div>
+                                <?php
+                                if(!empty(trim($img)) && $img != "N/A"){
+                                    ?>
+                                <div class="input-box img">
+                                    <img src="image/<?php echo $img ?>" alt="">
+                                </div>
+                                <?php } ?>
                                 <div class="input-box">
                                     <span class="details">Father's Name</span>
                                     <p class="input"><?php echo $f_name ?></p>
