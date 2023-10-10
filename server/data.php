@@ -58,27 +58,25 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
   if(isset($_POST['id'])){
     $id=$_POST['id'];
     $u_id = $_POST['u_id'];
-    if(!$image) {
-      $imageName =  $_POST['imgName'];
-    }
-    $data="UPDATE warrior SET id = '$u_id', img = '$imageName', u_name = '$u_name',f_name = '$f_name',g_name = '$g_name',
-    m_name = '$m_name',appellation = '$appellation',b_date = '$b_date',b_place = '$b_place',
-    nationality = '$nationality',nation = '$nation',bloodtype = '$bloodtype',region = '$region',
-    warada = '$warada',kebele = '$kebele',h_number = '$h_number',phone = '$phone',
-    po_box = '$po_box',lang = '$language',educ_lvl = '$educ_lvl',educ_type = '$educ_type',
-    class = '$class', c_year = '$c_year',work = '$work',round = '$round',iswounded = '$iswounded',warrior_s = '$warrior_s',
-    experience = '$exp', award = '$award' WHERE id = '$id'";
 
-    if($imageError === 0){
+    if(isset($_FILES['file']) && $_FILES['file']['error'] === UPLOAD_ERR_OK){
+      $filename = uniqid('image_').'.'.pathinfo($imageName, PATHINFO_EXTENSION);
       // Set the path to save the uploaded image
-      $imagePath = '../image/'.$imageName;
+      $imageDir = __DIR__.'/../image/';
+      if (!is_dir($imageDir)) {
+        mkdir($imageDir, 0777, true);
+      }
+
+      $imagePath = $imageDir.$filename;
 
       // Move the uploaded image to the specified path
       move_uploaded_file($imageTmpName, $imagePath);
+      $imageName=$filename;
+
       $find="SELECT img FROM warrior WHERE id = '$id'";
       $res=mysqli_query($conn, $find);
 
-      $previousImageName = mysqli_fetch_array($res)['img'] or "none";
+      $previousImageName = mysqli_fetch_assoc($res)['img'] ?? "N/A";
 
       // Set the path of the previous image
       $previousImagePath = '../image/'.$previousImageName;
@@ -87,25 +85,49 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
       if(file_exists($previousImagePath)){
           unlink($previousImagePath);
       }
-    }
-  }else{
-    $data="INSERT INTO warrior (id, img, u_name,f_name,g_name,m_name,appellation,b_date,
-    b_place,nationality,nation,bloodtype,region,warada,kebele,h_number,phone,po_box,lang,
-    educ_lvl,educ_type,class,c_year,work,round,iswounded,warrior_s,experience,award)
-  VALUES ('$id', '$imageName', '$u_name','$f_name','$g_name','$m_name','$appellation','$b_date',
-'$b_place','$nationality','$nation','$bloodtype','$region','$warada',
-'$kebele','$h_number','$phone','$po_box','$language','$educ_lvl',
-  '$educ_type','$class','$c_year','$work','$round','$iswounded','$warrior_s','$exp','$award')";
+    }elseif ($imageError === UPLOAD_ERR_NO_FILE){
+      $find="SELECT img FROM warrior WHERE id = '$id'";
+      $res=mysqli_query($conn, $find);
+      echo mysqli_fetch_assoc($res)['img'];
+      echo "work";
 
+      $ImageName = mysqli_fetch_assoc($res)['img'] ?? "N/A";
+    }
+    
+    $data="UPDATE warrior SET id = '$u_id', img = '$imageName', u_name = '$u_name',f_name = '$f_name',g_name = '$g_name',
+    m_name = '$m_name',appellation = '$appellation',b_date = '$b_date',b_place = '$b_place',
+    nationality = '$nationality',nation = '$nation',bloodtype = '$bloodtype',region = '$region',
+    warada = '$warada',kebele = '$kebele',h_number = '$h_number',phone = '$phone',
+    po_box = '$po_box',lang = '$language',educ_lvl = '$educ_lvl',educ_type = '$educ_type',
+    class = '$class', c_year = '$c_year',work = '$work',round = '$round',iswounded = '$iswounded',warrior_s = '$warrior_s',
+    experience = '$exp', award = '$award' WHERE id = '$id'";
+
+    
+  }else{
     if($imageError === 0){
       // Set the path to save the uploaded image
-      $imagePath = '../image/'.$imageName;
+     $filename = uniqid('image_').'.'.pathinfo($imageName, PATHINFO_EXTENSION);
+      // Set the path to save the uploaded image
+      $imageDir = __DIR__.'/../image/';
+      if (!is_dir($imageDir)) {
+        mkdir($imageDir, 0777, true);
+      }
+
+      $imagePath = $imageDir.$filename;
 
       // Move the uploaded image to the specified path
       move_uploaded_file($imageTmpName, $imagePath);
+      $imageName=$filename;
     }
+    $data="INSERT INTO warrior (id, img, u_name,f_name,g_name,m_name,appellation,b_date,
+    b_place,nationality,nation,bloodtype,region,warada,kebele,h_number,phone,po_box,lang,
+    educ_lvl,educ_type,class,c_year,work,round,iswounded,warrior_s,experience,award)
+    VALUES ('$id', '$imageName', '$u_name','$f_name','$g_name','$m_name','$appellation','$b_date',
+    '$b_place','$nationality','$nation','$bloodtype','$region','$warada',
+    '$kebele','$h_number','$phone','$po_box','$language','$educ_lvl',
+    '$educ_type','$class','$c_year','$work','$round','$iswounded','$warrior_s','$exp','$award')";
   }
-  echo $data;
+    
   $result=mysqli_query($conn, $data);
 
   if($result){

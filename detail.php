@@ -163,14 +163,14 @@ include 'array.php';
                         <div class="print war">
                             <div class="user-details">
 
-                                <div class="input-box">
+                                <div class="input-box wrap">
                                     <span class="details">Veteran's ID</span>
                                     <p class="input">
                                         <?php echo $id ?>
                                     </p>
                                 </div>
 
-                                <div class="input-box">
+                                <div class="input-box wrap">
                                     <span class="details">User Name</span>
                                     <p class="input">
                                         <?php echo $u_name ?>

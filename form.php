@@ -251,7 +251,6 @@ if(isset($_GET['id'])) {
                             <?php if (isset($_GET['id'])) { ?>
 
                             <input type="hidden" name="id" id="id" value="<?php echo $_GET['id']?>">
-                            <input type="hidden" name="imgName" id="imgName" value="<?php echo $img ?>">
                             <?php } ?>
                             <div class="user-details ">
                                 <div class="input-box">
@@ -304,8 +303,7 @@ if(isset($_GET['id'])) {
                                     <span class="details">Birth Date</span>
                                     <input type="text" name="b_date" id="b_date"
                                         value="<?php if(isset($_GET['id'])){echo $b_date;}?>"
-                                        paattern="\d{4}-\d{2}-\d{2}" oninput="dateFormat(this)"
-                                        placeholder="yyyy-mm-dd">
+                                        pattern="\d{4}-\d{2}-\d{2}" oninput="dateFormat(this)" placeholder="yyyy-mm-dd">
                                 </div>
                                 <div class="input-box">
                                     <span class="details">Birth Place</span>

@@ -267,13 +267,12 @@ if(isset($_GET['id']) && isset($_GET['uname'])) {
                                         <option value="Divorced">Divorced</option>
                                     </select>
                                 </div>
-
                                 <div class="input-box">
                                     <span class="details">Birth Date</span>
-                                    <input type="date" name="b_date" id="b_date"
-                                        value="<?php if(isset($_GET['id']) && isset($_GET['uname'])){echo $b_date;}?>">
+                                    <input type="text" name="b_date" id="b_date"
+                                        value="<?php if(isset($_GET['id']) && isset($_GET['uname'])){echo $b_date;}?>"
+                                        pattern="\d{4}-\d{2}-\d{2}" oninput="dateFormat(this)" placeholder="yyyy-mm-dd">
                                 </div>
-
                                 <div class="input-box">
                                     <span class="details">level of education</span>
 
@@ -316,6 +315,22 @@ if(isset($_GET['id']) && isset($_GET['uname'])) {
         <script type="module" src="assets/js/main.js"></script>
 
         <script>
+        function dateFormat(input) {
+            var value = input.value.replace(/-/g, "");
+
+            if (value.length > 4) {
+                value = value.slice(0, 4) + "-" + value.slice(4);
+            }
+            if (value.length > 7) {
+                value = value.slice(0, 7) + "-" + value.slice(7);
+            }
+            if (value.length > 10) {
+                value = value.slice(0, 10);
+            }
+
+            input.value = value;
+        }
+
         var lvl = document.getElementById('educ_lvl');
         var mem = document.getElementById('type');
         var stat = document.getElementById('status');
