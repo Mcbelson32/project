@@ -78,7 +78,6 @@ if(isset($_GET['id']) && isset($_GET['type'])) {
     $round = explode(',', $row['round']);
     $iswounded = $row['iswounded'] ?? "N/A";
     $warrior_s = $row['warrior_s'] ?? "N/A";
-    $experience = $row['experience'] ?? "N/A";
     $awards = explode(',', $row['award']) ?? "none";
     $presenters = explode(',', $row['presenter']) ?? "none";
     $a_years = explode(',', $row['a_year']) ?? "none";

@@ -33,11 +33,16 @@ if(isset($_GET['id'])) {
     $class = $row['class'] ?? "N/A";
     $c_year = $row['c_year'] ?? "N/A";
     $work = $row['work'] ?? "N/A";
+    $exps = explode(',', $row['experience']) ?? "none";
+    $exp_years = explode(',', $row['exp_year']) ?? "none";
+    $exp_amount = intval($row['exp_amount']) ?? 0;
     $round = explode(',', $row['round']);
     $iswounded = $row['iswounded'] ?? "N/A";
     $warrior_s = $row['warrior_s'] ?? "N/A";
-    $experience = $row['experience'] ?? "N/A";
-    $award = $row['award'] ?? "N/A";
+    $awards = explode(',', $row['award']) ?? "none";
+    $presenters = explode(',', $row['presenter']) ?? "none";
+    $a_years = explode(',', $row['a_year']) ?? "none";
+    $award_amount = intval($row['award_amount']) ?? 0;
     
   }
   $err = "The ID has already been taken! Please use another ID ";
@@ -431,6 +436,20 @@ if(isset($_GET['id'])) {
                                     <button type="button" class="c_btn" onclick="awardTable()">Create</button>
                                 </span>
                                 <div class="wrapper wrapper_1">
+                                    <?php if($award_amount) { ?>
+                                    <span>award</span>
+                                    <span>presenter</span>
+                                    <span>year</span>
+                                    <?php for($i = 0; $i < $award_amount; $i++) { ?>
+                                    <input type="text" name="award[]" class="award" placeholder="Enter the award"
+                                        value="<?php echo $awards[$i]; ?>">
+                                    <input type="text" name="presenter[]" class="award"
+                                        placeholder="Enter the presenter" value="<?php echo $presenters[$i]; ?>">
+                                    <input type="text" name="a_year[]" class="award" oninput="dateFormat(this)"
+                                        placeholder="yyyy-mm-dd" value="<?php echo $a_years[$i]; ?>">
+
+                                    <?php }
+                                } ?>
 
                                 </div>
                                 <!-- <textarea type="text" name="award" id="award"
@@ -499,7 +518,15 @@ if(isset($_GET['id'])) {
                                     <button type="button" class="c_btn" onclick="workTable()">Create</button>
                                 </span>
                                 <div class="wrapper wrapper_2">
-
+                                    <?php if($exp_amount) { ?>
+                                    <span>Experience</span>
+                                    <span>year</span>
+                                    <?php for($i = 0; $i < $exp_amount; $i++) { ?>
+                                    <input type="text" name="exp[]" class="exp" placeholder="Enter the experience"
+                                        value="<?php echo $exps[$i]; ?>">
+                                    <input type="text" name="exp_year[]" class="exp" oninput="dateFormat(this)"
+                                        placeholder="yyyy-mm-dd" value="<?php echo $exp_years[$i]; ?>">
+                                    <?php }}?>
                                 </div>
                             </div>
 
@@ -574,7 +601,6 @@ if(isset($_GET['id'])) {
 
         // Check if both classes exist
         if (work_input.length > 0) {
-            console.log('work');
             for (var i = 0; i < work_input.length; i++) {
                 if (work_input[i].value.trim() === '') {
                     work_input[i].value = "N/A";
@@ -582,7 +608,6 @@ if(isset($_GET['id'])) {
             }
         }
         if (award_input.length > 0) {
-            console.log('award');
             for (var x = 0; x < award_input.length; x++) {
                 if (award_input[x].value.trim() === '') {
                     award_input[x].value = "N/A";
