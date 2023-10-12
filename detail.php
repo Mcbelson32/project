@@ -176,6 +176,10 @@ include 'array.php';
                                         <?php echo $u_name ?>
                                     </p>
                                 </div>
+                                <div class="input-box">
+                                    <span class="details">Father's Name</span>
+                                    <p class="input"><?php echo $f_name ?></p>
+                                </div>
                                 <?php
                                 if(!empty(trim($img)) && $img != "N/A"){
                                     ?>
@@ -183,10 +187,7 @@ include 'array.php';
                                     <img src="image/<?php echo $img ?>" alt="">
                                 </div>
                                 <?php } ?>
-                                <div class="input-box">
-                                    <span class="details">Father's Name</span>
-                                    <p class="input"><?php echo $f_name ?></p>
-                                </div>
+
                                 <div class="input-box">
                                     <span class="details">GrandFather's Name</span>
                                     <p class="input"><?php echo $g_name ?></p>
@@ -319,19 +320,23 @@ include 'array.php';
 
                             <div class="input-box">
                                 <span class="details">Award and Presenter</span>
-                                <div class="wrapper wrapper_1">
+                                <div class="wrapper <?php echo ($award_amount) ? "not" : '' ?> wrapper_1">
+                                    <?php if($award_amount) { ?>
                                     <span class="details">award</span>
                                     <span class="details">presenter</span>
                                     <span class="details">year</span>
+                                    <?php for($i = 0; $i < $award_amount; $i++) { ?>
+
                                     <p class="input">
-                                        <?php echo $award; ?>
+                                        <?php echo $awards[$i]; ?>
                                     </p>
                                     <p class="input">
-                                        <?php echo $award; ?>
+                                        <?php echo $presenters[$i]; ?>
                                     </p>
                                     <p class="input">
-                                        <?php echo $award; ?>
+                                        <?php echo $a_years[$i]; ?>
                                     </p>
+                                    <?php }}?>
                                 </div>
                             </div>
 
@@ -405,15 +410,14 @@ include 'array.php';
 
                             <div class="input-box" id="work">
                                 <span class="details">Work Experience</span>
-                                <div class="wrapper wrapper_1">
+                                <div class="wrapper <?php echo ($exp_amount) ? "not" : '' ?> wrapper_2">
                                     <?php if($exp_amount) { ?>
-                                    <span class="details">award</span>
-                                    <span class="details">presenter</span>
+                                    <span class="details">Experience</span>
                                     <span class="details">year</span>
                                     <?php for($i = 0; $i < $exp_amount; $i++) { ?>
 
                                     <p class="input">
-                                        <?php echo $exp[$i]; ?>
+                                        <?php echo $exps[$i]; ?>
                                     </p>
                                     <p class="input">
                                         <?php echo $exp_years[$i]; ?>

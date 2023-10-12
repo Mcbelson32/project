@@ -302,8 +302,8 @@ if(isset($_GET['id'])) {
                                 <div class="input-box">
                                     <span class="details">Birth Date</span>
                                     <input type="text" name="b_date" id="b_date"
-                                        value="<?php if(isset($_GET['id'])){echo $b_date;}?>"
-                                        pattern="\d{4}-\d{2}-\d{2}" oninput="dateFormat(this)" placeholder="yyyy-mm-dd">
+                                        value="<?php if(isset($_GET['id'])){echo $b_date;}?>" oninput="dateFormat(this)"
+                                        placeholder="yyyy-mm-dd">
                                 </div>
                                 <div class="input-box">
                                     <span class="details">Birth Place</span>
@@ -589,6 +589,7 @@ if(isset($_GET['id'])) {
                 }
             }
         }
+        this.submit();
     });
     </script>
     <script>
@@ -606,7 +607,7 @@ if(isset($_GET['id'])) {
                     `
                 <input type="text" name="award[]" class="award" placeholder="Enter the award"> 
                 <input type="text" name="presenter[]" class="award" placeholder="Enter the presenter">
-                <input type="text" name="a_year[]" class="award" pattern='\\d{4}-\\d{2}-\\d{2}' oninput="dateFormat(this)" placeholder="yyyy-mm-dd">`;
+                <input type="text" name="a_year[]" class="award" oninput="dateFormat(this)" placeholder="yyyy-mm-dd">`;
             }
         }
     }
@@ -623,7 +624,7 @@ if(isset($_GET['id'])) {
                 cont.innerHTML +=
                     `
                 <input type="text" name="exp[]" class="exp" placeholder="Enter the experience"> 
-                <input type="text" name="exp_year[]" class="exp" pattern='\\d{4}-\\d{2}-\\d{2}' oninput="dateFormat(this)" placeholder="yyyy-mm-dd">`;
+                <input type="text" name="exp_year[]" class="exp" oninput="dateFormat(this)" placeholder="yyyy-mm-dd">`;
             }
         }
     }

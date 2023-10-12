@@ -50,13 +50,13 @@
   width: calc(100% / 4 - 20px);
 }
 .user-details .input-box.img {
-  padding-left: calc(100% / 8 - 20px);
+  padding-left: calc(100% / 16 - 20px);
   margin-bottom: 20px;
-  width: calc(100% / 2 - 20px);
+  width: calc(100% / 4 - 20px);
 }
 .input-box span.details {
   display: block;
-  font-weight: 500;
+  font-weight: bold;
   margin-bottom: 5px;
   color: var(--blue);
   text-align: center;
@@ -76,28 +76,40 @@
   outline: none;
   font-size: 16px;
   border-radius: 5px;
-  border: 0px solid #ccc;
+  border: 0px solid #2a2185;
   border-bottom-width: 2px;
   transition: all 0.3s ease;
   text-align: center;
 }
-.wrapper {
+.wrapper.not {
+  position: relative;
   width: 100%;
   display: flex;
   flex-wrap: wrap;
   gap: calc((100% / 8 - 20px) / 8);
   /* justify-content: space-between; */
-  margin: 20px 0 12px 0;
-  padding-inline: 25px 15px;
+  margin: 10px 0 25px 0;
+  padding: 0 25px 10px 15px;
+  border: 4px solid #2a2185;
+  border-radius: 20px;
+}
+.wrapper.not::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 3px;
+  background-color: #2a2185;
+  top: 25%;
+  left: 0%;
 }
 .input-box .input {
   /* height: 45px; */
-  padding: 5px;
+  padding: 10px 5px;
   width: 100%;
   outline: none;
   font-size: 16px;
   border-radius: 5px;
-  border: 0px solid #ccc;
+  border: 0px solid #2a2185;
   border-bottom-width: 2px;
   transition: all 0.3s ease;
   text-align: center;
@@ -106,18 +118,27 @@
 .input-box .wrapper_1 span {
   margin-bottom: 15px;
   width: calc(100% / 3 - 20px);
-  font-weight: 500;
+  font-weight: 700;
+  color: #070050;
 }
 .input-box .wrapper_2 .input,
 .input-box .wrapper_2 span {
   margin-bottom: 15px;
   width: calc(100% / 2 - 20px);
+  font-weight: 700;
+  color: #070050;
+}
+.input-box .wrapper_1 .input,
+.input-box .wrapper_2 .input {
   font-weight: 500;
+  color: var(--black1);
 }
 .gender-title {
-  font-size: 20px;
-  font-weight: 500;
+  font-size: 18px;
+  font-weight: bold;
   padding: 100px 0;
+  color: var(--blue);
+  text-align: center;
 }
 .category {
   display: flex;
@@ -519,7 +540,7 @@ div.radio {
 
   .print .input-box span.details {
     display: block;
-    font-weight: 500;
+    font-weight: bold;
     font-size: 12px;
     margin-bottom: 3px;
     color: var(--blue);
@@ -552,15 +573,41 @@ div.radio {
     width: calc(100% / 4 - 20px);
   }
   .print .user-details .input-box.img {
-    padding-left: calc(100% / 6 - 20px);
+    padding-left: calc(100% / 8 - 20px);
     margin-bottom: 20px;
-    width: calc(100% / 2 - 20px);
+    width: calc(100% / 4 - 20px);
   }
-
-  .print .gender-title {
-    font-size: 12px;
+  .print .wrapper.not {
+    border-width: 0;
+  }
+  .print .wrapper.not::before {
+    height: 0;
+  }
+  .print .input-box .wrapper_1 .input,
+  .print .input-box .wrapper_1 span {
+    margin-bottom: 15px;
+    width: calc(100% / 3 - 20px);
+    font-weight: 700;
+    color: #070050;
+  }
+  .print .input-box .wrapper_2 .input,
+  .print .input-box .wrapper_2 span {
+    margin-bottom: 15px;
+    width: calc(100% / 2 - 20px);
+    font-weight: 700;
+    color: #070050;
+  }
+  .print .input-box .wrapper_1 .input,
+  .print .input-box .wrapper_2 .input {
     font-weight: 500;
-    padding: 20px 0;
+    color: var(--black1);
+  }
+  .print .gender-title {
+    font-size: 14px;
+    font-weight: bold;
+    padding: 50px 0;
+    color: var(--blue);
+    text-align: center;
   }
   .print .category {
     display: flex;
