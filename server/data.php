@@ -4,10 +4,12 @@ include 'connect.php';
 if($_SERVER["REQUEST_METHOD"] == "POST"){
   $keys = array_keys($_POST); // Get the keys of the array
 
-  $keyToRemove = "round"; // Specify the key you want to remove
+  $keyToRemove = array("round", "exp", "exp_year", "award", "presenter", "a_year"); // Specify the key you want to remove
 
-  if (($key = array_search($keyToRemove, $keys)) !== false) {
-      unset($keys[$key]); // Remove the specific key
+  foreach($keyToRemove as $remove) {
+    if (($key = array_search($remove, $keys)) !== false) {
+        unset($keys[$key]); // Remove the specific key
+    }
   }
 
   foreach($keys as $key){
@@ -48,12 +50,32 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
   $educ_type = $_POST['educ_type'];
   $class = $_POST['class'];
   $c_year = $_POST['c_year'];
-  $work = $_POST['work'];
   (isset($_POST['round']) ? ($round = implode(',', $_POST['round'])) : ($round = "N/A"));
   $iswounded = $_POST['iswounded'] ?? "N/A";
   $warrior_s = $_POST['warrior_s'] ?? "N/A";
-  $exp = trim($_POST['experience']) ;
-  $award = trim($_POST['award']);
+  $work = $_POST['work'] ?? "N/A";
+
+  if (isset($_POST['exp']) && !empty($_POST['exp']) && (count($_POST['exp']) != 0)) {
+    $exp = changeArray($_POST['exp']);
+    $exp_year = changeArray($_POST['exp_year']);
+    $exp_amount = count($_POST['exp']);
+  } else {
+    $exp_year = "none";
+    $exp = "none";
+    $exp_amount = 0;
+  }
+  
+  if (isset($_POST['award']) && !empty($_POST['award']) && (count($_POST['award']) != 0)) {
+    $award = changeArray($_POST['award']);
+    $presenter = changeArray($_POST['presenter']);
+    $a_year = changeArray( $_POST['a_year']);
+    $award_amount = count($_POST['award']);
+  }else{
+    $award = "none";
+    $presenter = "none";
+    $a_year = "none";
+    $award_amount = 0;
+  }
   
   if(isset($_POST['id'])){
     $id=$_POST['id'];
@@ -79,7 +101,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
       $previousImageName = mysqli_fetch_assoc($res)['img'] ?? "N/A";
 
       // Set the path of the previous image
-      $previousImagePath = '../image/'.$previousImageName;
+      $previousImagePath = __DIR__.'/../image/'.$previousImageName;
 
       // Delete the previous image
       if(file_exists($previousImagePath)){
@@ -99,8 +121,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     nationality = '$nationality',nation = '$nation',bloodtype = '$bloodtype',region = '$region',
     warada = '$warada',kebele = '$kebele',h_number = '$h_number',phone = '$phone',
     po_box = '$po_box',lang = '$language',educ_lvl = '$educ_lvl',educ_type = '$educ_type',
-    class = '$class', c_year = '$c_year',work = '$work',round = '$round',iswounded = '$iswounded',warrior_s = '$warrior_s',
-    experience = '$exp', award = '$award' WHERE id = '$id'";
+    class = '$class', c_year = '$c_year',work = '$work',experience = '$exp',exp_year = '$exp_year',exp_amount = '$exp_amount',round = '$round',iswounded = '$iswounded',warrior_s = '$warrior_s',
+    award = '$award',presenter = '$presenter',a_year = '$a_year', award_amount = '$award_amount' WHERE id = '$id'";
 
     
   }else{
@@ -121,11 +143,11 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     }
     $data="INSERT INTO warrior (id, img, u_name,f_name,g_name,m_name,appellation,b_date,
     b_place,nationality,nation,bloodtype,region,warada,kebele,h_number,phone,po_box,lang,
-    educ_lvl,educ_type,class,c_year,work,round,iswounded,warrior_s,experience,award)
+    educ_lvl,educ_type,class,c_year,work,experience,exp_year,exp_amount,round,iswounded,warrior_s,award, presenter, a_year,award_amount)
     VALUES ('$id', '$imageName', '$u_name','$f_name','$g_name','$m_name','$appellation','$b_date',
     '$b_place','$nationality','$nation','$bloodtype','$region','$warada',
     '$kebele','$h_number','$phone','$po_box','$language','$educ_lvl',
-    '$educ_type','$class','$c_year','$work','$round','$iswounded','$warrior_s','$exp','$award')";
+    '$educ_type','$class','$c_year','$work','$exp','$exp_year','$exp_amount','$round','$iswounded','$warrior_s','$award', '$presenter', '$a_year','$award_amount')";
   }
     
   $result=mysqli_query($conn, $data);
@@ -136,5 +158,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
   }else{
     die(mysqli_error($conn));
   }
+}
+
+function changeArray($data) {
+ return implode(",", $data);
 }
 ?>

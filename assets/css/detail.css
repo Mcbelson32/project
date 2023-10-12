@@ -68,7 +68,8 @@
   border: 2px solid #2a2185;
   border-radius: 10px;
 }
-.user-details .input-box .input {
+.user-details .input-box .input,
+.input-box .input {
   /* height: 45px; */
   padding: 5px;
   width: 100%;
@@ -80,7 +81,39 @@
   transition: all 0.3s ease;
   text-align: center;
 }
-
+.wrapper {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: calc((100% / 8 - 20px) / 8);
+  /* justify-content: space-between; */
+  margin: 20px 0 12px 0;
+  padding-inline: 25px 15px;
+}
+.input-box .input {
+  /* height: 45px; */
+  padding: 5px;
+  width: 100%;
+  outline: none;
+  font-size: 16px;
+  border-radius: 5px;
+  border: 0px solid #ccc;
+  border-bottom-width: 2px;
+  transition: all 0.3s ease;
+  text-align: center;
+}
+.input-box .wrapper_1 .input,
+.input-box .wrapper_1 span {
+  margin-bottom: 15px;
+  width: calc(100% / 3 - 20px);
+  font-weight: 500;
+}
+.input-box .wrapper_2 .input,
+.input-box .wrapper_2 span {
+  margin-bottom: 15px;
+  width: calc(100% / 2 - 20px);
+  font-weight: 500;
+}
 .gender-title {
   font-size: 20px;
   font-weight: 500;
@@ -503,7 +536,10 @@ div.radio {
     border-bottom-width: 3px;
     text-align: center;
   }
-
+  .print .input-box .input {
+    text-align: center;
+    font-size: 10px;
+  }
   .input-box img {
     width: 150px;
     height: 150px;
@@ -511,7 +547,7 @@ div.radio {
     border-radius: 10px;
   }
   .print .user-details .input-box.wrap {
-    margin-top: 70px;
+    /* margin-top: 70px; */
     margin-bottom: 15px;
     width: calc(100% / 4 - 20px);
   }
@@ -576,9 +612,9 @@ div.radio {
     font-size: 11px;
     overflow-y: hidden;
   }
-  .print #work {
+  /* .print #work {
     margin: 30% 0 0 0;
-  }
+  } */
 
   .print .checkbox {
     width: 100%;

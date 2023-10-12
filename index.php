@@ -156,7 +156,7 @@ $res=mysqli_query($conn, $sql);
 
             <!-- ======================= Cards ================== -->
             <div class="cardBox">
-                <div class="card" onclick="window.location.href = 'index.php'">
+                <div class="card" onclick="window.location.href = 'warriors.php'">
                     <div>
                         <div class="numbers"><?php echo $total ?></div>
                         <div class="cardName">Veterans</div>

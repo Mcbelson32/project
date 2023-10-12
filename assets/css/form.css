@@ -102,8 +102,18 @@ form .input-box span.details {
   font-weight: 500;
   margin-bottom: 5px;
 }
+.wrapper {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: calc((100% / 8 - 20px) / 8);
+  /* justify-content: space-between; */
+  margin: 20px 0 12px 0;
+  padding-inline: 25px 15px;
+}
 
-.user-details .input-box input {
+.user-details .input-box input,
+.input-box .wrapper input {
   height: 45px;
   width: 100%;
   outline: none;
@@ -113,6 +123,40 @@ form .input-box span.details {
   border: 1px solid #ccc;
   border-bottom-width: 2px;
   transition: all 0.3s ease;
+}
+.input-box .wrapper_1 input,
+.input-box .wrapper_1 span {
+  margin-bottom: 15px;
+  width: calc(100% / 3 - 20px);
+  font-weight: 500;
+}
+.input-box .wrapper_2 input,
+.input-box .wrapper_2 span {
+  margin-bottom: 15px;
+  width: calc(100% / 2 - 20px);
+  font-weight: 500;
+}
+#award-table,
+#work-table {
+  height: 35px;
+  width: 200px;
+  outline: none;
+  font-size: 14px;
+  border-radius: 5px;
+  padding: 10px;
+  border: 2px solid #2a2185;
+  border-bottom-width: 2px;
+  transition: all 0.3s ease;
+}
+.c_btn {
+  padding: 5px 10px;
+  font-size: 15px;
+  font-weight: 300;
+  background-color: #2a2185;
+  border: 1px solid #2a2185;
+  border-radius: 15px;
+  color: #ccc;
+  cursor: pointer;
 }
 
 .input-box.dur input {

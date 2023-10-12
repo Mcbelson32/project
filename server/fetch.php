@@ -71,12 +71,17 @@ if(isset($_GET['id']) && isset($_GET['type'])) {
     $educ_type = $row['educ_type'] ?? "N/A";
     $class = $row['class'] ?? "N/A";
     $c_year = $row['c_year'] ?? "N/A";
-    $work = $row['work'] ?? "N/A";
+    $exps = explode(',', $row['experience']) ?? "N/A";
+    $exp_years = explode(',', $row['exp_year']) ?? "N/A";
+    $exp_amount = explode(',', $row['exp_amount']) ?? 0;
     $round = explode(',', $row['round']);
     $iswounded = $row['iswounded'] ?? "N/A";
     $warrior_s = $row['warrior_s'] ?? "N/A";
     $experience = $row['experience'] ?? "N/A";
-    $award = $row['award'] ?? "N/A";
+    $awards = explode(',', $row['award']) ?? "none";
+    $presenters = explode(',', $row['presenter']) ?? "none";
+    $a_years = explode(',', $row['a_year']) ?? "none";
+    $award_amount = explode(',', $row['award_amount']) ?? 0;
     
   }elseif ($_GET['type'] == "rel") {
     # code...

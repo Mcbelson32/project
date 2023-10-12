@@ -294,9 +294,11 @@ if(isset($_GET['id']) && isset($_GET['uname'])) {
 
                             <span class="details">Duration</span>
                             <div class="input-box dur">
-                                <input type="date" name="start" id="start">
+                                <input type="text" name="start" id="start" pattern="\d{4}-\d{2}-\d{2}"
+                                    oninput="dateFormat(this)" placeholder="yyyy-mm-dd">
                                 -
-                                <input type="date" name="end" id="end">
+                                <input type="text" name="end" id="end" pattern="\d{4}-\d{2}-\d{2}"
+                                    oninput="dateFormat(this)" placeholder="yyyy-mm-dd">
                             </div>
                             <div class="button">
                                 <?php if (isset($_GET['id']) && isset($_GET['uname'])) { ?>

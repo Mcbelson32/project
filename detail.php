@@ -10,7 +10,7 @@ include 'array.php';
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Form</title>
+    <title>Details</title>
     <!-- ======= Styles ====== -->
     <link rel="stylesheet" type="text/css" href="assets/css/style.css?v=1.0">
     <link rel="stylesheet" type="text/css" href="assets/css/detail.css?v=1.0">
@@ -319,9 +319,20 @@ include 'array.php';
 
                             <div class="input-box">
                                 <span class="details">Award and Presenter</span>
-                                <p class="textarea">
-                                    <?php echo $award; ?>
-                                </p>
+                                <div class="wrapper wrapper_1">
+                                    <span class="details">award</span>
+                                    <span class="details">presenter</span>
+                                    <span class="details">year</span>
+                                    <p class="input">
+                                        <?php echo $award; ?>
+                                    </p>
+                                    <p class="input">
+                                        <?php echo $award; ?>
+                                    </p>
+                                    <p class="input">
+                                        <?php echo $award; ?>
+                                    </p>
+                                </div>
                             </div>
 
                             <span class="gender-title">Engagement rounds </span>
@@ -394,9 +405,21 @@ include 'array.php';
 
                             <div class="input-box" id="work">
                                 <span class="details">Work Experience</span>
-                                <p class="textarea">
-                                    <?php echo $experience; ?>
-                                </p>
+                                <div class="wrapper wrapper_1">
+                                    <?php if($exp_amount) { ?>
+                                    <span class="details">award</span>
+                                    <span class="details">presenter</span>
+                                    <span class="details">year</span>
+                                    <?php for($i = 0; $i < $exp_amount; $i++) { ?>
+
+                                    <p class="input">
+                                        <?php echo $exp[$i]; ?>
+                                    </p>
+                                    <p class="input">
+                                        <?php echo $exp_years[$i]; ?>
+                                    </p>
+                                    <?php }}?>
+                                </div>
                             </div>
                         </div>
 

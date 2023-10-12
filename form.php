@@ -324,7 +324,7 @@ if(isset($_GET['id'])) {
                                 <div class="input-box">
                                     <span class="details">Blood Type</span>
 
-                                    <select name="bloodtype" id="bloodtype">
+                                    <select name="bloodtype" id="bloodtype" value="">
                                         <option value="A+">A+</option>
                                         <option value="A-">A-</option>
                                         <option value="B+">B+</option>
@@ -333,6 +333,7 @@ if(isset($_GET['id'])) {
                                         <option value="AB-">AB-</option>
                                         <option value="O+">O+</option>
                                         <option value="O-">O-</option>
+                                        <option value="" selected></option>
                                     </select>
 
                                 </div>
@@ -385,7 +386,8 @@ if(isset($_GET['id'])) {
                                         <option value="phd">PhD</option>
                                         <option value="doctorate">Doctorate Degree</option>
                                         <option value="professor">Professor</option>
-                                        <option value="Uneducated">Uneducated</option>
+                                        <option value="uneducated">Uneducated</option>
+                                        <option value="" selected></option>
                                     </select>
                                 </div>
 
@@ -417,14 +419,24 @@ if(isset($_GET['id'])) {
                                         <option value="Amharic">Amharic</option>
                                         <option value="English">English</option>
                                         <option value="Korean">Korean</option>
+                                        <option value="" selected></option>
                                     </select>
                                 </div>
 
                             </div>
                             <div class="input-box">
-                                <span class="details">Award & Presenter</span>
-                                <textarea type="text" name="award" id="award"
-                                    placeholder="Enter award with the presenter"><?php if(isset($_GET['id'])){echo $award;}?></textarea>
+                                <span class="details">Award & Presenter <br><br>
+                                    <input type="text" name="award-table" id="award-table"
+                                        placeholder="Insert the amount of Row(s)">
+                                    <button type="button" class="c_btn" onclick="awardTable()">Create</button>
+                                </span>
+                                <div class="wrapper wrapper_1">
+
+                                </div>
+                                <!-- <textarea type="text" name="award" id="award"
+                                    placeholder="Enter award with the presenter"><?php if(isset($_GET['id'])){echo $award;}?>
+                                </textarea> -->
+
                             </div>
 
                             <span class="gender-title">Engagement rounds</span> <br>
@@ -481,9 +493,14 @@ if(isset($_GET['id'])) {
                             </div>
 
                             <div class="input-box">
-                                <span class="details">Work Experience</span>
-                                <textarea type="text" name="experience" id="experience"
-                                    placeholder="Enter yor Experience with the year"><?php if(isset($_GET['id'])){echo $experience;}?></textarea>
+                                <span class="details">Work Experience <br><br>
+                                    <input type="text" name="work-table" id="work-table"
+                                        placeholder="Insert the amount of Row(s)">
+                                    <button type="button" class="c_btn" onclick="workTable()">Create</button>
+                                </span>
+                                <div class="wrapper wrapper_2">
+
+                                </div>
                             </div>
 
 
@@ -549,6 +566,68 @@ if(isset($_GET['id'])) {
     }
     </style>
     <script>
+    document.getElementById('form').addEventListener('submit', function(event) {
+        event.preventDefault(); // Prevent the default form submission behavior
+
+        var work_input = document.getElementsByClassName('exp');
+        var award_input = document.getElementsByClassName('award');
+
+        // Check if both classes exist
+        if (work_input.length > 0) {
+            console.log('work');
+            for (var i = 0; i < work_input.length; i++) {
+                if (work_input[i].value.trim() === '') {
+                    work_input[i].value = "N/A";
+                }
+            }
+        }
+        if (award_input.length > 0) {
+            console.log('award');
+            for (var x = 0; x < award_input.length; x++) {
+                if (award_input[x].value.trim() === '') {
+                    award_input[x].value = "N/A";
+                }
+            }
+        }
+    });
+    </script>
+    <script>
+    function awardTable() {
+        var amount = document.getElementById('award-table').value;
+        var cont = document.querySelector('.wrapper_1');
+        cont.innerHTML = '';
+        if (!(amount.trim() === "") && !isNaN(amount)) {
+            cont.innerHTML += `
+            <span>award</span>
+            <span>presenter</span>
+            <span>year</span>`;
+            for (let index = 0; index < amount; index++) {
+                cont.innerHTML +=
+                    `
+                <input type="text" name="award[]" class="award" placeholder="Enter the award"> 
+                <input type="text" name="presenter[]" class="award" placeholder="Enter the presenter">
+                <input type="text" name="a_year[]" class="award" pattern='\\d{4}-\\d{2}-\\d{2}' oninput="dateFormat(this)" placeholder="yyyy-mm-dd">`;
+            }
+        }
+    }
+
+    function workTable() {
+        var amount = document.getElementById('work-table').value;
+        var cont = document.querySelector('.wrapper_2');
+        cont.innerHTML = '';
+        if (!(amount.trim() === "") && !isNaN(amount)) {
+            cont.innerHTML += `
+            <span>Experience</span>
+            <span>year</span>`;
+            for (let index = 0; index < amount; index++) {
+                cont.innerHTML +=
+                    `
+                <input type="text" name="exp[]" class="exp" placeholder="Enter the experience"> 
+                <input type="text" name="exp_year[]" class="exp" pattern='\\d{4}-\\d{2}-\\d{2}' oninput="dateFormat(this)" placeholder="yyyy-mm-dd">`;
+            }
+        }
+    }
+
     function handleFileInputChange(event) {
         const fileInput = event.target;
         const fileName = fileInput.files[0].name;
@@ -649,20 +728,16 @@ if(isset($_GET['id'])) {
     var r4 = document.getElementById('r-4');
     var r5 = document.getElementById('r-5');
 
-    <?php if(isset($_GET['id']) && !empty(trim($img)) && $img != "N/A") { ?>
-    var fileInput = document.getElementById('file-upload');
-    var filePath = 'image/<?php echo $img ?>'; // Set the file path relative to your "image" folder
-    fileInput.files = [new File([], filePath)];
-    <?php } ?>
-
-    tag.value = '<?php if(isset($_GET['id'])){echo $bloodtype;}else{echo "";}?>';
-    lvl.value = '<?php if(isset($_GET['id'])){echo $educ_lvl;}else{echo "";}?>';
-    lang.value = '<?php if(isset($_GET['id'])){echo $language;}else{echo "";}?>';
+    window.onload = () => {
+        tag.value = '<?php echo isset($_GET['id']) ? $bloodtype : ""; ?>';
+        lvl.value = '<?php echo isset($_GET['id']) ? $educ_lvl : ""; ?>';
+        lang.value = '<?php echo isset($_GET['id']) ? $language : ""; ?>';
+    }
 
     let data = '';
+
     <?php foreach($round as $key) { ?>
     data = '<?php echo $key ?>';
-    console.log(data);
     if (data == '1st round') {
         r1.checked = true;
     } else if (data == '2nd round') {
