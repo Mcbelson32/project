@@ -308,7 +308,7 @@ if(isset($_GET['id'])) {
                                     <span class="details">Birth Date</span>
                                     <input type="text" name="b_date" id="b_date"
                                         value="<?php if(isset($_GET['id'])){echo $b_date;}?>" oninput="dateFormat(this)"
-                                        placeholder="yyyy-mm-dd">
+                                        placeholder="yyyy-mm-dd" min="1951-00-00" max="1955-00-00">
                                 </div>
                                 <div class="input-box">
                                     <span class="details">Birth Place</span>
@@ -436,7 +436,7 @@ if(isset($_GET['id'])) {
                                     <button type="button" class="c_btn" onclick="awardTable()">Create</button>
                                 </span>
                                 <div class="wrapper wrapper_1">
-                                    <?php if($award_amount) { ?>
+                                    <?php if(isset($_GET['id']) && $award_amount) { ?>
                                     <span>award</span>
                                     <span>presenter</span>
                                     <span>year</span>
@@ -518,7 +518,7 @@ if(isset($_GET['id'])) {
                                     <button type="button" class="c_btn" onclick="workTable()">Create</button>
                                 </span>
                                 <div class="wrapper wrapper_2">
-                                    <?php if($exp_amount) { ?>
+                                    <?php if(isset($_GET['id']) && $exp_amount) { ?>
                                     <span>Experience</span>
                                     <span>year</span>
                                     <?php for($i = 0; $i < $exp_amount; $i++) { ?>
@@ -621,12 +621,15 @@ if(isset($_GET['id'])) {
     function awardTable() {
         var amount = document.getElementById('award-table').value;
         var cont = document.querySelector('.wrapper_1');
-        cont.innerHTML = '';
+        cont.innerHTML = ``;
+
         if (!(amount.trim() === "") && !isNaN(amount)) {
+
             cont.innerHTML += `
             <span>award</span>
             <span>presenter</span>
             <span>year</span>`;
+
             for (let index = 0; index < amount; index++) {
                 cont.innerHTML +=
                     `
@@ -640,11 +643,14 @@ if(isset($_GET['id'])) {
     function workTable() {
         var amount = document.getElementById('work-table').value;
         var cont = document.querySelector('.wrapper_2');
-        cont.innerHTML = '';
+        cont.innerHTML = ``;
+
         if (!(amount.trim() === "") && !isNaN(amount)) {
+
             cont.innerHTML += `
             <span>Experience</span>
             <span>year</span>`;
+
             for (let index = 0; index < amount; index++) {
                 cont.innerHTML +=
                     `
@@ -680,6 +686,16 @@ if(isset($_GET['id'])) {
     function dateFormat(input) {
         var value = input.value.replace(/-/g, "");
 
+        if (value.length >= 4) {
+            var year = parseInt(value.substring(0, 4));
+            console.log(year);
+            if (year < 1951 || year > 1955) {
+                input.setCustomValidity('Please enter a year between 1951 and 1955');
+            } else {
+                input.setCustomValidity('');
+            }
+        }
+
         if (value.length > 4) {
             value = value.slice(0, 4) + "-" + value.slice(4);
         }
@@ -691,6 +707,7 @@ if(isset($_GET['id'])) {
         }
 
         input.value = value;
+
     }
     </script>
 
