@@ -83,6 +83,7 @@ $conn->select_db("warriorsdb");
 
 $table = "CREATE TABLE IF NOT EXISTS warrior (
 id VARCHAR(255) UNIQUE NOT NULL DEFAULT 'N/A',
+reg_id VARCHAR(255) UNIQUE DEFAULT 'N/A',
 img VARCHAR(255) DEFAULT 'N/A',
 u_name VARCHAR(255) NOT NULL DEFAULT 'N/A',
 f_name VARCHAR(255) NOT NULL DEFAULT 'N/A',

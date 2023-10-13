@@ -35,12 +35,14 @@ if(isset($_GET['id']) && isset($_GET['type']) && ($_SESSION['access'] === "full"
     }
   }
 
-}elseif (isset($_GET['type']) && isset($_GET['uname']) && isset($_GET['table'])) {
+}
+if (isset($_GET['type']) && isset($_GET['uname']) && isset($_GET['table']) && ($_SESSION['access'] === "full")) {
   if($_GET['type'] == 'rel') {
     $conn->select_db('family');
+    $id = $_GET['id'];
     $uname = $_GET['uname'];
     $table = $_GET['table'];
-    $sql="DELETE FROM `$table` WHERE uname='$uname'";
+    $sql="DELETE FROM `$table` WHERE id='$id' AND uname='$uname'";
     $ans=mysqli_query($conn, $sql);
     if(!$ans){
       die(mysqli_error($conn));

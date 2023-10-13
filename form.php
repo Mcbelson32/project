@@ -10,6 +10,7 @@ if(isset($_GET['id'])) {
     $row = mysqli_fetch_assoc($result);
     
     $u_id = $row['id'] ?? "N/A";
+    $reg_id = $row['reg_id'] ?? "N/A";
     $u_name=$row['u_name'] ?? "N/A";
     $img = $row['img'] ?? "N/A";
     $f_name = $row['f_name'] ?? "N/A";
@@ -45,7 +46,7 @@ if(isset($_GET['id'])) {
     $award_amount = intval($row['award_amount']) ?? 0;
     
   }
-  $err = "The ID has already been taken! Please use another ID ";
+  $err = "Either of the ID has already been taken! Please use another ID ";
   
 ?>
 <!DOCTYPE html>
@@ -260,8 +261,13 @@ if(isset($_GET['id'])) {
                             <div class="user-details ">
                                 <div class="input-box">
                                     <span class="details">Veteran's ID</span>
-                                    <input type="tel" name="u_id" id="u_id" placeholder="Enter your ID" required
+                                    <input type="tel" name="u_id" id="u_id" placeholder="Enter your veteran ID" required
                                         value="<?php if(isset($_GET['id'])){echo $u_id;}?>">
+                                </div>
+                                <div class="input-box">
+                                    <span class="details">Register ID</span>
+                                    <input type="tel" name="reg_id" id="reg_id" placeholder="Enter your register ID"
+                                        required value="<?php if(isset($_GET['id'])){echo $reg_id;}?>">
                                 </div>
                                 <div class="input-box">
                                     <span class="details">Veteran's picture</span>
@@ -307,8 +313,9 @@ if(isset($_GET['id'])) {
                                 <div class="input-box">
                                     <span class="details">Birth Date</span>
                                     <input type="text" name="b_date" id="b_date"
-                                        value="<?php if(isset($_GET['id'])){echo $b_date;}?>" oninput="dateFormat(this)"
-                                        placeholder="yyyy-mm-dd" min="1951-00-00" max="1955-00-00">
+                                        value="<?php if(isset($_GET['id'])){echo $b_date;}?>"
+                                        oninput="dateFormat(this); birthCheck(this)" placeholder="yyyy-mm-dd"
+                                        min="1951-00-00" max="1955-00-00">
                                 </div>
                                 <div class="input-box">
                                     <span class="details">Birth Place</span>
@@ -593,8 +600,8 @@ if(isset($_GET['id'])) {
     }
     </style>
     <script>
-    document.getElementById('form').addEventListener('submit', function(event) {
-        event.preventDefault(); // Prevent the default form submission behavior
+    document.getElementById('form').addEventListener('submit', function(
+        event) { // Prevent the default form submission behavior
 
         var work_input = document.getElementsByClassName('exp');
         var award_input = document.getElementsByClassName('award');
@@ -614,7 +621,7 @@ if(isset($_GET['id'])) {
                 }
             }
         }
-        this.submit();
+
     });
     </script>
     <script>
@@ -682,10 +689,8 @@ if(isset($_GET['id'])) {
         removeFileButton.style.display = 'none';
     }
 
-
-    function dateFormat(input) {
+    function birthCheck(input) {
         var value = input.value.replace(/-/g, "");
-
         if (value.length >= 4) {
             var year = parseInt(value.substring(0, 4));
             console.log(year);
@@ -695,6 +700,10 @@ if(isset($_GET['id'])) {
                 input.setCustomValidity('');
             }
         }
+    }
+
+    function dateFormat(input) {
+        var value = input.value.replace(/-/g, "");
 
         if (value.length > 4) {
             value = value.slice(0, 4) + "-" + value.slice(4);
@@ -727,6 +736,7 @@ if(isset($_GET['id'])) {
         });
 
         var id = document.getElementById('u_id').value;
+        var regId = document.getElementById('reg_id').value;
         // Create a new XMLHttpRequest object
         var xhr = new XMLHttpRequest();
 
@@ -749,7 +759,7 @@ if(isset($_GET['id'])) {
         };
 
         // Send the request
-        xhr.send('id=' + encodeURIComponent(id));
+        xhr.send('id=' + encodeURIComponent(id) + '&reg_id=' + encodeURIComponent(regId));
     }
 
     function popToggler() {

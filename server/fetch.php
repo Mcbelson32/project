@@ -14,8 +14,8 @@ $data=mysqli_query($conn, "SELECT * FROM warrior WHERE warrior_s = '$no'");
 if($data){
   $exp=mysqli_num_rows($data);
 }
-$currentDate = date("Y-m-d");
-$sevenDaysAgo = date("Y-m-d", strtotime("-7 days"));
+$currentDate = date("Y-m-d H:i:s");
+$sevenDaysAgo = date("Y-m-d H:i:s", strtotime("-7 days"));
 
 $sql = "SELECT * FROM warrior WHERE in_date BETWEEN '$sevenDaysAgo' AND '$currentDate'";
 $result = $conn->query($sql);
@@ -49,6 +49,7 @@ if(isset($_GET['id']) && isset($_GET['type'])) {
     $row = mysqli_fetch_assoc($result);
     
     $u_id = $row['id'] ?? "N/A";
+    $reg_id = $row['reg_id'] ?? "N/A";
     $u_name=$row['u_name'] ?? "N/A";
     $img=$row['img'] ?? "N/A";
     $f_name = $row['f_name'] ?? "N/A";

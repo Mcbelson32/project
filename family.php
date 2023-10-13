@@ -220,6 +220,11 @@ if ($res) {
       $ans = mysqli_query($conn, $sql);
       $mem = mysqli_num_rows($ans);
       if(!$mem){
+        $query = "DROP TABLE $table";
+        $del = mysqli_query($conn, $query);
+        if (!$del) {
+            die(mysqli_error($conn));
+        }
         continue;
       }
         echo "<thead>

@@ -169,6 +169,12 @@ include 'array.php';
                                         <?php echo $id ?>
                                     </p>
                                 </div>
+                                <div class="input-box wrap">
+                                    <span class="details">VRegister ID</span>
+                                    <p class="input">
+                                        <?php echo $reg_id ?>
+                                    </p>
+                                </div>
 
                                 <div class="input-box wrap">
                                     <span class="details">User Name</span>
@@ -176,17 +182,30 @@ include 'array.php';
                                         <?php echo $u_name ?>
                                     </p>
                                 </div>
-                                <div class="input-box">
-                                    <span class="details">Father's Name</span>
-                                    <p class="input"><?php echo $f_name ?></p>
-                                </div>
                                 <?php
                                 if(!empty(trim($img)) && $img != "N/A"){
                                     ?>
                                 <div class="input-box img">
                                     <img src="image/<?php echo $img ?>" alt="">
                                 </div>
+                                <style>
+                                .wrap {
+                                    margin-top: 70px;
+                                }
+
+                                @media print {
+                                    .print .user-details .input-box.wrap {
+                                        margin-bottom: 15px;
+                                        width: calc(100% / 4 - 20px);
+                                    }
+                                }
+                                </style>
                                 <?php } ?>
+
+                                <div class="input-box">
+                                    <span class="details">Father's Name</span>
+                                    <p class="input"><?php echo $f_name ?></p>
+                                </div>
 
                                 <div class="input-box">
                                     <span class="details">GrandFather's Name</span>
@@ -339,73 +358,81 @@ include 'array.php';
                                     <?php }}?>
                                 </div>
                             </div>
+                            <div class="break">
+                                <span class="gender-title">Engagement rounds </span>
+                                <div class="checkbox">
+                                    <label class="checkbox-container">
+                                        <input class="custom-checkbox" id="r-1" type="checkbox" disabled>
+                                        <span class="checkmark"></span>
+                                        <span class="gender">1st round </span>
+                                    </label>
+                                    <label class="checkbox-container">
+                                        <input class="custom-checkbox" id="r-2" type="checkbox" disabled>
+                                        <span class="checkmark"></span>
+                                        <span class="gender">2nd round </span>
+                                    </label>
+                                    <label class="checkbox-container">
+                                        <input class="custom-checkbox" id="r-3" type="checkbox" disabled>
+                                        <span class="checkmark"></span>
+                                        <span class="gender">3rd round </span>
+                                    </label>
+                                    <label class="checkbox-container">
+                                        <input class="custom-checkbox" id="r-4" type="checkbox" disabled>
+                                        <span class="checkmark"></span>
+                                        <span class="gender">4th round </span>
+                                    </label>
+                                    <label class="checkbox-container">
+                                        <input class="custom-checkbox" id="r-5" type="checkbox" disabled>
+                                        <span class="checkmark"></span>
+                                        <span class="gender">5th round</span>
+                                    </label>
+                                </div>
 
-                            <span class="gender-title">Engagement rounds </span>
-                            <div class="checkbox">
-                                <label class="checkbox-container">
-                                    <input class="custom-checkbox" id="r-1" type="checkbox" disabled>
-                                    <span class="checkmark"></span>
-                                    <span class="gender">1st round </span>
-                                </label>
-                                <label class="checkbox-container">
-                                    <input class="custom-checkbox" id="r-2" type="checkbox" disabled>
-                                    <span class="checkmark"></span>
-                                    <span class="gender">2nd round </span>
-                                </label>
-                                <label class="checkbox-container">
-                                    <input class="custom-checkbox" id="r-3" type="checkbox" disabled>
-                                    <span class="checkmark"></span>
-                                    <span class="gender">3rd round </span>
-                                </label>
-                                <label class="checkbox-container">
-                                    <input class="custom-checkbox" id="r-4" type="checkbox" disabled>
-                                    <span class="checkmark"></span>
-                                    <span class="gender">4th round </span>
-                                </label>
-                                <label class="checkbox-container">
-                                    <input class="custom-checkbox" id="r-5" type="checkbox" disabled>
-                                    <span class="checkmark"></span>
-                                    <span class="gender">5th round</span>
-                                </label>
                             </div>
-                            <span class="gender-title">if wounded at the battlefield </span>
-                            <div class="radio-button-container">
-                                <div class="radio-button">
-                                    <input type="radio" class="radio-button__input" id="wound" name="iswounded"
-                                        disabled>
-                                    <label class="radio-button__label" for="wound">
-                                        <span class="radio-button__custom"></span>
-                                        Wounded
-                                    </label>
+                            <div class="break">
+                                <span class="gender-title">if wounded at the battlefield </span>
+                                <div class="radio-button-container">
+                                    <div class="radio-button">
+                                        <input type="radio" class="radio-button__input" id="wound" name="iswounded"
+                                            disabled>
+                                        <label class="radio-button__label" for="wound">
+                                            <span class="radio-button__custom"></span>
+                                            Wounded
+                                        </label>
+                                    </div>
+                                    <div class="radio-button">
+                                        <input type="radio" class="radio-button__input" id="nwound" name="iswounded"
+                                            disabled>
+                                        <label class=" radio-button__label" for="nwound">
+                                            <span class="radio-button__custom"></span>
+                                            Not wounded
+                                        </label>
+                                    </div>
                                 </div>
-                                <div class="radio-button">
-                                    <input type="radio" class="radio-button__input" id="nwound" name="iswounded"
-                                        disabled>
-                                    <label class=" radio-button__label" for="nwound">
-                                        <span class="radio-button__custom"></span>
-                                        Not wounded
-                                    </label>
-                                </div>
+
                             </div>
 
+                            <div class="break">
+                                <span class="gender-title">warrior's status</span> <br>
+                                <div class="radio-button-container">
+                                    <div class="radio-button">
+                                        <input type="radio" class="radio-button__input" id="alive" name="warrior_s"
+                                            disabled>
+                                        <label class="radio-button__label" for="alive">
+                                            <span class="radio-button__custom"></span>
+                                            Alive
+                                        </label>
+                                    </div>
+                                    <div class="radio-button">
+                                        <input type="radio" class="radio-button__input" id="dead" name="warrior_s"
+                                            disabled>
+                                        <label class="radio-button__label" for="dead">
+                                            <span class="radio-button__custom"></span>
+                                            Dead
+                                        </label>
+                                    </div>
+                                </div>
 
-                            <span class="gender-title">warrior's status</span> <br>
-                            <div class="radio-button-container">
-                                <div class="radio-button">
-                                    <input type="radio" class="radio-button__input" id="alive" name="warrior_s"
-                                        disabled>
-                                    <label class="radio-button__label" for="alive">
-                                        <span class="radio-button__custom"></span>
-                                        Alive
-                                    </label>
-                                </div>
-                                <div class="radio-button">
-                                    <input type="radio" class="radio-button__input" id="dead" name="warrior_s" disabled>
-                                    <label class="radio-button__label" for="dead">
-                                        <span class="radio-button__custom"></span>
-                                        Dead
-                                    </label>
-                                </div>
                             </div>
 
                             <div class="input-box" id="work">
@@ -495,7 +522,7 @@ include 'array.php';
                                 <ion-icon name="create"></ion-icon> edit
                             </a>
                             <?php if(isset($_SESSION['access']) && ($_SESSION['access'] === "full")) : ?>
-                            <a href='<?php echo "delete.php?uname=$uname&type=rel&table=$table";?>' class="btn">
+                            <a href='<?php echo "delete.php?id=$id&uname=$uname&type=rel&table=$table";?>' class="btn">
                                 <ion-icon name="trash"></ion-icon>
                                 delete
                             </a>
