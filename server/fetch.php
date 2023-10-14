@@ -82,8 +82,7 @@ if(isset($_GET['id']) && isset($_GET['type'])) {
     $awards = explode(',', $row['award']) ?? "none";
     $presenters = explode(',', $row['presenter']) ?? "none";
     $a_years = explode(',', $row['a_year']) ?? "none";
-    $award_amount = intval($row['award_amount']) ?? 0;
-    
+    $award_amount = intval($row['award_amount']) ?? 0;    
   }elseif ($_GET['type'] == "rel") {
     # code...
     $conn->select_db("warriorsdb");

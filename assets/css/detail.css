@@ -75,12 +75,13 @@
   padding: 5px;
   width: 100%;
   outline: none;
-  font-size: 16px;
+  font-size: 14px;
   border-radius: 5px;
   border: 0px solid #2a2185;
   border-bottom-width: 2px;
   transition: all 0.3s ease;
   text-align: center;
+  word-wrap: break-word;
 }
 .wrapper.not {
   position: relative;
@@ -106,14 +107,6 @@
 .input-box .input {
   /* height: 45px; */
   padding: 10px 5px;
-  width: 100%;
-  outline: none;
-  font-size: 16px;
-  border-radius: 5px;
-  border: 0px solid #2a2185;
-  border-bottom-width: 2px;
-  transition: all 0.3s ease;
-  text-align: center;
 }
 .input-box .wrapper_1 .input,
 .input-box .wrapper_1 span {
@@ -439,7 +432,7 @@ div.radio {
     margin: 10mm 10mm 0mm 10mm; /* Set the margin value according to your preference */
   }
   @page :first {
-    margin-top: initial; /* Reset the margin for the first page */
+    margin-top: 0; /* Reset the margin for the first page */
   }
 
   body {
@@ -526,11 +519,15 @@ div.radio {
     width: 100%;
     display: flex;
     flex-wrap: wrap;
+    align-content: flex-start;
+    height: auto;
     gap: 1%;
     overflow: hidden;
+    border: 1px solid red;
     /* justify-content: space-between; */
   }
   .print .user-details .input-box {
+    height: auto;
     width: calc(100% / 4 - 50px);
     margin-bottom: 10px;
   }
@@ -561,6 +558,7 @@ div.radio {
     border: 0px solid #ccc;
     border-bottom-width: 3px;
     text-align: center;
+    word-wrap: break-word;
   }
   .print .input-box .input {
     text-align: center;
@@ -596,14 +594,14 @@ div.radio {
   }
   .print .input-box .wrapper_1 .input,
   .print .input-box .wrapper_1 span {
-    margin-bottom: 15px;
+    margin: 15px 0;
     width: calc(100% / 3 - 20px);
     font-weight: 700;
     color: #070050;
   }
   .print .input-box .wrapper_2 .input,
   .print .input-box .wrapper_2 span {
-    margin-bottom: 15px;
+    margin: 15px 0;
     width: calc(100% / 2 - 20px);
     font-weight: 700;
     color: #070050;

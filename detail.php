@@ -2,6 +2,7 @@
 include './server/session.php';
 include './server/fetch.php';
 include 'array.php';
+$filePath = __DIR__.'/image/'.$img;
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -183,7 +184,7 @@ include 'array.php';
                                     </p>
                                 </div>
                                 <?php
-                                if(!empty(trim($img)) && $img != "N/A"){
+                                if(!empty(trim($img)) && $img != "N/A" && file_exists($filePath)){
                                     ?>
                                 <div class="input-box img">
                                     <img src="image/<?php echo $img ?>" alt="">
@@ -298,7 +299,7 @@ include 'array.php';
                                 </div>
                                 <div class="input-box">
                                     <span class="details">Language</span>
-                                    <p class="input">
+                                    <p class="input" style=''>
                                         <?php echo $language ?>
                                     </p>
                                 </div>

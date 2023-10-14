@@ -4,7 +4,7 @@ include 'connect.php';
 if($_SERVER["REQUEST_METHOD"] == "POST"){
   $keys = array_keys($_POST); // Get the keys of the array
 
-  $keyToRemove = array("round", "exp", "exp_year", "award", "presenter", "a_year", "file"); // Specify the key you want to remove
+  $keyToRemove = array("round", "exp", "exp_year", "award", "presenter", "a_year", "file", "language");  // Specify the key you want to remove
 
   foreach($keyToRemove as $remove) {
     if (($key = array_search($remove, $keys)) !== false) {
@@ -28,8 +28,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
   $imageTmpName = $image['tmp_name'];
   $imageSize = $image['size'];
   $imageError = $image['error'];
-  echo "$imageName $imageSize $imageError";
-  echo "$id";
   $f_name = trim($_POST['f_name']);
   $u_name = trim($_POST['u_name']);
   $g_name = trim($_POST['g_name']);
@@ -46,7 +44,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
   $h_number = $_POST['h_number'];
   $phone = $_POST['phone'];
   $po_box = $_POST['po_box'];
-  $language = $_POST['language'] ?? 'N/A';
+  (isset($_POST['language']) ? ($language = implode(',', $_POST['language'])) : ($language = "N/A"));
+  echo $language;
   $educ_lvl = $_POST['educ_lvl'] ?? "N/A";
   $educ_type = $_POST['educ_type'];
   $class = $_POST['class'];
@@ -108,11 +107,11 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
       if(file_exists($previousImagePath)){
           unlink($previousImagePath);
       }
-    }elseif ($imageError === UPLOAD_ERR_NO_FILE){
+    }else{
       $find="SELECT img FROM warrior WHERE id = '$id'";
       $res=mysqli_query($conn, $find);
 
-      $ImageName = mysqli_fetch_assoc($res)['img'] ?? "N/A";
+      $imageName = mysqli_fetch_assoc($res)['img'] ?? "N/A";
     }
     
     $data="UPDATE warrior SET id = '$u_id', reg_id = '$reg_id', img = '$imageName', u_name = '$u_name',f_name = '$f_name',g_name = '$g_name',
@@ -126,7 +125,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     
   }else{
 
-    if($imageError === 0){
+    if(isset($_FILES['file']) && $_FILES['file']['error'] === UPLOAD_ERR_OK){
       // Set the path to save the uploaded image
      $filename = uniqid('image_').'.'.pathinfo($imageName, PATHINFO_EXTENSION);
       // Set the path to save the uploaded image
@@ -140,8 +139,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
       // Move the uploaded image to the specified path
       move_uploaded_file($imageTmpName, $imagePath);
       $imageName=$filename;
-    }elseif ($imageError === UPLOAD_ERR_NO_FILE){
-      $ImageName = "N/A";
+    }else{
+      $imageName = "N/A";
     }
     $data="INSERT INTO warrior (id, reg_id, img, u_name,f_name,g_name,m_name,appellation,b_date,
     b_place,nationality,nation,bloodtype,region,warada,kebele,h_number,phone,po_box,lang,

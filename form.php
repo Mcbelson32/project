@@ -28,7 +28,7 @@ if(isset($_GET['id'])) {
     $h_number = $row['h_number'] ?? "N/A";
     $phone = $row['phone'] ?? "N/A";
     $po_box = $row['po_box']?? "N/A";
-    $language = $row['lang'] ?? "N/A";
+    $language = explode(',', $row['lang']) ?? 'N/A';
     $educ_lvl = $row['educ_lvl'] ?? "N/A";
     $educ_type = $row['educ_type'] ?? "N/A";
     $class = $row['class'] ?? "N/A";
@@ -427,11 +427,14 @@ if(isset($_GET['id'])) {
                                 <div class="input-box">
                                     <span class="details">Language</span>
 
-                                    <select name="language" id="language">
+                                    <select name="language[]" id="language" multiple>
                                         <option value="Amharic">Amharic</option>
                                         <option value="English">English</option>
+                                        <option value="Oromo">Oromo</option>
+                                        <option value="Tigrinya">Tigrinya</option>
+                                        <option value="Italian">Italian</option>
                                         <option value="Korean">Korean</option>
-                                        <option value="" selected></option>
+                                        <option value=""></option>
                                     </select>
                                 </div>
 
@@ -459,9 +462,6 @@ if(isset($_GET['id'])) {
                                 } ?>
 
                                 </div>
-                                <!-- <textarea type="text" name="award" id="award"
-                                    placeholder="Enter award with the presenter"><?php if(isset($_GET['id'])){echo $award;}?>
-                                </textarea> -->
 
                             </div>
 
@@ -540,7 +540,7 @@ if(isset($_GET['id'])) {
 
                             <div class="button">
                                 <?php if (isset($_GET['id'])) { ?>
-                                <input type="submit" value="<?php echo "Update";?>">
+                                <input type="submit" value="<?php echo "Update";?>" onclick="fillTable()">
                                 <?php }else{ ?>
                                 <input type="submit" value="<?php echo "Register";?>" onclick="checkID()">
                                 <?php } ?>
@@ -600,29 +600,33 @@ if(isset($_GET['id'])) {
     }
     </style>
     <script>
-    document.getElementById('form').addEventListener('submit', function(
-        event) { // Prevent the default form submission behavior
+    function fillTable() {
+        document.getElementById('form').addEventListener('submit', function(event) {
+            // Prevent the default form submission behavior
+            event.preventDefault();
 
-        var work_input = document.getElementsByClassName('exp');
-        var award_input = document.getElementsByClassName('award');
+            var work_input = document.getElementsByClassName('exp');
+            var award_input = document.getElementsByClassName('award');
 
-        // Check if both classes exist
-        if (work_input.length > 0) {
-            for (var i = 0; i < work_input.length; i++) {
-                if (work_input[i].value.trim() === '') {
-                    work_input[i].value = "N/A";
+            // Check if both classes exist
+            if (work_input.length > 0) {
+                for (var i = 0; i < work_input.length; i++) {
+                    if (work_input[i].value.trim() === '') {
+                        work_input[i].value = "N/A";
+                    }
                 }
             }
-        }
-        if (award_input.length > 0) {
-            for (var x = 0; x < award_input.length; x++) {
-                if (award_input[x].value.trim() === '') {
-                    award_input[x].value = "N/A";
+            if (award_input.length > 0) {
+                for (var x = 0; x < award_input.length; x++) {
+                    if (award_input[x].value.trim() === '') {
+                        award_input[x].value = "N/A";
+                    }
                 }
             }
-        }
+            this.submit();
 
-    });
+        });
+    }
     </script>
     <script>
     function awardTable() {
@@ -750,7 +754,7 @@ if(isset($_GET['id'])) {
                 if (xhr.status === 200) {
                     var response = xhr.responseText.trim();
                     if (response === "success") {
-                        form.submit();
+                        fillTable();
                     } else if (response === "error") {
                         popToggler();
                     }
@@ -784,7 +788,29 @@ if(isset($_GET['id'])) {
     window.onload = () => {
         tag.value = '<?php echo isset($_GET['id']) ? $bloodtype : ""; ?>';
         lvl.value = '<?php echo isset($_GET['id']) ? $educ_lvl : ""; ?>';
-        lang.value = '<?php echo isset($_GET['id']) ? $language : ""; ?>';
+        let opt = '';
+        <?php if (isset($_GET['id'])) {
+        foreach ($language as $lan) { ?>
+        opt = '<?php echo $lan ?>';
+        if (opt == "Amharic") {
+            lang.options[0].selected = true;
+        } else if (opt == "English") {
+            lang.options[1].selected = true;
+        } else if (opt == "Oromo") {
+            lang.options[2].selected = true;
+        } else if (opt == "Tigrinya") {
+            lang.options[3].selected = true;
+        } else if (opt == "Italian") {
+            lang.options[4].selected = true;
+        } else if (opt == "Korean") {
+            lang.options[5].selected = true;
+        } else {
+            lang.options[6].selected = true;
+        }
+
+        <?php }} else { ?>
+        lang.options[6].selected = true;
+        <?php } ?>
     }
 
     let data = '';
