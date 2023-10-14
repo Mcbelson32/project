@@ -18,7 +18,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     }
   }
 
-  $id=trim($_POST['u_id']);
+  $u_id=trim($_POST['u_id']);
   $uname=trim($_POST['u_name']);
   $type=$_POST['type'] ?? 'N/A';
   $lvl=$_POST['educ_lvl'] ?? 'N/A';
@@ -27,7 +27,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
   $duration = $_POST['start'].' - '.$_POST['end'];
 
   $conn->select_db("warriorsdb");
-  $sql="SELECT * FROM warrior WHERE id='$id'";
+  $sql="SELECT * FROM warrior WHERE id='$u_id'";
   $res=mysqli_query($conn, $sql);
   $row=mysqli_fetch_assoc($res);
   
@@ -35,17 +35,17 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
   $conn->select_db("family");
 
   if(isset($_POST['id'])) {
-    $id=$_POST['id'];
-    $u_id = $_POST['u_id'];
+    $id = trim($_POST['id']);
     updateTable($conn, $name, $id, $u_id, $uname, $type, $lvl, $b_date, $status, $duration);
   }else {
-    createTable($conn, $name, $id, $uname, $type, $lvl, $b_date, $status, $duration);
+    createTable($conn, $name, $u_id, $uname, $type, $lvl, $b_date, $status, $duration);
   }
 }
 
-function createTable($conn, $name, $id, $uname, $type, $lvl, $b_date, $status, $duration) {
+function createTable($conn, $name, $u_id, $uname, $type, $lvl, $b_date, $status, $duration) {
   $sql = "CREATE TABLE IF NOT EXISTS `$name` (
-  id VARCHAR(255) NOT NULL DEFAULT 'N/A',
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  u_id VARCHAR(255) NOT NULL DEFAULT 'N/A',
   uname VARCHAR(255) NOT NULL DEFAULT 'N/A',
   member VARCHAR(255) DEFAULT 'N/A',
   b_date VARCHAR(255) DEFAULT 'N/A',
@@ -60,8 +60,8 @@ function createTable($conn, $name, $id, $uname, $type, $lvl, $b_date, $status, $
     return die(mysqli_error($conn));
   }
   
- $sql="INSERT INTO $name (id, uname, member, b_date, educ_lvl, status, duration)
-  VALUES ('$id', '$uname', '$type', '$b_date', '$lvl', '$status','$duration')";
+ $sql="INSERT INTO `$name` (u_id, uname, member, b_date, educ_lvl, status, duration)
+  VALUES ('$u_id', '$uname', '$type', '$b_date', '$lvl', '$status','$duration')";
 
   $result=mysqli_query($conn, $sql);
 
@@ -75,7 +75,7 @@ function createTable($conn, $name, $id, $uname, $type, $lvl, $b_date, $status, $
 
 function updateTable($conn, $name, $id, $u_id, $uname, $type, $lvl, $b_date, $status, $duration) {
 
-  $sql="UPDATE `$name` SET id='$u_id', uname = '$uname', member = '$type', b_date = '$b_date',
+  $sql="UPDATE `$name` SET u_id='$u_id', uname = '$uname', member = '$type', b_date = '$b_date',
    educ_lvl = '$lvl', status = '$status', duration = '$duration' WHERE id='$id'";
 
   $result=mysqli_query($conn, $sql);

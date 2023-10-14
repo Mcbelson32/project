@@ -127,13 +127,13 @@ form .input-box span.details {
 .input-box .wrapper_1 input,
 .input-box .wrapper_1 span {
   margin-bottom: 15px;
-  width: calc(100% / 3 - 20px);
+  width: calc(100% / 2 - 20px);
   font-weight: 500;
 }
 .input-box .wrapper_2 input,
 .input-box .wrapper_2 span {
   margin-bottom: 15px;
-  width: calc(100% / 2 - 20px);
+  width: calc(100% / 3 - 20px);
   font-weight: 500;
 }
 #award-table,

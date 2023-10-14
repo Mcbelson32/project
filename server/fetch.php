@@ -74,33 +74,34 @@ if(isset($_GET['id']) && isset($_GET['type'])) {
     $c_year = $row['c_year'] ?? "N/A";
     $work = $row['work'] ?? "N/A";
     $exps = explode(',', $row['experience']) ?? "none";
-    $exp_years = explode(',', $row['exp_year']) ?? "none";
+    $exp_year_start = explode(',', $row['exp_year_start']) ?? "none";
+    $exp_year_end = explode(',', $row['exp_year_end']) ?? "none";
     $exp_amount = intval($row['exp_amount']) ?? 0;
     $round = explode(',', $row['round']);
     $iswounded = $row['iswounded'] ?? "N/A";
     $warrior_s = $row['warrior_s'] ?? "N/A";
     $awards = explode(',', $row['award']) ?? "none";
     $presenters = explode(',', $row['presenter']) ?? "none";
-    $a_years = explode(',', $row['a_year']) ?? "none";
-    $award_amount = intval($row['award_amount']) ?? 0;    
+    $award_amount = intval($row['award_amount']) ?? 0;
   }elseif ($_GET['type'] == "rel") {
     # code...
     $conn->select_db("warriorsdb");
-    $id = $_GET['id'];
+    $id = $_GET['u_id'];
     $name = $_GET['name'];
     $sql="SELECT * FROM warrior WHERE id='$id'";
     $result=mysqli_query($conn, $sql);
     
-    $row = mysqli_fetch_array($result);
+    $row = mysqli_fetch_assoc($result);
     $table = $row['u_name'].$row['f_name'];
 
     $conn->select_db("family");
     $sql = "SELECT * FROM `$table` WHERE uname='$name'";
     $res=mysqli_query($conn, $sql);
     
-    $row = mysqli_fetch_array($res);
+    $row = mysqli_fetch_assoc($res);
 
-    $u_id = $row['id'];
+    $id = $row['id'];
+    $u_id = $row['u_id'];
     $uname = $row['uname'];
     $mem= $row['member'];
     $lvl = $row['educ_lvl'];

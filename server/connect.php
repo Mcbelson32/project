@@ -7,7 +7,7 @@ $conn=new mysqli('127.0.0.1','root','');
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
-// echo "Connected successfully";
+$conn->set_charset("utf8");
 // Create a new database
 $sql = "CREATE DATABASE IF NOT EXISTS warriorsdb;";
 if ($conn->query($sql) === TRUE) {
@@ -108,14 +108,14 @@ class VARCHAR(255) DEFAULT 'N/A',
 c_year VARCHAR(255) DEFAULT 'N/A',
 work VARCHAR(255) DEFAULT 'N/A',
 experience TEXT DEFAULT 'N/A',
-exp_year TEXT DEFAULT 'N/A',
+exp_year_start TEXT DEFAULT 'N/A',
+exp_year_end TEXT DEFAULT 'N/A',
 exp_amount VARCHAR(255) DEFAULT '0',
 round VARCHAR(255) DEFAULT 'N/A',
 iswounded VARCHAR(255) DEFAULT 'N/A',
 warrior_s VARCHAR(255) DEFAULT 'N/A',
 award TEXT DEFAULT 'N/A',
 presenter TEXT DEFAULT 'N/A',
-a_year TEXT DEFAULT 'N/A',
 award_amount  VARCHAR(255) DEFAULT '0',
 in_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );";

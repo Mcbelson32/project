@@ -4,7 +4,7 @@ include './server/fetch.php';
 include 'array.php';
 if(isset($_GET['id']) && isset($_GET['uname'])) {
     $conn->select_db("warriorsdb");
-    $id = $_GET['id'];
+    $id = $_GET['u_id'];
     $uname = $_GET['uname'];
     
     $sql="SELECT * FROM warrior WHERE id='$id'";
@@ -17,7 +17,8 @@ if(isset($_GET['id']) && isset($_GET['uname'])) {
     $res=mysqli_query($conn, $sql);
     $row=mysqli_fetch_assoc($res);
     
-    $u_id = $row['id'] ?? "N/A";
+    $id = $row['id'] ?? "N/A";
+    $u_id = $row['u_id'] ?? "N/A";
     $uname=$row['uname'] ?? "N/A";
     $mem = $row['member'] ?? "N/A";
     $status = $row['status'] ?? "N/A";
@@ -233,7 +234,7 @@ if(isset($_GET['id']) && isset($_GET['uname'])) {
                     <div class="content">
                         <form action="./server/group.php" id="form" method="POST">
                             <?php if(isset($_GET['id']) && isset($_GET['uname'])): ?>
-                            <input type="hidden" name="id" id="id" value="<?php echo $_GET['id']; ?>">
+                            <input type="hidden" name="id" id="id" value="<?php echo $id; ?>">
                             <?php endif ?>
                             <div class="user-details">
                                 <div class="input-box">
@@ -253,8 +254,8 @@ if(isset($_GET['id']) && isset($_GET['uname'])) {
                                     <select name="type" id="type">
                                         <option value="Wife">Wife</option>
                                         <option value="Child">Child</option>
-                                        <option value="Representativ">Grandchild</option>
-                                        <option value="Representativ">Representative</option>
+                                        <option value="Grandchild">Grandchild</option>
+                                        <option value="Representative">Representative</option>
                                     </select>
                                 </div>
 

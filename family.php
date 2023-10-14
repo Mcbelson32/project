@@ -251,6 +251,7 @@ echo "<tr id=\"name\"><td>
         while ($row) {
              
             $id=$row['id'];
+            $u_id=$row['u_id'];
             $uname = $row['uname'];
             $type = $row['member'];
             $lvl = $row['educ_lvl'];
@@ -260,9 +261,9 @@ echo "<tr id=\"name\"><td>
 
         // $onclick="onclick=\"window.location.href ='detail.php?id=";
                         echo "<tbody>
-                        <tr onclick=\"window.location.href ='detail.php?id=$id&type=rel&name=$uname&table=$table'\">
+                        <tr onclick=\"window.location.href ='detail.php?id=$id&u_id=$u_id&type=rel&name=$uname&table=$table'\">
         <td>
-        <h4>$id</h4>
+        <h4>$u_id</h4>
         <h4>$uname</h4>
         <h4>$type</h4>
         <h4>$b_date</h4>

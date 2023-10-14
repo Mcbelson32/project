@@ -2,7 +2,7 @@
 include './server/session.php';
 include './server/fetch.php';
 include 'array.php';
-$filePath = __DIR__.'/image/'.$img;
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -184,7 +184,7 @@ $filePath = __DIR__.'/image/'.$img;
                                     </p>
                                 </div>
                                 <?php
-                                if(!empty(trim($img)) && $img != "N/A" && file_exists($filePath)){
+                                if(!empty(trim($img)) && $img != "N/A" && file_exists(__DIR__.'/image/'.$img)){
                                     ?>
                                 <div class="input-box img">
                                     <img src="image/<?php echo $img ?>" alt="">
@@ -344,7 +344,6 @@ $filePath = __DIR__.'/image/'.$img;
                                     <?php if($award_amount) { ?>
                                     <span class="details">award</span>
                                     <span class="details">presenter</span>
-                                    <span class="details">year</span>
                                     <?php for($i = 0; $i < $award_amount; $i++) { ?>
 
                                     <p class="input">
@@ -353,9 +352,7 @@ $filePath = __DIR__.'/image/'.$img;
                                     <p class="input">
                                         <?php echo $presenters[$i]; ?>
                                     </p>
-                                    <p class="input">
-                                        <?php echo $a_years[$i]; ?>
-                                    </p>
+
                                     <?php }}?>
                                 </div>
                             </div>
@@ -441,14 +438,18 @@ $filePath = __DIR__.'/image/'.$img;
                                 <div class="wrapper <?php echo ($exp_amount) ? "not" : '' ?> wrapper_2">
                                     <?php if($exp_amount) { ?>
                                     <span class="details">Experience</span>
-                                    <span class="details">year</span>
+                                    <span class="details">From (year)</span>
+                                    <span class="details">To (year)</span>
                                     <?php for($i = 0; $i < $exp_amount; $i++) { ?>
 
                                     <p class="input">
                                         <?php echo $exps[$i]; ?>
                                     </p>
                                     <p class="input">
-                                        <?php echo $exp_years[$i]; ?>
+                                        <?php echo $exp_year_start[$i]; ?>
+                                    </p>
+                                    <p class="input">
+                                        <?php echo $exp_year_end[$i]; ?>
                                     </p>
                                     <?php }}?>
                                 </div>
@@ -480,7 +481,7 @@ $filePath = __DIR__.'/image/'.$img;
                                 <div class="input-box">
                                     <span class="details">Family ID</span>
                                     <p class="input">
-                                        <?php echo $id ?>
+                                        <?php echo $u_id ?>
                                     </p>
                                 </div>
 
@@ -519,7 +520,7 @@ $filePath = __DIR__.'/image/'.$img;
                             <a href="" class="btn " onclick="window.print()">
                                 <ion-icon name="print"></ion-icon> print
                             </a>
-                            <a href='<?php echo"relative.php?id=$id&uname=$uname";?>' class=" btn">
+                            <a href='<?php echo"relative.php?id=$id&u_id=$u_id&uname=$uname";?>' class=" btn">
                                 <ion-icon name="create"></ion-icon> edit
                             </a>
                             <?php if(isset($_SESSION['access']) && ($_SESSION['access'] === "full")) : ?>

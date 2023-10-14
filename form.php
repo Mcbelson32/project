@@ -35,14 +35,14 @@ if(isset($_GET['id'])) {
     $c_year = $row['c_year'] ?? "N/A";
     $work = $row['work'] ?? "N/A";
     $exps = explode(',', $row['experience']) ?? "none";
-    $exp_years = explode(',', $row['exp_year']) ?? "none";
+    $exp_year_start = explode(',', $row['exp_year_start']) ?? "none";
+    $exp_year_end = explode(',', $row['exp_year_end']) ?? "none";
     $exp_amount = intval($row['exp_amount']) ?? 0;
     $round = explode(',', $row['round']);
     $iswounded = $row['iswounded'] ?? "N/A";
     $warrior_s = $row['warrior_s'] ?? "N/A";
     $awards = explode(',', $row['award']) ?? "none";
     $presenters = explode(',', $row['presenter']) ?? "none";
-    $a_years = explode(',', $row['a_year']) ?? "none";
     $award_amount = intval($row['award_amount']) ?? 0;
     
   }
@@ -253,7 +253,8 @@ if(isset($_GET['id'])) {
                 <div class="container">
                     <div class="title">Registration</div>
                     <div class="content">
-                        <form action="./server/data.php" id="form" method="POST" enctype="multipart/form-data">
+                        <form action="./server/data.php" id="form" method="POST" enctype="multipart/form-data"
+                            accept-charset="utf-8">
                             <?php if (isset($_GET['id'])) { ?>
 
                             <input type="hidden" name="id" id="id" value="<?php echo $_GET['id']?>">
@@ -449,14 +450,11 @@ if(isset($_GET['id'])) {
                                     <?php if(isset($_GET['id']) && $award_amount) { ?>
                                     <span>award</span>
                                     <span>presenter</span>
-                                    <span>year</span>
                                     <?php for($i = 0; $i < $award_amount; $i++) { ?>
                                     <input type="text" name="award[]" class="award" placeholder="Enter the award"
                                         value="<?php echo $awards[$i]; ?>">
                                     <input type="text" name="presenter[]" class="award"
                                         placeholder="Enter the presenter" value="<?php echo $presenters[$i]; ?>">
-                                    <input type="text" name="a_year[]" class="award" oninput="dateFormat(this)"
-                                        placeholder="yyyy-mm-dd" value="<?php echo $a_years[$i]; ?>">
 
                                     <?php }
                                 } ?>
@@ -527,12 +525,15 @@ if(isset($_GET['id'])) {
                                 <div class="wrapper wrapper_2">
                                     <?php if(isset($_GET['id']) && $exp_amount) { ?>
                                     <span>Experience</span>
-                                    <span>year</span>
+                                    <span>From (year)</span>
+                                    <span>To (year)</span>
                                     <?php for($i = 0; $i < $exp_amount; $i++) { ?>
                                     <input type="text" name="exp[]" class="exp" placeholder="Enter the experience"
                                         value="<?php echo $exps[$i]; ?>">
-                                    <input type="text" name="exp_year[]" class="exp" oninput="dateFormat(this)"
-                                        placeholder="yyyy-mm-dd" value="<?php echo $exp_years[$i]; ?>">
+                                    <input type="text" name="exp_year_start[]" class="exp" oninput="dateFormat(this)"
+                                        placeholder="yyyy-mm-dd" value="<?php echo $exp_year_start[$i]; ?>">
+                                    <input type="text" name="exp_year_end[]" class="exp" oninput="dateFormat(this)"
+                                        placeholder="yyyy-mm-dd" value="<?php echo $exp_year_end[$i]; ?>">
                                     <?php }}?>
                                 </div>
                             </div>
@@ -638,15 +639,13 @@ if(isset($_GET['id'])) {
 
             cont.innerHTML += `
             <span>award</span>
-            <span>presenter</span>
-            <span>year</span>`;
+            <span>presenter</span>`;
 
             for (let index = 0; index < amount; index++) {
                 cont.innerHTML +=
                     `
                 <input type="text" name="award[]" class="award" placeholder="Enter the award"> 
-                <input type="text" name="presenter[]" class="award" placeholder="Enter the presenter">
-                <input type="text" name="a_year[]" class="award" oninput="dateFormat(this)" placeholder="yyyy-mm-dd">`;
+                <input type="text" name="presenter[]" class="award" placeholder="Enter the presenter">`;
             }
         }
     }
@@ -660,13 +659,15 @@ if(isset($_GET['id'])) {
 
             cont.innerHTML += `
             <span>Experience</span>
-            <span>year</span>`;
+            <span>From (year)</span>
+            <span>To (year)</span>`;
 
             for (let index = 0; index < amount; index++) {
                 cont.innerHTML +=
                     `
                 <input type="text" name="exp[]" class="exp" placeholder="Enter the experience"> 
-                <input type="text" name="exp_year[]" class="exp" oninput="dateFormat(this)" placeholder="yyyy-mm-dd">`;
+                <input type="text" name="exp_year_start[]" class="exp" oninput="dateFormat(this)" placeholder="yyyy-mm-dd">
+                <input type="text" name="exp_year_end[]" class="exp" oninput="dateFormat(this)" placeholder="yyyy-mm-dd">`;
             }
         }
     }
