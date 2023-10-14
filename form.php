@@ -268,7 +268,7 @@ if(isset($_GET['id'])) {
                                 <div class="input-box">
                                     <span class="details">Register ID</span>
                                     <input type="tel" name="reg_id" id="reg_id" placeholder="Enter your register ID"
-                                        required value="<?php if(isset($_GET['id'])){echo $reg_id;}?>">
+                                        value="<?php if(isset($_GET['id'])){echo $reg_id;}?>">
                                 </div>
                                 <div class="input-box">
                                     <span class="details">Veteran's picture</span>
@@ -314,9 +314,8 @@ if(isset($_GET['id'])) {
                                 <div class="input-box">
                                     <span class="details">Birth Date</span>
                                     <input type="text" name="b_date" id="b_date"
-                                        value="<?php if(isset($_GET['id'])){echo $b_date;}?>"
-                                        oninput="dateFormat(this); birthCheck(this)" placeholder="yyyy-mm-dd"
-                                        min="1951-00-00" max="1955-00-00">
+                                        value="<?php if(isset($_GET['id'])){echo $b_date;}?>" oninput="dateFormat(this)"
+                                        placeholder="yyyy-mm-dd" min="1951-00-00" max="1955-00-00">
                                 </div>
                                 <div class="input-box">
                                     <span class="details">Birth Place</span>

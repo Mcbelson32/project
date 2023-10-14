@@ -270,6 +270,7 @@ if($all){
                     </div>
 
                     <table>
+
                         <?php
 if($res){
   $i=0;

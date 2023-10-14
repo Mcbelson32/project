@@ -9,7 +9,7 @@ function changeFamily ($conn, $id, $uname, $fname) {
     $conn->select_db("family");
     $sql = "SELECT * FROM information_schema.tables WHERE table_name='$name'";
     $res = mysqli_query($conn, $sql);
-    $data = mysqli_fetch_array($res)[0];
+    $data = mysqli_fetch_assoc($res)['TABLE_NAME'];
     if (mysqli_num_rows($res) && ($data != $new_name)) {
         $sql = "RENAME TABLE `$name` TO `$new_name`";
         $res = mysqli_query($conn, $sql);
