@@ -216,11 +216,11 @@ if ($res) {
     while ($tables = mysqli_fetch_array($res)) {
       $table = $tables[0];
       $conn->select_db("family");
-      $sql = "SELECT * FROM $table";
-      $ans = mysqli_query($conn, $sql);
+      $search = "SELECT * FROM `$table`";
+      $ans = mysqli_query($conn, $search);
       $mem = mysqli_num_rows($ans);
       if(!$mem){
-        $query = "DROP TABLE $table";
+        $query = "DROP TABLE `$table`";
         $del = mysqli_query($conn, $query);
         if (!$del) {
             die(mysqli_error($conn));

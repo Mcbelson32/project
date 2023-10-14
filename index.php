@@ -3,9 +3,9 @@ include './server/session.php';
 include './server/fetch.php';
 include 'array.php';
 $conn->select_db("family");
-$sql="show tables";
+$sql="SHOW TABLES";
 
-$res=mysqli_query($conn, $sql);
+$tables=mysqli_query($conn, $sql);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -272,12 +272,12 @@ if($all){
                     <table>
 
                         <?php
-if($res){
+if($tables){
   $i=0;
-  while($row=mysqli_fetch_array($res)){
-    $name=$row[0];
-    $sql = "SELECT * FROM $name";
-    $ans=mysqli_query($conn, $sql);
+  while($row=mysqli_fetch_array($tables)){
+    $name = $row[0];
+    $search = "SELECT * FROM `$name`";
+    $ans = mysqli_query($conn, $search);
     $mem = mysqli_num_rows($ans);
     $id=mysqli_fetch_array($ans);
     if(!$mem){
