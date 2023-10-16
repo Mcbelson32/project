@@ -272,7 +272,7 @@ if(isset($_GET['id']) && isset($_GET['uname'])) {
                                     <span class="details">Birth Date</span>
                                     <input type="text" name="b_date" id="b_date"
                                         value="<?php if(isset($_GET['id']) && isset($_GET['uname'])){echo $b_date;}?>"
-                                        pattern="\d{4}-\d{2}-\d{2}" oninput="dateFormat(this)" placeholder="yyyy-mm-dd">
+                                        oninput="dateFormat(this)" placeholder="yyyy-mm-dd">
                                 </div>
                                 <div class="input-box">
                                     <span class="details">level of education</span>

@@ -278,8 +278,12 @@ if($tables){
     $name = $row[0];
     $search = "SELECT * FROM `$name`";
     $ans = mysqli_query($conn, $search);
-    $mem = mysqli_num_rows($ans);
-    $id=mysqli_fetch_array($ans);
+    if ($ans) {
+        $mem = mysqli_num_rows($ans);
+        $id=mysqli_fetch_array($ans);
+    } else {
+        die('Query Error: ' . mysqli_error($conn));
+    }
     if(!$mem){
         continue;
       }

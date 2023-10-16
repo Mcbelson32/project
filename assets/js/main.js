@@ -35,14 +35,12 @@ window.addEventListener("scroll", function () {
   }
 });
 
-console.log(dataArray);
 var search = document.getElementById("search");
 var table = document.querySelector(".search-table");
 var tbody = document.getElementById("tbody");
 
 search.addEventListener("keyup", () => {
   var val = search.value;
-  console.log(val);
   if (val === "") {
     tbody.innerHTML = ``; // Reset the table to its original state
     return;

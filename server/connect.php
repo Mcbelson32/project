@@ -7,7 +7,8 @@ $conn=new mysqli('127.0.0.1','root','');
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
-$conn->set_charset("utf8");
+mysqli_set_charset($conn, 'utf8mb4');
+
 // Create a new database
 $sql = "CREATE DATABASE IF NOT EXISTS warriorsdb;";
 if ($conn->query($sql) === TRUE) {

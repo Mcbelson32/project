@@ -218,7 +218,11 @@ if ($res) {
       $conn->select_db("family");
       $search = "SELECT * FROM `$table`";
       $ans = mysqli_query($conn, $search);
-      $mem = mysqli_num_rows($ans);
+      if ($ans) {
+        $mem = mysqli_num_rows($ans);
+      } else {
+        die('Query Error: ' . mysqli_error($conn));
+      }
       if(!$mem){
         $query = "DROP TABLE `$table`";
         $del = mysqli_query($conn, $query);
@@ -261,7 +265,7 @@ echo "<tr id=\"name\"><td>
 
         // $onclick="onclick=\"window.location.href ='detail.php?id=";
                         echo "<tbody>
-                        <tr onclick=\"window.location.href ='detail.php?id=$id&u_id=$u_id&type=rel&name=$uname&table=$table'\">
+                        <tr id=\"data\" onclick=\"window.location.href ='detail.php?id=$id&u_id=$u_id&type=rel&name=$uname&table=$table'\">
         <td>
         <h4>$u_id</h4>
         <h4>$uname</h4>
@@ -296,6 +300,10 @@ echo "<tr id=\"name\"><td>
     .recentCustomers table tr,
     .recentCustomers table tr td {
         width: 95%;
+    }
+
+    #data {
+        cursor: pointer;
     }
 
     .recentCustomers table tbody tr td {
