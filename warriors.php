@@ -123,7 +123,7 @@ $result=mysqli_query($conn, $sql);
                                         <td>ID</td>
                                         <td>User Name</td>
                                         <td>Father's name</td>
-                                        <td>Granfather's name</td>
+                                        <td>Grandfather's name</td>
                                     </tr>
                                 </thead>
 

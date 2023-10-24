@@ -3,9 +3,9 @@ include './server/session.php';
 include './server/fetch.php';
 include 'array.php';
 $conn->select_db("family");
-$sql="show tables";
+$sql="SHOW TABLES";
 
-$res=mysqli_query($conn, $sql);
+$tables=mysqli_query($conn, $sql);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -14,7 +14,7 @@ $res=mysqli_query($conn, $sql);
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Family</title>
+    <title>Dashboard</title>
     <!-- ======= Styles ====== -->
     <link rel="stylesheet" type="text/css" href="assets/css/style.css?v=1.0">
 
@@ -69,7 +69,6 @@ $res=mysqli_query($conn, $sql);
                         <span class="title">Add Veteran</span>
                     </a>
                 </li>
-
 
                 <li>
                     <a href="relative.php">
@@ -160,7 +159,7 @@ $res=mysqli_query($conn, $sql);
                 <div class="card" onclick="window.location.href = 'warriors.php'">
                     <div>
                         <div class="numbers"><?php echo $total ?></div>
-                        <div class="cardName">Veterans</div>
+                        <div class="cardName">Total</div>
                     </div>
 
                     <div class="iconBx">
@@ -170,8 +169,8 @@ $res=mysqli_query($conn, $sql);
 
                 <div class="card" onclick="window.location.href = 'family.php'">
                     <div>
-                        <div class="numbers"><?php echo $fam; ?></div>
-                        <div class="cardName">Families</div>
+                        <div class="numbers"><?php echo $fam ?></div>
+                        <div class="cardName">Pending</div>
                     </div>
 
                     <div class="iconBx">
@@ -182,7 +181,7 @@ $res=mysqli_query($conn, $sql);
                 <div class="card">
                     <div>
                         <div class="numbers"><?php echo $exp ?></div>
-                        <div class="cardName">Alive</div>
+                        <div class="cardName">Accepted</div>
                     </div>
 
                     <div class="iconBx">
@@ -193,7 +192,7 @@ $res=mysqli_query($conn, $sql);
                 <div class="card">
                     <div>
                         <div class="numbers"><?php echo $weekly ?></div>
-                        <div class="cardName">Register In a week</div>
+                        <div class="cardName">Rejected</div>
                     </div>
 
                     <div class="iconBx">
@@ -202,178 +201,118 @@ $res=mysqli_query($conn, $sql);
                 </div>
             </div>
 
+            <!-- ================ Order Details List ================= -->
+            <div class="details">
+                <div class="recentOrders">
+                    <div class="cardHeader">
+                        <h2>Recent Apply</h2>
+                        <a href="warriors.php" class="btn">View All</a>
+                    </div>
 
-            <!-- ================= New Customers ================ -->
-            <div class="recentCustomers">
-                <div class="cardHeader">
-                    <h2>Recent Families</h2>
+                    <table>
+                        <thead>
+                            <tr>
+                                <td>ID</td>
+                                <td>FullName</td>
+                                <td>Nationality</td>
+                                <td>Nation</td>
+                                <td>Appellation</td>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            <?php
+if($all){
+  $i=0;
+  $row=mysqli_fetch_assoc($all);
+  while($row && $i<12){
+    $id=$row['id'];
+    $u_name = $row['u_name'];
+    $f_name = $row['f_name'];
+    $g_name = $row['g_name'];
+    $appellation = $row['appellation'];
+    $nationality = $row['nationality'];
+    $nation = $row['nation'];
+    
+    echo '<tr onclick="window.location.href = \'detail.php?id='.$id.'&type=war\'">
+      <td>'.$id.'</td>
+      <td>'.$u_name.' '.$f_name.' '.$g_name.'</td>
+      <td>'.$nationality.'</td>
+      <td>'.$nation.'</td>
+      <td><span class="status delivered">'.$appellation.'</span></td>
+      </tr>';
+    $i++;
+    $row=mysqli_fetch_assoc($all);
+  }
+  if(!$i){
+    echo '<h1 class="empty">No Veterans</h1>
+    <script>
+    var element = document.getElementById("th");
+    window.addEventListener("load", () => {
+    while (element.firstChild) {
+    element.removeChild(element.firstChild);
+  }
+    })
+    </script>
+    ';
+  }
+
+  }
+?>
+                        </tbody>
+                    </table>
                 </div>
 
-                <table>
-                    <?php
-if ($res) {
-  $n = 0;
-    while ($tables = mysqli_fetch_array($res)) {
-      $table = $tables[0];
-      $conn->select_db("family");
-      $search = "SELECT * FROM `$table`";
-      $ans = mysqli_query($conn, $search);
-      if ($ans) {
+                <!-- ================= New Customers ================ -->
+                <div class="recentCustomers">
+                    <div class="cardHeader">
+                        <h2>Recent Accepted</h2>
+                    </div>
+
+                    <table>
+
+                        <?php
+if($tables){
+  $i=0;
+  while($row=mysqli_fetch_array($tables)){
+    $name = $row[0];
+    $search = "SELECT * FROM `$name`";
+    $ans = mysqli_query($conn, $search);
+    if ($ans) {
         $mem = mysqli_num_rows($ans);
-      } else {
+        $id=mysqli_fetch_array($ans);
+    } else {
         die('Query Error: ' . mysqli_error($conn));
-      }
-      if(!$mem){
-        $query = "DROP TABLE `$table`";
-        $del = mysqli_query($conn, $query);
-        if (!$del) {
-            die(mysqli_error($conn));
-        }
+    }
+    if(!$mem){
         continue;
       }
-        echo "<thead>
-                <tr>
-                    <td>
-                        <h4>$table<br> <span>$mem members</span></h4>
-                    </td>
-    </tr>
-            </thead>";
-echo "<tr id=\"name\"><td>
-          <h4>ID</h4>
-          <h4>FullName</h4>
-          <h4>Family type</h4>
-        <h4>B.Date</h4>
-        <h4>Status</h4>
-        <h4>Duration</h4>
-        <h4>Education lvl</h4>
-        </td></tr>";
-
-        echo '';
-        if ($ans) {
-            $row = mysqli_fetch_assoc($ans); // Fetch the first row
-            
-        while ($row) {
-             
-            $id=$row['id'];
-            $u_id=$row['u_id'];
-            $uname = $row['uname'];
-            $type = $row['member'];
-            $lvl = $row['educ_lvl'];
-            $b_date = $row['b_date'];
-            $status = $row['status'];
-            $duration = $row['duration'];
-
-        // $onclick="onclick=\"window.location.href ='detail.php?id=";
-                        echo "<tbody>
-                        <tr id=\"data\" onclick=\"window.location.href ='detail.php?id=$id&u_id=$u_id&type=rel&name=$uname&table=$table'\">
-        <td>
-        <h4>$u_id</h4>
-        <h4>$uname</h4>
-        <h4>$type</h4>
-        <h4>$b_date</h4>
-        <h4>$status</h4>
-        <h4>$duration</h4>
-        <h4 id=\"lvl\">$lvl</h4>
-                   </td>
-                        </tr>
-                    </tbody>";
-                
-                $row = mysqli_fetch_assoc($ans); // Fetch the next row
-            }
-        }
-        
-        $n++;
-    }
-    
-    if (!$n) {
-        echo '<h1 class="empty">No Families</h1>';
-    }
+                            echo '<tr onclick="window.location.href = \'family.php#'.$id[0][0].'\'">
+                              <td>
+                                <h4>'.$name.'<br> <span>'.$mem.' members</span></h4>
+                            </td>
+    </tr>';
+    $i++;
+  }
+  if(!$i){
+    echo '<h1 class="empty">No Families</h1>';
+  }
 }
 ?>
-                </table>
+                    </table>
+                </div>
             </div>
         </div>
     </div>
-    </div>
-    <style>
-    .recentCustomers table,
-    .recentCustomers table tr,
-    .recentCustomers table tr td {
-        width: 95%;
-    }
-
-    #data {
-        cursor: pointer;
-    }
-
-    .recentCustomers table tbody tr td {
-        width: 100%;
-        border: 2px #cacad850 solid;
-        padding-left: 50px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    }
-
-    .recentCustomers table tbody tr td h4 {
-        color: black;
-        /* max-width: 100px; */
-        /* overflow: scroll; */
-    }
-
-    .recentCustomers table tbody tr td #lvl {
-        max-width: 20%;
-        word-break: break-all;
-    }
-
-    .recentCustomers table tbody tr td:hover {
-        background: #2a218555;
-    }
-
-    .recentCustomers table tbody tr:hover td h4 {
-        /* color: var(--white); */
-    }
-
-    .cardHeader {
-        margin-bottom: 15px;
-    }
-
-    .cardHeader h2::before {
-        content: '';
-        position: absolute;
-        bottom: 0;
-        left: 1%;
-        width: 18%;
-        height: 3px;
-        background-color: var(--blue);
-    }
-
-    .recentCustomers table tr td h4 {
-        color: var(--white);
-    }
-
-    .recentCustomers table #name td {
-        background-color: #2a2185bb;
-        border-radius: 20px;
-    }
-
-    #name * {
-        border-radius: 20px;
-    }
-
-    #name td h4 {
-
-        color: var(--white);
-    }
-    </style>
-    <!-- =========== Scripts =========  -->
-    <script type="module" src="assets/js/main.js"></script>
     <script>
     function activator() {
         var profile = document.querySelector(".profile");
         profile.classList.toggle("active");
     }
     </script>
+    <!-- =========== Scripts =========  -->
+    <script type="module" src="assets/js/main.js"></script>
+
     <!-- ====== ionicons ======= -->
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
